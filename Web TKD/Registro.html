@@ -1,9 +1,50 @@
 <!DOCTYPE html>
 <html>
     <head>
-
+        <title>TKD World</title>
+        <meta charset="utf-8">
+        <style>
+            header{
+                display: inline;
+            }
+            .logo{
+                float: left;
+                margin: 15px;
+            }
+            .registro input,label{
+                border: 1px solid #000000;
+                padding: 10px;
+                width: 150px;
+                margin: 10px;
+            }
+        </style>
     </head>
     <body>
-        
+        <header>
+            <div class="logo">
+                <img src="img/logo.jpg" height="60" width="100">
+            </div>
+        </header>
+        <br>
+        <br>
+        <center>
+            <form method="GET" class="registro">
+                <div>
+                    <label>Nombre de usuario:</label>
+                    <input type="text">
+                </div>
+                <div>
+                    <label>E-mail:</label>
+                    <input type="email">
+                </div>
+                <div>
+                    <label>Password:</label>
+                    <input type="password">
+                </div>
+                <div>
+                    <input type="submit" name="Enviar" value="Enviar">
+                </div>
+            </form>
+        </center>
     </body>
 </html>
