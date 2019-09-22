@@ -13,15 +13,17 @@
             header .Menu ul li{
                 float:left;
                 list-style: none;
-                padding: 2px;
+                padding: 5px;
                 color: #5588a3;
             }
             .Menu ul li a{
                 color: #5588a3;
+                text-decoration: none;
             }
 
             .Usuario ul li a{
                 color: #5588a3;
+                text-decoration: none;
             }
 
             header .Usuario ul li{
@@ -30,6 +32,16 @@
                 color: #5588a3;
                 padding: 2px;
            }
+
+           body .Combate{
+                display: inline;             
+                margin: 0 auto;
+                margin-left: 30%;
+           }
+
+           body .Combate .Puntuacion .Puntos{
+                margin-bottom: 20px;
+           }       
 
             .contact-info{
                 background: #00334e;
@@ -45,16 +57,6 @@
 
             .contact-info .cinfo h5{
                 color: #5588a3;
-            }
-
-            body .logo,.About{
-                margin-left: 200px;
-            } 
-
-            .Directo{
-                margin-left: 200px;
-                margin-top: 100px;
-                margin-right: 200px;
             }
 
         </style>
@@ -79,35 +81,40 @@
             </nav>
         </header>
         <br>
-        <center>
-            <div class="logo">
-                <img src="img/logo.jpg" height="200" width="300">
-            </div>
-        </center>
-        <div class="Combate">
-            <table class="Puntuacion" border="1px">
-                <tr>
-                    <td colspan="2">Puntuación</td>
-                </tr>
-                <tr>
-                    <td>Azul</td>
-                    <td>Rojo</td>
-                </tr>
-            </table>
-            <table class="Faltas" border="1px">
-                <tr>
-                    <td colspan="2">Faltas</td>
-                </tr>
-                <tr>
-                    <td>Azul</td>
-                    <td>Rojo</td>
-                </tr>                
-            </table>
-            <br>
-            <br>
-            <h1 style="margin-top: 50px"><u>Combate en Directo</u></h1>
-            <br>           
-        </div>
+        <section class="Combate">
+            <center>
+                <div class="logo">
+                    <img src="img/logo.jpg" height="200" width="300">
+                </div>
+                <div class="Puntuacion">
+                    <table class="Puntos" border="1px">
+                        <tr>
+                            <td colspan="2"><font color="00334e"><h2>Puntuación</h2></font></td>
+                        </tr>
+                        <tr>
+                            <td bgcolor="blue"><font color="white">Azul</font></td>
+                            <td bgcolor="red"><font color="white">Rojo</font>
+                        </tr>
+                        <tr>
+                            <td bgcolor="blue"><font color="white">0</font></td>
+                            <td bgcolor="red"><font color="white">0</font></td>
+                        </tr>
+                    </table>
+                    <table class="Faltas" border="1px">
+                        <tr>
+                            <td colspan="2"><font color ="00334e"><h2>Faltas</h2></font></td>
+                        </tr>
+                        <tr>
+                            <td bgcolor="blue"><font color="white">0</font></td>
+                            <td bgcolor="red"><font color="white">0</font></td>
+                        </tr>               
+                    </table>
+                    <h1 style="margin-top: 50px"><u><font color="#00334e">Combate en Directo</font></u></h1>
+                    <br>           
+                </div>
+            </center>
+        </section>
+        
         <div class="Directo">
             <img src="img/tkdDirecto.jpg" width="800" height="300">
         </div>
