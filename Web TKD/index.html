@@ -8,31 +8,28 @@
             header{
                 background-color: #00334e; 
                 height: 100px;
-
-            }
-            
-            header li{
-                display: inline;
             }
 
-            header li a{
+            header .Menu ul li{
+                float:left;
+                list-style: none;
+                padding: 2px;
+                color: white;
+            }
+            .Menu ul li a{
+              color: white;  
+            }
+
+            .Usuario ul li a{
                 color: white;
             }
 
-            .logo{
-                float: left;
-                margin: 15px;
-            }
-
-            .menu{
-                text-align: center;
-                padding: 20px;
-            }
-
-            .Usuario{
+            header .Usuario ul li{
                 float: right;
-                padding: -20px;
-            }
+                list-style: none;
+                color: white;
+                padding: 2px;
+           }
 
             .Noticias article{
                 display: inline-block;
@@ -43,59 +40,83 @@
                 margin-left: 200px;
             }
 
-            .About{
-                margin-left: 200px;
+            .contact-info{
+                background: #00334e;
             }
 
+            .contact-info .cinfo p{
+                color: white;
+            }
+
+            .contact-info .cinfo h5{
+                color: #5588a3;
+            }
+
+            body .logo,.About{
+                margin-left: 200px;
+            }
         </style>
     </head>
     <body>
         <header>
-            <div class="logo">
-                <img src="img/logo.jpg" height="60" width="100">
-            </div>            
+            <nav class="Menu">
+                <ul>
+                    <li><a href="index.html"><h4>Inicio</h2></a></li>
+                    <li><a href="Noticias.html"><h4>Noticias</h4></a></li>
+                    <li><a href="Torneos.html"><h4>torneos</h4></a></li>
+                    <li><a href="Examenes.html"><h4>Exámenes</h4></a></li>
+                    <li><a href="App combate.html"><h4>App combate</h4></a></li>
+                    <li><a href="Sobre nosotros.html"><h4>Sobre nosotros</h4></a></li>
+                <ul>
+            </nav>
 
-            <div class="menu">
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="Noticias.html">Noticias</a></li>
-                <li><a href="Torneos.html">Torneos</a></li>
-                <li><a href="Examenes.html">Exámenes</a></li>
-                <li><a href="App combate.html">App combate</a></li>
-                <li><a href="Sobre nosotros.html">Sobre nosotros</a></li>
-            </div>
-
-            <div class="Usuario">
-                <li>Login</li>
-                <li><a href="Registro.html">Registrarse</a></li>
-            </div>
+            <nav class="Usuario">
+                <ul>
+                    <li><h4>Login</h4></li>
+                    <li><a href="Registro.html"><h4>Registrarse</h4></a></li>
+                </ul>
+            </nav>
         </header>
-        <div>
-
-
-        </div>
         <br>
-        <br>
-        <hr>
-            
-        <article class="About">
-                <h1>TKD World</h1>
-                <br>  
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil magnam accusamus voluptatum voluptate deserunt officiis reiciendis minus distinctio consequuntur, debitis enim maiores quasi corporis cupiditate possimus, omnis nisi, aperiam iusto.</p>
-                <br>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure maiores veniam voluptatem expedita quis dolorum cumque voluptates eligendi ad cum in dolore placeat excepturi eaque, quidem culpa rem saepe nam.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, necessitatibus quisquam numquam eligendi quasi, harum nemo nobis laborum consequatur fugiat commodi inventore autem mollitia quia consectetur sit optio, tenetur unde.
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Beatae, laborum sunt modi in eius nostrum dolorum assumenda ullam neque perferendis mollitia! Saepe enim quod fuga, unde doloremque fugiat natus dolorem.
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui sed provident ullam laudantium repudiandae quod dolore, unde dolor atque officia quidem assumenda illo ducimus nemo ea expedita aspernatur nobis esse?
-        </article>
-        <br>
+        <center>
+            <div class="logo">
+                <img src="img/logo.jpg" height="200" width="300">
+            </div>
+        </center>
+            <article class="About">
+                    <h1>TKD World</h1>
+                    <br>  
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil magnam accusamus voluptatum voluptate deserunt officiis reiciendis minus distinctio consequuntur, debitis enim maiores quasi corporis cupiditate possimus, omnis nisi, aperiam iusto.</p>
+                    <br>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure maiores veniam voluptatem expedita quis dolorum cumque voluptates eligendi ad cum in dolore placeat excepturi eaque, quidem culpa rem saepe nam.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, necessitatibus quisquam numquam eligendi quasi, harum nemo nobis laborum consequatur fugiat commodi inventore autem mollitia quia consectetur sit optio, tenetur unde.
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Beatae, laborum sunt modi in eius nostrum dolorum assumenda ullam neque perferendis mollitia! Saepe enim quod fuga, unde doloremque fugiat natus dolorem.
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui sed provident ullam laudantium repudiandae quod dolore, unde dolor atque officia quidem assumenda illo ducimus nemo ea expedita aspernatur nobis esse?
+            </article>
+            <br>
 
-        <div class="Noticias">
-            <article><img src=""><br><p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p></article>
-            <article><img src=""><br><p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p></article>
-            <article><img src=""><br><p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p></article>
-            <article><img src=""><br><p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p></article>
-            <article><img src=""><br><p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p></article>
-        </div>   
-
+            <div class="Noticias">
+                <article><img src=""><br><p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p></article>
+                <article><img src=""><br><p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p></article>
+                <article><img src=""><br><p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p></article>
+                <article><img src=""><br><p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p></article>
+                <article><img src=""><br><p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p></article>
+            </div>
+        <footer class="contact-info">
+            <div class="cinfo">
+                <h5>Donde encontrarnos</h5>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <p>561123</p>
+            </div>
+            <div class="cinfo">
+                <h5>Envianos un email</h5>
+                <p>contacto@ejemplo.com</p>
+            </div>
+            <div class="cinfo">
+                <h5>Llamanos al</h5>
+                <p>Teléfono: 96 621 68 68</p>
+                <p>Fax: 96 621 68 70</p>
+            </div>
+        </footer>
     </body>
 </html>
