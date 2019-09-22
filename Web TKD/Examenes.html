@@ -9,38 +9,48 @@
             header{
                 background-color: #00334e; 
                 height: 100px;
-
-            }
-            header li{
-                display: inline;
             }
 
-            header li a{
+            header .Menu ul li{
+                float:left;
+                list-style: none;
+                padding: 2px;
+                color: #5588a3;
+            }
+            .Menu ul li a{
+                color: #5588a3;
+            }
+
+            .Usuario ul li a{
+                color: #5588a3;
+            }
+
+            header .Usuario ul li{
+                float: right;
+                list-style: none;
+                color: #5588a3;
+                padding: 2px;
+           }
+
+            .contact-info{
+                background: #00334e;
+            }
+
+            .cinfo2{
+                display:inline-block;
+            }
+
+            .contact-info .cinfo p{
                 color: white;
             }
 
-            .logo{
-                float: left;
-                margin: 15px;
+            .contact-info .cinfo h5{
+                color: #5588a3;
             }
 
-            .menu{
-                text-align: center;
-                padding: 20px;
-            }
-
-            .Usuario{
-                float: right;
-                padding: -20px;
-            }
-
-            .Noticias article{
-                display: inline-block;
-                width: 100px;
-                height: 100px;
-                border: 3px solid #000000;
-                margin: 15px;
-            }
+            body .logo,.About{
+                margin-left: 200px;
+            } 
 
             .tabla{
                 margin-left: 200px;
@@ -50,31 +60,29 @@
     </head>
     <body>
         <header>
-            <div class="logo">
-                <img src="img/logo.jpg" height="60" width="100">
-            </div>            
-
-            <div class="menu">
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="Noticias.html">Noticias</a></li>
-                <li><a href="Torneos.html">Torneos</a></li>
-                <li><a href="Examenes.html">Exámenes</a></li>
-                <li><a href="App combate.html">App combate</a></li>
-                <li><a href="Sobre nosotros.html">Sobre nosotros</a></li>
-            </div>
-
-            <div class="Usuario">
-                <li>Login</li>
-                <li><a href="Registro.html">Registrarse</a></li>
-            </div>
+            <nav class="Menu">
+                <ul>
+                    <li><a href="index.html"><h3>Inicio</h3></a></li>
+                    <li><a href="Noticias.html"><h3>Noticias</h3></a></li>
+                    <li><a href="Torneos.html"><h3>torneos</h3></a></li>
+                    <li><a href="Examenes.html"><h3>Exámenes</h4></a></li>
+                    <li><a href="App combate.html"><h3>App combate</h3></a></li>
+                    <li><a href="Sobre nosotros.html"><h3>Sobre nosotros</h3></a></li>
+                <ul>
+            </nav>        
+            <nav class="Usuario">
+                <ul>
+                    <li><h3>Login</h3></li>
+                    <li><a href="Registro.html"><h3>Registrarse</h3></a></li>
+                </ul>
+            </nav>
         </header>
-        <div>
-
-
-        </div>
         <br>
-        <br>
-        <hr>
+        <center>
+            <div class="logo">
+                <img src="img/logo.jpg" height="200" width="300">
+            </div>
+        </center>
         <article class="tabla">            
 
                 <table border="1px">
@@ -121,6 +129,26 @@
                     </tr>
     
                 </table>
-
+                <footer class="contact-info">
+                        <div class="cinfo">
+                            <h5>Donde encontrarnos</h5>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                            <p>561123</p>
+                        </div>
+                        <div class="cinfo">
+                            <h5>Envianos un email</h5>
+                            <p>contacto@ejemplo.com</p>
+                        </div>
+                        <div class="cinfo">
+                            <h5>Llamanos al</h5>
+                            <p>Teléfono: 96 621 68 68</p>
+                            <p>Fax: 96 621 68 70</p>
+                        </div>
+                        <div class="cinfo2">
+                            <img src="img/Facebook.png" height="50" width="50">
+                            <img src="img/twitter.png" height="50" width="50">
+                            <img src="img/Instagram.png" height="50" width="50">
+                        </div>
+                    </footer>
     </body>
 </html>
