@@ -19,11 +19,22 @@
                 width: 150px;
                 margin: 10px;             
             }
-            body .registro{
+            body div .registro{
                 display: inline-block;
-                margin-left: 300px;
-                margin-top: 10px;
             }
+
+            body .CuadroRegistro{
+                background-color: #5588a3;
+                position: absolute;
+                margin: 0 auto;
+                margin-left: 30%;
+            }
+
+            body .CuadroRegistro .registro{
+                margin: 0 auto;
+                position: relative;
+            }
+
             .contact-info{
                 background: #00334e;
             }
@@ -41,29 +52,32 @@
             }
         </style>
     </head>
-    <body bgcolor="#5588a3">
+    <body bgcolor="white">
         <center>
-            <div class="logo">
-                <img src="img/logo.jpg" height="200" width="300">
-            </div>
-        
-            <form method="GET" class="registro">
-                <div>
-                    Nombre de usuario:
-                    <input type="text">
+            <header>
+                <div class="logo">
+                    <img src="img/logo.jpg" height="200" width="300">
                 </div>
-                <div>
-                    E-mail:
-                    <input type="email">
+            </header>
+            <div class="CuadroRegistro">
+                <form method="GET" class="registro">
+                    <div>
+                        Nombre de usuario:
+                        <input type="text">
+                    </div>
+                    <div>
+                        E-mail:
+                        <input type="email">
+                    </div>
+                    <div>
+                        Password:
+                        <input type="password">
+                    </div>
+                    <div>
+                        <input type="submit" name="Enviar" value="Enviar">
+                    </div>
+                </form>
                 </div>
-                <div>
-                    Password:
-                    <input type="password">
-                </div>
-                <div>
-                    <input type="submit" name="Enviar" value="Enviar">
-                </div>
-            </form>
         </center>
         <footer class="contact-info">
                 <div class="cinfo">
