@@ -13,46 +13,78 @@
             header{
                 display: inline;
             }
-            .logo{
-                float: left;
-                margin: 15px;
-            }
-            .registro input,label{
+            .registro input{
                 border: 1px solid #000000;
                 padding: 10px;
                 width: 150px;
-                margin: 10px;                
+                margin: 10px;             
             }
-            body{
+            body .registro{
                 display: inline-block;
                 margin-left: 300px;
                 margin-top: 10px;
             }
+            .contact-info{
+                background: #00334e;
+            }
+
+            .cinfo2{
+                display:inline-block;
+            }
+
+            .contact-info .cinfo p{
+                color: white;
+            }
+
+            .contact-info .cinfo h5{
+                color: #5588a3;
+            }
         </style>
     </head>
-    <body>
+    <body bgcolor="#5588a3">
         <center>
             <div class="logo">
                 <img src="img/logo.jpg" height="200" width="300">
             </div>
+        
+            <form method="GET" class="registro">
+                <div>
+                    Nombre de usuario:
+                    <input type="text">
+                </div>
+                <div>
+                    E-mail:
+                    <input type="email">
+                </div>
+                <div>
+                    Password:
+                    <input type="password">
+                </div>
+                <div>
+                    <input type="submit" name="Enviar" value="Enviar">
+                </div>
+            </form>
         </center>
-        <form method="GET" class="registro">
-            <div>
-                <label>Nombre de usuario:</label>
-                <input type="text">
-            </div>
-            <div>
-                <label>E-mail:</label>
-                <input type="email">
-            </div>
-            <div>
-                <label>Password:</label>
-                <input type="password">
-            </div>
-            <div>
-                <input type="submit" name="Enviar" value="Enviar">
-            </div>
-        </form>
-        </center>
+        <footer class="contact-info">
+                <div class="cinfo">
+                    <h5>Donde encontrarnos</h5>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                    <p>561123</p>
+                </div>
+                <div class="cinfo">
+                    <h5>Envianos un email</h5>
+                    <p>contacto@ejemplo.com</p>
+                </div>
+                <div class="cinfo">
+                    <h5>Llamanos al</h5>
+                    <p>Teléfono: 96 621 68 68</p>
+                    <p>Fax: 96 621 68 70</p>
+                </div>
+                <div class="cinfo2">
+                    <img src="img/Facebook.png" height="50" width="50">
+                    <img src="img/twitter.png" height="50" width="50">
+                    <img src="img/Instagram.png" height="50" width="50">
+                </div>
+            </footer>
     </body>
 </html>
