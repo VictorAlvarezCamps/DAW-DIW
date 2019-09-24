@@ -1,6 +1,7 @@
 @media (max-width: 1440px){
    
      header  {
+        margin: 0;
         background-color: #00334e;
         width: 100%;
         display: inline-block;
@@ -68,8 +69,8 @@
         color: #5588a3;
         list-style: none;
         float:left;
-        margin-left: 10px;
-        font-size: 1cm;
+        margin-right: 10px;
+        font-size: 0.6cm;
     }
 
     header .Menu ul li a{
@@ -89,8 +90,8 @@
         padding: 5px;
    }
 
-   .contact-info{
-    background: #00334e;
+    body > .contact-info{
+        background: #00334e;    
     }
     .cinfo2{
         display:inline-block;
@@ -101,17 +102,31 @@
     .contact-info .cinfo h5{
         color: #5588a3;
     }
-    body .logo{
-        margin-left: 200px;
-        color: #145374;
+    body header .logo img{
+        
+        width: 150px;
+        height: 120px;
     } 
-    body footer{
-        position: absolute;
-        bottom: 0;
+    body footer {   
+        position: fixed;
+        bottom: 0;        
+        width: 100%;        
+    }
+    .cuerpo{
         width: 100%;
     }
 
-    body .cuerpo{
-
+    .contact-info .cinfo{
+        display: inline-block;
+        margin-right: 200px;
+        font-size: 0.4cm;
+        color: #5588a3;
+    }
+    .contact-info .cinfo2 img{
+        float: right;
+        margin-top: 40px;
+        margin-right: 10px;
+        height: 40px;
+        width: 40px;
     }
 }
