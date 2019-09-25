@@ -1,0 +1,49 @@
+:root{
+    --body-color: gray;
+    --body-titulo: black;
+    --body-header-nav-ul-li: black;
+    --Links-sin-punto-o-linea: none;
+    --Centrar-texto: center;
+    --Alinear-texto-izq: left;
+    --Quitar-linea-link: none;
+    --Elementos-ordenados: inline-block;
+}
+body{
+    background-color: var(--body-color);
+}
+header h1{
+    text-align: var(--Centrar-texto);
+    color: var(--body-titulo);
+}
+header nav ul li{
+    color: var(--body-header-nav-ul-li);
+    list-style: var(--Links-sin-punto-o-linea);
+    display: var(--Elementos-ordenados);
+    height: 100px;
+    width: 150px;
+    margin-right: 80px;
+    margin-bottom: 50px;
+}
+header nav ul li a{
+    text-decoration: var(--Links-sin-punto-o-linea);
+    color: var(--body-titulo);
+    margin-right: 80px;
+}
+a[rel='next']:before{    
+    content: url("./img/circle.svg");   
+}
+a[rel='tag']:before{
+    content: url("./img/carrito.svg");    
+}
+a[rel='bookmark']:before{
+    content: url("./img/star.svg");    
+}
+a[rel='help']:before{
+    content: url("./img/pdf.svg");    
+}
+a[rel='search']:before{
+    content: url("./img/search.svg");    
+}
+a[rel='nofollow']:before{
+    content: url("./img/security.svg");    
+}
