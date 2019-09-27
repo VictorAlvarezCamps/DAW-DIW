@@ -1,0 +1,22 @@
+:root{
+    --First-color-letter: red;
+    --Color-Text: rgb(138, 4, 4);
+    --Text-Satan: "Satán !";
+    --Text-Monstruo-Espagetti-Volador:  "Alabado sea el Monstruo Espagetti Volador";
+}
+
+article h2:nth-child(even){
+    color: var(--Color-Text);
+}
+    article h2::first-letter {
+    color: var(--First-color-letter);
+}
+
+article div ul [class = "item"]:hover:nth-child(odd)::before{
+    content: var(--Text-Satan);
+    margin-right: 2px;
+}
+
+article div ul [class = "item"]:hover:nth-child(even)::after{
+    content: var(--Text-Monstruo-Espagetti-Volador);
+}
