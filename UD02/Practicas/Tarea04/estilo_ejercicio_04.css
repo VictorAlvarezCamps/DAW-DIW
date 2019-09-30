@@ -1,0 +1,27 @@
+:root{
+    --Color-fondo:rgb(240, 190, 97);
+    --Redondear: 10px;
+    --Mayusculas: uppercase;
+    --Error: orangered;
+}
+
+fieldset div input[type="submit"]{ 
+    background-color: var(--Color-fondo);
+    border-radius: var(--Redondear);
+    text-transform: var(--Mayusculas); 
+}
+
+fieldset div input[type="text"]:valid,input[type="number"]:valid{
+    background-color: var(--Color-fondo);
+}
+
+fieldset div input[type="text"]:invalid,input[type="number"]:invalid{
+    background-color: var(--Error);
+}
+fieldset div input[type="checkbox"]:checked{
+    content: url("img/cthulhu.svg");
+}
+
+fieldset div #profesion{
+    border-radius: var(--Redondear);
+}
