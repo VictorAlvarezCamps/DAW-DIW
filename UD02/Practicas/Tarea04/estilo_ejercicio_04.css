@@ -3,6 +3,9 @@
     --Redondear: 10px;
     --Mayusculas: uppercase;
     --Error: orangered;
+    --Alto: 50px;
+    --Ancho: 50px;
+    --Cthulhu: url("img/cthulhu.svg");
 }
 
 fieldset div input[type="submit"]{ 
@@ -11,17 +14,21 @@ fieldset div input[type="submit"]{
     text-transform: var(--Mayusculas); 
 }
 
-fieldset div input[type="text"]:valid,input[type="number"]:valid{
+#nombre:valid,#puntosCordura:valid{
     background-color: var(--Color-fondo);
 }
 
-fieldset div input[type="text"]:invalid,input[type="number"]:invalid{
+#nombre:invalid,#puntosCordura:invalid{
     background-color: var(--Error);
 }
-fieldset div input[type="checkbox"]:checked{
-    content: url("img/cthulhu.svg");
+#dificultad:checked::after{    
+    content:" ";
+    background-image: url("img/cthulhu.svg");
+    background-size: 100%;
+    width: 100px;
+    height: 100px;
+    
 }
-
-fieldset div #profesion{
+#profesion{
     border-radius: var(--Redondear);
 }
