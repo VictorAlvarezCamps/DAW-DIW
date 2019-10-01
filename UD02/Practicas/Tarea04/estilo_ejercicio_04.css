@@ -22,7 +22,8 @@ fieldset div input[type="submit"]{
     background-color: var(--Error);
 }
 #dificultad:checked::after{    
-    content:" ";
+    content:"";
+    padding: 10px;
     background-image: url("img/cthulhu.svg");
     background-size: 100%;
     width: 100px;
