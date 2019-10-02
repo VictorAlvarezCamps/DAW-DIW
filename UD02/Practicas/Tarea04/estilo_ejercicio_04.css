@@ -1,6 +1,8 @@
 :root{
     --Color-fondo:rgb(240, 190, 97);
+    --Sombra: 2px 2px 10px rgb(238, 55, 23);
     --Redondear: 10px;
+    --SinBorde: none;
     --Mayusculas: uppercase;
     --Error: orangered;
     --Alto: 50px;
@@ -18,8 +20,8 @@ fieldset div input[type="submit"]{
     background-color: var(--Color-fondo);
     border-radius: var(--Redondear);
     text-transform: var(--Mayusculas);
-    border: none;
-    box-shadow: 2px 2px 10px rgb(238, 55, 23);
+    border: var(--SinBorde);
+    box-shadow: var(--Sombra) ;
 }
 
 #nombre:valid,#puntosCordura:valid{
@@ -43,4 +45,8 @@ fieldset div input[type="submit"]{
 }
 #profesion{
     border-radius: var(--Redondear);
+}
+
+#nombre:focus{
+    background-color: greenyellow;
 }
