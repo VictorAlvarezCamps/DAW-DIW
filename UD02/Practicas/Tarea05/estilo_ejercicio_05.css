@@ -1,0 +1,83 @@
+/*Menor de 700*/
+@media (max-width: 700px){
+    :root{
+
+        /*Cthulhu :3 */
+        --Vacio: "";
+        --Cthulhu: url("img/cthulhu.svg");
+        --MargenIzq: 200px;
+        --TamañoImg: 25px;
+        --CentrarImagen: 20px;        
+        --Tamaño-fondo: 100%;
+        --Ancho: 50px;
+        --Alto: 50px;
+        --No-repetir: no-repeat;
+    }
+    header{
+        background: grey;
+        height: 200px;
+    }
+    .header-right ul{
+        list-style-type: none;
+        margin-left: 5px;
+        float: left;
+    }
+    .menu-it{
+        margin-bottom: 20px;
+    }
+    .header-right ul li a{
+        text-decoration: none;
+        color: mediumseagreen;
+        font-size: 20px;
+        text-transform: uppercase;
+    }
+    header a{
+        text-decoration: none;
+        color: black;
+        font-size: 20px;
+        text-transform: uppercase;
+    }
+    .arti-titulo{
+        margin-top: 60px;
+    }
+    .activo::after{
+        content: var(--Vacio);
+        background-image: var(--Cthulhu);
+        margin-left: var(--MargenIzq);
+        padding: var(--TamañoImg);
+        padding-top: var(--CentrarImagen);        
+        background-size: var(--Tamaño-fondo);
+        width: var(--Ancho);
+        height: var(--Alto);
+        background-repeat: var(--No-repetir); 
+    }
+}
+
+/*Mayor de 700*/
+@media (min-width: 700px){
+    header{
+        background: grey;
+        height: 100px;
+    }
+    .header-right ul{
+        list-style-type: none;
+        margin-left: 5px;
+        float: right;
+    }
+    .header-right ul li{
+        display: inline-block;
+        margin-left: 5px;
+    }
+    .header-right ul li a{
+        text-decoration: none;
+        color: mediumseagreen;
+        font-size: 20px;
+        text-transform: uppercase;
+    }
+    header a{
+        text-decoration: none;
+        color: black;
+        font-size: 20px;
+        text-transform: uppercase;
+    }
+}
