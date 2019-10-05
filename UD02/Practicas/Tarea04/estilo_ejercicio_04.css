@@ -16,6 +16,10 @@
     --TamañoImg: 60px;
     --Focus: greenyellow;
 }
+body{
+    font-family: 'Grenze', serif;
+    font-size: 20px;
+}
 
 fieldset div input[type="submit"]{ 
     background-color: var(--Color-fondo);
@@ -46,7 +50,6 @@ fieldset div input[type="submit"]{
 #profesion{
     border-radius: var(--Redondear);
 }
-
 #nombre:focus{
     background-color: var(--Focus);
 }
