@@ -14,6 +14,7 @@
     --MargenIzq: 50px;
     --CentrarImagen: 5px;
     --TamañoImg: 60px;
+    --Focus: greenyellow;
 }
 
 fieldset div input[type="submit"]{ 
@@ -47,5 +48,5 @@ fieldset div input[type="submit"]{
 }
 
 #nombre:focus{
-    background-color: greenyellow;
+    background-color: var(--Focus);
 }
