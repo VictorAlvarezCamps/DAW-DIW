@@ -15,10 +15,12 @@
     --CentrarImagen: 5px;
     --TamañoImg: 60px;
     --Focus: greenyellow;
+    --TipoFuente: 'Grenze', serif;
+    --TamañoFuente: 20px;
 }
 body{
-    font-family: 'Grenze', serif;
-    font-size: 20px;
+    font-family: var(--TipoFuente);
+    font-size: var(--TamañoFuente);
 }
 
 fieldset div input[type="submit"]{ 
