@@ -1,17 +1,17 @@
 /*Menor de 700*/
-@media (max-width: 700px){
+@media (max-width: 700px){    
     :root{
         --Vacio: "";
         --Cthulhu: url("img/cthulhu.svg");
         --MargenIzq: 200px;
         --TamañoImg: 25px;
-        --CentrarImagen: 20px;        
+        --CentrarImagen: 10px;        
         --Tamaño-fondo: 100%;
         --Ancho: 50px;
         --Alto: 50px;
         --No-repetir: no-repeat;
-        --ColorHeader: grey;
-        --AlturaCabecera: 200px;
+        --Color: grey;
+        --AlturaCabecera: 0 auto;
         --SinDecoracion: none;
         --MargenIzqMenu: 5px;
         --MargenAbajo: 20px;
@@ -20,10 +20,23 @@
         --Mayusculas: uppercase;
         --ColorLogo: black;
         --TamañoTextoLogo: 20px;
+        --EnNegrita: bold;
+        --CentrarTexto: center;
+        --TipoFuente: 'Amatic SC', cursive;
+        --TamañoFuente: 30px;
+        --CajasEnBloque: inline-block;
+        --AlturaCajas: 0 auto;
+        --AnchoCajas: 125px;
     }
     header{
-        background: var(--ColorHeader);
+        background: var(--Color);
         height: var(--AlturaCabecera);
+    }
+    .logo{
+        text-decoration: var(--SinDecoracion);
+        color: var(--ColorLogo);
+        text-transform: var(--Mayusculas);
+        font-weight: var(--EnNegrita);
     }
     .header-right ul{
         list-style-type: var(--SinDecoracion);
@@ -46,6 +59,7 @@
     }
     .arti-titulo{
         margin-top: 60px;
+        text-transform: var(--Mayusculas);
     }
     .activo::after{
         content: var(--Vacio);
@@ -59,43 +73,102 @@
         background-repeat: var(--No-repetir); 
     }
     .modulo{
-        display: inline-block;
-        height: 250px;
-        width: 125px;
+        display: var(--CajasEnBloque);
+        height: var(--AlturaCajas);
+        width: var(--AnchoCajas);
+        text-transform: var(--Mayusculas);
     }
     .modulo:nth-child(even){
-        background: gray;
+        background: var(--Color);
     }
     .modulo h2{
-        text-align: center;
+        text-align: var(--CentrarTexto);
+    }
+    body{
+        font-family: var(--TipoFuente);
+        font-size: var(--TamañoFuente);
     }
 }
 
 /*Mayor de 700*/
 @media (min-width: 700px){
+    :root{
+        --Vacio: "";
+        --Cthulhu: url("img/cthulhu.svg");
+        --TamañoImg: 20px;
+        --Ancho: 20px;
+        --Alto: 20px;
+        --TamañoFondo: 100%;
+        --MargenIzq: 10px;
+        --ImgRepetida: no-repeat;
+        --Mayusculas: uppercase;
+        --MoverImagen: 10px;
+        --AltoCaja: 300px;
+        --AnchoCaja: 300px;
+        --CajasEnBloque: inline-block;
+        --EnNegrita: bold;
+        --Color: grey;
+        --SinDecoracion: none;
+        --MenuALaDerecha: right;
+        --MenuEnLinea:inline-block;
+        --AlturaHeader: 100px;
+        --ColorMenu: mediumseagreen;
+        --ColorLogo: black;
+        --CentrarTexto: center;
+        --TipoFuente: 'Amatic SC', cursive;
+        --TamañoFuente: 30px;
+    }
     header{
-        background: grey;
-        height: 100px;
+        background: var(--Color);
+        height: var(--AlturaHeader);
     }
     .header-right ul{
-        list-style-type: none;
-        margin-left: 5px;
-        float: right;
+        list-style-type: var(--SinDecoracion);
+        float: var(--MenuALaDerecha);
     }
     .header-right ul li{
-        display: inline-block;
-        margin-left: 5px;
+        display: var(--MenuEnLinea);
+        margin-left: var(--MargenIzq);
     }
     .header-right ul li a{
-        text-decoration: none;
-        color: mediumseagreen;
-        font-size: 20px;
-        text-transform: uppercase;
+        text-decoration: var(--SinDecoracion);
+        color: var(--ColorMenu);
+        text-transform: var(--Mayusculas);        
     }
-    header a{
-        text-decoration: none;
-        color: black;
-        font-size: 20px;
-        text-transform: uppercase;
+    .logo{
+        text-decoration: var(--SinDecoracion);
+        color: var(--ColorLogo);
+        text-transform: var(--Mayusculas);
+        font-weight: var(--EnNegrita);
+    }
+    .activo::before{
+        content: var(--Vacio);
+        background-image: var(--Cthulhu);      
+        padding: var(--TamañoImg);
+        height: var(--Alto);
+        width: var(--Ancho);
+        background-size: var(--TamañoFondo);
+        margin-right: var(--MargenIzq);
+        background-repeat: var(--ImgRepetida);
+        padding-top: var(--MoverImagen);
+    }
+    .arti-titulo{
+        text-transform: var(--Mayusculas);
+    }
+    .modulo{
+        display: var(--CajasEnBloque);
+        text-transform: var(--Mayusculas);
+        height: var(--AltoCaja);
+        width: var(--AnchoCaja);
+    }
+    .modulo h2{
+        text-align: var(--CentrarTexto);
+    }
+    .modulo:nth-child(even){
+        background: var(--Color);
+    }
+    body{
+        font-family: var(--TipoFuente);
+        font-size: 30px;
     }
 }
