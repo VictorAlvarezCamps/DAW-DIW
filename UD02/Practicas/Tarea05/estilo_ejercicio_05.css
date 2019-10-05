@@ -1,8 +1,6 @@
 /*Menor de 700*/
 @media (max-width: 700px){
     :root{
-
-        /*Cthulhu :3 */
         --Vacio: "";
         --Cthulhu: url("img/cthulhu.svg");
         --MargenIzq: 200px;
@@ -12,30 +10,39 @@
         --Ancho: 50px;
         --Alto: 50px;
         --No-repetir: no-repeat;
+        --ColorHeader: grey;
+        --AlturaCabecera: 200px;
+        --SinDecoracion: none;
+        --MargenIzqMenu: 5px;
+        --MargenAbajo: 20px;
+        --ColorMenu: mediumseagreen;
+        --TamañoMenu: 20px;
+        --Mayusculas: uppercase;
+        --ColorLogo: black;
+        --TamañoTextoLogo: 20px;
     }
     header{
-        background: grey;
-        height: 200px;
+        background: var(--ColorHeader);
+        height: var(--AlturaCabecera);
     }
     .header-right ul{
-        list-style-type: none;
-        margin-left: 5px;
-        float: left;
+        list-style-type: var(--SinDecoracion);
+        margin-left: var(--MargenIzqMenu);
     }
     .menu-it{
-        margin-bottom: 20px;
+        margin-bottom: var(--MargenAbajo);
     }
     .header-right ul li a{
-        text-decoration: none;
-        color: mediumseagreen;
-        font-size: 20px;
-        text-transform: uppercase;
+        text-decoration: var(--SinDecoracion);
+        color: var(--ColorMenu);
+        font-size: var(--TamañoMenu);
+        text-transform: var(--Mayusculas);
     }
     header a{
-        text-decoration: none;
-        color: black;
-        font-size: 20px;
-        text-transform: uppercase;
+        text-decoration: var(--SinDecoracion);
+        color: var(--ColorLogo);
+        font-size: var(--TamañoMenu);
+        text-transform: var(--Mayusculas);
     }
     .arti-titulo{
         margin-top: 60px;
@@ -50,6 +57,17 @@
         width: var(--Ancho);
         height: var(--Alto);
         background-repeat: var(--No-repetir); 
+    }
+    .modulo{
+        display: inline-block;
+        height: 250px;
+        width: 125px;
+    }
+    .modulo:nth-child(even){
+        background: gray;
+    }
+    .modulo h2{
+        text-align: center;
     }
 }
 
