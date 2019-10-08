@@ -22,11 +22,16 @@
     --Comienzo: 2;
     --Fin: 5;
 
+    /*Sombras en los div*/
+    --sombra: 10px 10px 10px black;
+
 }
 
 h1{
     text-align: var(--center);
 }
+
+/*GRID*/
 
 .container{
     display: var(--display);
@@ -39,14 +44,20 @@ h1{
 /*Color para los div de numeros*/
 
 .container .item:nth-child(odd){
-    background: var(--grey);
+    background: var(--grey);    
+}
+
+/*Poner sombras al pasar por los números*/
+
+.container .item:hover{
+    box-shadow: var(--sombra);
 }
 
 /*Agrandar div CTHULHU*/
 
 .item2{
-    grid-column-start: 2;
-    grid-column-end: 5;
+    grid-column-start: var(--Comienzo);
+    grid-column-end: var(--Fin);
 }
 
 
