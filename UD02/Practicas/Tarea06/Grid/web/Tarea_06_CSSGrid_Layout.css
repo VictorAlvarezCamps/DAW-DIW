@@ -17,6 +17,11 @@
     --filas: repeat(6,50px);
     --GapRows:  15px;
     --GapColumns: 15px;
+
+    /*Texto Cthulhu*/
+    --Comienzo: 2;
+    --Fin: 5;
+
 }
 
 h1{
@@ -35,6 +40,13 @@ h1{
 
 .container .item:nth-child(odd){
     background: var(--grey);
+}
+
+/*Agrandar div CTHULHU*/
+
+.item2{
+    grid-column-start: 2;
+    grid-column-end: 5;
 }
 
 
