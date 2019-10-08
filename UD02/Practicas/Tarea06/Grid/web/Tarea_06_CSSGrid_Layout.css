@@ -1,0 +1,12 @@
+
+/*Variables*/
+
+:root{
+    /*Colores*/
+    --grey: grey;
+
+}
+
+.container .item:nth-child(odd){
+    background: grey;
+}
