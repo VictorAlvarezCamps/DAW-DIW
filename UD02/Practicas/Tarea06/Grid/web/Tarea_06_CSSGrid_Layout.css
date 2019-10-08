@@ -11,10 +11,24 @@
     /*Centrar titulo*/
     --center: center;
 
+    /*GRID*/
+    --display: grid;
+    --columnas: 150px 300px 150px 300px;
+    --filas: repeat(6,50px);
+    --GapRows:  15px;
+    --GapColumns: 15px;
 }
 
 h1{
     text-align: var(--center);
+}
+
+.container{
+    display: var(--display);
+    grid-template-columns: var(--columnas);
+    grid-template-rows: var(--filas);
+    grid-row-gap: var(--GapRows);
+    grid-column-gap: var(--GapColumns);
 }
 
 /*Color para los div de numeros*/
