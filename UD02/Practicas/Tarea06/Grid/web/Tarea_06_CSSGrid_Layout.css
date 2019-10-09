@@ -13,10 +13,9 @@
 
     /*GRID*/
     --display: grid;
-    --columnas: 150px 300px 150px 300px;
+    --columnas: 150fr 300fr 150fr 300fr;
     --filas: repeat(6,50px);
-    --GapRows:  15px;
-    --GapColumns: 15px;
+    --Espacio:  15px;
 
     /*Texto Cthulhu*/
     --Comienzo: 2;
@@ -35,10 +34,9 @@ h1{
 
 .container{
     display: var(--display);
-    grid-template-columns: var(--columnas);
-    grid-template-rows: var(--filas);
-    grid-row-gap: var(--GapRows);
-    grid-column-gap: var(--GapColumns);
+    grid-auto-columns: var(--columnas);
+    grid-auto-rows: var(--filas);
+    grid-gap: var(--Espacio);    
 }
 
 /*Color para los div de numeros*/
@@ -49,7 +47,7 @@ h1{
 
 /*Poner sombras al pasar por los números*/
 
-.container .item:hover{
+.container .item :hover{
     box-shadow: var(--sombra);
 }
 
@@ -59,7 +57,5 @@ h1{
     grid-column-start: var(--Comienzo);
     grid-column-end: var(--Fin);
 }
-
-
 
 
