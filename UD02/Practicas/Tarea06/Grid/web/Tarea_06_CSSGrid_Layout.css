@@ -22,7 +22,18 @@
     --Fin: 5;
 
     /*Sombras en los div*/
-    --sombra: 10px 10px 10px black;
+    --sombra: 5px 5px 5px black;
+
+    /*Imagen de CTHULHU*/
+    --background-image: url("img/cthulhu_approval.gif");
+    --background-size: 100%;
+    --content: "";
+    --width:"";
+    --height: 150px;
+    --width: 150px;
+    --position: absolute;
+    --bottom: 0px;
+    --right: 0px;
 
 }
 
@@ -47,9 +58,10 @@ h1{
 
 /*Poner sombras al pasar por los números*/
 
-.container .item :hover{
+.container .item:nth-child(1n+1){
     box-shadow: var(--sombra);
 }
+
 
 /*Agrandar div CTHULHU*/
 
@@ -58,4 +70,15 @@ h1{
     grid-column-end: var(--Fin);
 }
 
+/*CTHULHU*/
 
+#SealOfApproval{
+    content: "";
+    background-image: var(--background-image);
+    background-size: var(--background-size);
+    width: var(--width);
+    height: var(--height);
+    position: var(--position);
+    bottom: var(--bottom);
+    right: var(--right);
+}
