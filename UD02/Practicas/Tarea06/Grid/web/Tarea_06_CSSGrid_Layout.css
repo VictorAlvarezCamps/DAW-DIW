@@ -1,12 +1,14 @@
 
-/*VIVA CTHULHU Y EL MONSTRUO SPAGHETTI VOLADOR!!!!!*/
+/*VIVA CTHULHU Y EL MONSTRUO SPAGHETTI VOLADOR!!!!! :3 */
+
+/* ^(;,;)^ */
 
 /*Variables*/
 
 :root{
 
     /*Colores*/
-    --grey: grey;
+    --color-background: grey;
 
     /*Centrar titulo*/
     --center: center;
@@ -53,7 +55,7 @@ h1{
 /*Color para los div de numeros*/
 
 .container .item:nth-child(odd){
-    background: var(--grey);    
+    background: var(--color-background);    
 }
 
 /*Poner sombras al pasar por los números*/
