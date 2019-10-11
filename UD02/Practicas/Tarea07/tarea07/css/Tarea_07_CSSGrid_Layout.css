@@ -2,10 +2,42 @@
 
 }
 
+.pagina{
+    display: grid;
+    width: 100%;
+    grid-template-areas: "head head"
+                         "nav cols"
+                         "main main"
+                         "foot foot";
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 100px 1fr 100px ; 
+}
+
+header{
+    grid-area:  head;
+}
+
 header h1{
     text-align: center;
     font-size: 50px;
 }
+
 nav{
-    display: grid;   
+    grid-area: nav;
 }
+
+main{
+    grid-area: cols;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+}
+
+.gallery__img{
+    
+}
+
+footer{
+    grid-area: foot;
+    font-size: 20px;
+}
+
