@@ -6,11 +6,10 @@
     display: grid;
     width: 100%;
     grid-template-areas: "head head"
-                         "nav cols"
-                         "main main"
+                         "menu gallery"
                          "foot foot";
-    grid-template-columns: 1fr 2fr;
-    grid-template-rows: 100px 1fr 100px ; 
+    grid-template-columns: 2fr 3fr;
+    grid-template-rows: 100px 1fr 30px ; 
 }
 
 header{
@@ -23,21 +22,37 @@ header h1{
 }
 
 nav{
-    grid-area: nav;
+    grid-area: menu;
+}
+
+nav ul li{
+    list-style-type: none;
+    width: 50px;
+    font-size: 25px;
+    box-shadow: 2px 0px 6px 5px rgba(0,0,0,0.5);
+    width: 200px;
+    margin-bottom: 10px;
+}
+
+nav ul li a{
+    text-decoration: none;
 }
 
 main{
-    grid-area: cols;
+    grid-area: gallery;
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(3,230px);
+    grid-row-gap: 20px;
 }
 
-.gallery__img{
-    
+.gallery__img {
+    border: 1px solid white;
+    box-shadow: 7px 10px 5px 0px rgb(184, 127, 42);
 }
 
 footer{
+    margin-top: 15px;
     grid-area: foot;
-    font-size: 20px;
+    font-size: 30px;
 }
 
