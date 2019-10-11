@@ -47,7 +47,36 @@ main{
 
 .gallery__img {
     border: 1px solid white;
+    align-self: stretch;
     box-shadow: 7px 10px 5px 0px rgb(184, 127, 42);
+}
+
+#tintin2:target{
+    box-shadow: 7px 10px 5px 0px rgba(86, 255, 137, 0.5);
+}
+
+#tintin3:target{
+    box-shadow: 7px 10px 5px 0px rgba(86, 255, 137, 0.5);
+}
+
+#tintin4:target{
+    box-shadow: 7px 10px 5px 0px rgba(86, 255, 137, 0.5);
+}
+
+#tintin5:target{
+    box-shadow: 7px 10px 5px 0px rgba(86, 255, 137, 0.5);
+}
+
+#tintin6:target{
+    box-shadow: 7px 10px 5px 0px rgba(86, 255, 137, 0.5);
+}
+
+#tintin7:target{
+    box-shadow: 7px 10px 5px 0px rgba(86, 255, 137, 0.5);
+}
+
+#tintin8:target{
+    box-shadow: 7px 10px 5px 0px rgba(86, 255, 137, 0.5);
 }
 
 footer{
