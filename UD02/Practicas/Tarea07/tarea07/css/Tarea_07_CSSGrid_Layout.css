@@ -1,20 +1,34 @@
+
+/*
+                                ^(;,;)^ 
+
+Después de millones y millones de años el gran Cthulhu era libre otra vez.
+
+    - Howard Phillips Lovecraft
+
+*/
+
+/*Variables*/
+
 :root{
+
+    /*Grid principal*/
 
     /*Section*/
     --display: grid;
     --width-section: 100%;
-    --grid-template-areas: "head head"
-                            "menu gallery"
-                            "foot foot";
+    --grid-template-areas: "head head"      /*|------------------------*/
+                            "menu gallery"  /*|Organizacion del grid principal*/
+                            "foot foot";    /*|------------------------*/
     --columns-section: 2fr 3fr;
     --rows-section: 100px 1fr 30px;
 
-    /*Header*/
+    /*Decoramos el header y le ponemos ubicación*/
     --grid-area-header: head;
     --text-align: center;
     --font-size-header: 50px;
 
-    /*nav*/
+    /*Decoramos el menu nav le ponemos ubicación*/
     --grid-area-nav: menu;
     --list-style-type: none;
     --width-nav: 50px;
@@ -24,18 +38,18 @@
     --margin-bottom: 10px;
     --text-decoration: none;
 
-    /*main*/
+    /*Ubicación del gallery__img y decoración*/
     --grid-area-main: gallery;
     --columns-main: repeat(3,230px);
     --EspacioFilas: 20px;
 
-    /*gallery__img*/
+    /*Decoración del gallery__img*/
     --border: 1px solid white;
     --align-self: stretch;
     --orange: 7px 10px 5px 0px rgb(184, 127, 42);
     --green: 7px 10px 5px 0px rgba(86, 255, 137, 0.5);
 
-    /*footer*/
+    /*Decoración del footer*/
     --margin-top: 15px;
     --grid-area-footer: foot;
     --font-size-footer: 30px;
@@ -49,6 +63,8 @@
     grid-template-rows: var(--rows-section); 
 }
 
+/*Decoración del header*/
+
 header{
     grid-area:  var(--grid-area-header);
 }
@@ -57,6 +73,8 @@ header h1{
     text-align: var(--text-align);
     font-size: var(--font-size-header);
 }
+
+/*Decoración del menú de enlaces*/
 
 nav{
     grid-area: var(--grid-area-nav);
@@ -75,6 +93,8 @@ nav ul li a{
     text-decoration: var(--text-decoration);
 }
 
+/*Decoración de la galería de imágenes*/
+
 main{
     grid-area: var(--grid-area-main);
     display: var(--display);
@@ -87,6 +107,8 @@ main{
     align-self: var(--align-self);
     box-shadow: var(--orange);
 }
+
+/*Al darle a un enlace, nos iluminará de verde las obras*/
 
 #tintin2:target{
     box-shadow: var(--green);
@@ -115,6 +137,8 @@ main{
 #tintin8:target{
     box-shadow: var(--green);
 }
+
+/*Decoramos el footer*/
 
 footer{
     margin-top: var(--margin-top);
