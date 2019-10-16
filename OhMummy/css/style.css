@@ -1,25 +1,48 @@
 .root{
 
 }
-*{
+body{
     background: black;
+    display: grid;
+    grid-template-areas: 
+        "header"
+        "mapa"
+        "footer";
+    grid-template-rows: 100px 2fr 100px;
+    grid-template-columns: 1fr;
 }
 
-header h1{
-    font-size: 20px;
-    text-align: center;
+header *{
+    grid-area: header;
     color: orange;
+    font-size: 60px;
+    text-align: center;
 }
 
 .mapa{
-    background: black;
+    grid-area: mapa;
     display: grid;
-    width: 100%;
-    height: 850px;
     grid-template-columns: repeat(21,1fr);
-    grid-template-rows: repeat(13,1fr);
-    
+    grid-template-rows: repeat(15,1fr);
+    height: 1100px;
+    width: 1000px;
+    margin: 0;
+    position: absolute;
+    top: 10%;
+    left: 20%;
+    margin-right: -50%;
 }
+
+.hotbar{
+    grid-area: footer;
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    height: 100px;
+    width: 100%;
+    background: brown;
+}
+
 .camino{
     height: 1fr;
     width: 1fr;
@@ -29,4 +52,5 @@ header h1{
     height: 1fr;
     width: 1fr;
     background: rgb(77, 51, 4);
+    padding: 50px;
 }
