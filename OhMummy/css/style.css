@@ -1,6 +1,13 @@
 .root{
 
 }
+
+@font-face{
+    font-family: 'Medusa';
+    src: url("../font/Medusa Gothic.otf");
+}
+
+
 body{
     background: black;
     display: grid;
@@ -12,25 +19,41 @@ body{
     grid-template-columns: 1fr;
 }
 
-header *{
-    grid-area: header;
-    color: orange;
-    font-size: 60px;
-    text-align: center;
+header{
+    position: fixed;
+    background: rgb(11, 85, 4);
+    top: 0px;
+    left: 0px;
+    width: 100%;
 }
 
-.mapa{
+header *{
+    grid-area: header;
+    color: greenyellow;
+    font-size: 60px;
+    text-align: center;
+    font-family: 'Medusa', serif;
+}
+
+section {
     grid-area: mapa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top:100px;
+    margin-right: 100px;
+    
+}
+
+section *{    
     display: grid;
-    grid-template-columns: repeat(21,1fr);
-    grid-template-rows: repeat(15,1fr);
-    height: 1100px;
-    width: 1000px;
-    margin: 0;
-    position: absolute;
-    top: 10%;
-    left: 20%;
-    margin-right: -50%;
+    grid-template-columns: repeat(21,30px);
+    grid-template-rows: repeat(15,30px);
+    width: 500px;
+    height: 500px;
+    background-image: url("../img/cthuluFondo.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
 }
 
 .hotbar{
@@ -40,17 +63,17 @@ header *{
     bottom: 0px;
     height: 100px;
     width: 100%;
-    background: brown;
+    background: rgb(11, 85, 4);
 }
 
 .camino{
-    height: 1fr;
-    width: 1fr;
-    background: rgb(179, 119, 7);
+    height: 50px;
+    width: 50px;
+    background: rgb(11, 85, 4);
+    opacity: 0.1;
 }
 .pilar{
-    height: 1fr;
-    width: 1fr;
-    background: rgb(77, 51, 4);
-    padding: 50px;
+    height: 50px;
+    width: 50px;
+    background: greenyellow;
 }

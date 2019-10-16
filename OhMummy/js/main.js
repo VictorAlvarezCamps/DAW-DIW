@@ -9,12 +9,16 @@ import Urna from './Urna.js';
 /*Variables*/
 let m;
 
-
 window.onload = function(){
 
     m = new Mapa();
 
     m.CrearMapa();
+
+    /*for(let i=0;i<20;i++){
+
+
+    }*/
 
 };
 
