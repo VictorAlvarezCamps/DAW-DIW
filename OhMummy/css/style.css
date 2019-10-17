@@ -42,15 +42,17 @@ section {
     align-items: center;
     margin-top:100px;
     margin-right: 100px;
-    
+    position: fixed;
+    margin-top: 170px;
+    margin-left: 60px;
 }
 
 section *{    
     display: grid;
     grid-template-columns: repeat(21,30px);
     grid-template-rows: repeat(15,30px);
-    width: 500px;
-    height: 500px;
+    width: 650px;
+    height: 750px;
     background-image: url("../img/cthuluFondo.jpg");
     background-size: 100%;
     background-repeat: no-repeat;
@@ -72,8 +74,36 @@ section *{
     background: rgb(11, 85, 4);
     opacity: 0.1;
 }
+
+.fuera{
+    height: 50px;
+    width: 50px;
+    background: black;
+    opacity: 0.1;
+}
 .pilar{
     height: 50px;
     width: 50px;
     background: greenyellow;
+}
+.CuadroBarra{
+    height: 100px;
+    width: 600px;
+    margin: 0 auto;
+}
+
+.Objeto{
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;    
+    box-shadow: inset 0.3em 0.3em 1em rgb(11, 85, 4);
+    background: greenyellow;
+    display: inline-block;
+    margin-right: 30px;
+}
+
+.Personaje{
+    background-image: url("../img/cthulu.png");
+    height: 50px;
+    width: 50px;
 }
