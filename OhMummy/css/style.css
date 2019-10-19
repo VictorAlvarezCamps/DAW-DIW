@@ -69,8 +69,8 @@ section *{
 .camino{
     height: 50px;
     width: 50px;
-    background: rgb(11, 85, 4);
-    /*opacity: 0.1;*/
+    background: rgb(0, 184, 212);
+    background-size: 100% 100%; 
 }
 
 .fuera{
@@ -103,11 +103,30 @@ section *{
 
 .Personaje{
     background-image: url("../img/cthulu.png");
-    background-size: 100% 100%;
-    
+    background-size: 100% 100%;    
 }
 
 .Enemigo{
-    background-image: url("../img/cthulu.png");
+    background-image: url("../img/tintin.gif");
+    background-size: 100% 100%;
+}
+
+.Pisadas{
+    background-image: url("../img/charco.gif");
+    background-size: 100% 100%;
+}
+
+.Barril{
+    background-image: url("../img/Barrel.png");
+    background-size: 100% 100%;
+}
+
+.BolaCanon{
+    background-image: url("../img/Cannon ball.png");
+    background-size: 100% 100%;
+}
+
+.Canon{
+    background-image: url("../img/cannon.png");
     background-size: 100% 100%;
 }
