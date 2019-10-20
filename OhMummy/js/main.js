@@ -1,3 +1,8 @@
+/*Llave-Barril
+Sarcófago-Bola de cañon
+Papiro - Cañon*/
+
+
 /*Variables*/
 var mapa = document.getElementById("mapa");
 var pilar = document.getElementsByClassName("pilar");
@@ -17,8 +22,9 @@ var mapa2 = [[2,2,2,2,2,2,2,2,2,2,2,0,2,2,2,2,2,2,2,2,2,2,2],
             [2,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,2],
             [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
             [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]];
-
-   
+let contObjeto1 = 0;
+let contObjeto2 = 0;
+let contObjeto3 = 0;
 
 window.onload = function(){
     
@@ -107,18 +113,43 @@ function MovimientoEnemigo(){
 
 }
 
+
 /*Crear mapa*/
 
 function CrearMapa(){
 
-    var cont = 0;
+    var cont = 0;    
 
     for(let i = 0; i < mapa2.length ; i++) {
         for (let j = 0; j < mapa2[i].length ; j++) {
             let div = document.createElement("div");
             if (mapa2[i][j] == 2) div.classList.add("fuera");
-            else if (mapa2[i][j] == 0) div.classList.add("camino");
-            else if (mapa2[i][j] == 1) div.classList.add("pilar");    
+            else if (mapa2[i][j] == 0) div.classList.add("camino");                
+            else if(mapa2[i][j] == 1){    
+                var RandomNumberObjeto = Math.floor(Math.random()*4);
+                switch(RandomNumberObjeto){
+                    case 0:
+                        if(contObjeto1==0){
+                            div.classList.add("Barril");
+                            contObjeto1 = 1;
+                        }
+                    break;
+                    case 1:
+                        if(contObjeto2==0){
+                            div.classList.add("BolaCanon");
+                            contObjeto2 = 1;
+                        }
+                    break;
+                    case 2:
+                        if(contObjeto3==0){
+                            div.classList.add("Canon");
+                            contObjeto3 = 1;
+                        }
+                    break;
+                    default: break;
+                }
+                div.classList.add("pilar");              
+            }
             if((PJY == i) && (PJX == j)) div.classList.add("Personaje");
             if(mapa2[EnemigoY][EnemigoX] == 0 && cont == 0){
                 if((EnemigoX == j) && (EnemigoY == i))div.classList.add("Enemigo"),cont = 1;
@@ -145,34 +176,5 @@ function BarraObjetos(){
         var Objeto = document.createElement("div");
         Objeto.classList.add("Objeto");
         document.querySelector(".CuadroBarra").appendChild(Objeto);
-    }
-}
-
-/*Objeto en pilar*/
-
-function ObjetosPilares(){
-
-    var RandomNumber = Math.floor(Math.random()*3);
-    for(let i = 0; i < pilar.length ; i++) {
-        switch(RandomNumber){
-            case 0:
-                let objeto1 = document.createElement("span");
-                objeto1.classList.add("Barril");
-                mapa.appendChild(objeto1);
-                mapa2[i] = objeto1;
-            break;
-            case 1:
-                let objeto2 = document.createElement("span");
-                objeto2.classList.add("BolaCanon");
-                mapa.appendChild(objeto2);
-                mapa2[i] = objeto2;
-            break;
-            case 2:
-                let objeto3 = document.createElement("span");
-                objeto3.classList.add("Canon");
-                mapa.appendChild(objeto3);
-                mapa2[i] = objeto3;
-            break;                    
-        }
     }
 }

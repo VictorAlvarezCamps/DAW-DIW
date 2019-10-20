@@ -1,132 +1,261 @@
-.root{
+:root{
 
-}
+/*Tipo letra*/
+--Family-font: 'Medusa';
+--font: url("../font/Medusa Gothic.otf");
 
-@font-face{
-    font-family: 'Medusa';
-    src: url("../font/Medusa Gothic.otf");
-}
+/*Colores*/
+--negro: black;
+--AzulOscuro: rgb(4, 42, 85);
+--AzulClaro: rgb(0, 184, 212);
+--Gris: rgb(158, 158, 158);
 
-
-body{
-    background: black;
-    display: grid;
-    grid-template-areas: 
-        "header"
+/*Body*/
+--Areas:"header"
         "mapa"
         "footer";
-    grid-template-rows: 100px 1fr 100px;
-    grid-template-columns: 1fr;
+--Filas: 100px 1fr 100px;
+--Columnas: 1fr;
+
+/*Cabecera*/
+--PosicionCabecera: fixed;
+--AnchoCabecera: 100%;
+--AltoCabecera: 100px;
+--tamañoFuente: 50px;
+--Centrado: center;
+--TipoDeLetra: 'Medusa', serif;
+
+/*Mapa*/
+--MargenMapa: auto;
+--ColumnasMapa: repeat(23,30px);
+--FilasMapa: repeat(12,30px);
+--EspacioMapa: 15px;
+--AnchoMapa: 1040px;
+--AltoMapa: 540px;
+--FondoMapa: url("../img/cthuluFondo.jpg");
+--ImagenMapa: 100%;
+
+/*Footer*/
+--PosicionFooter: fixed;
+--AnchoFooter: 100%;
+--AltoFooter: 100px;
+
+/*Inventario de Objetos*/
+--AnchoInventario: 600px;
+--AltoInventario: 100px;
+--MargenInventario: 0 auto;
+
+/*Objetos*/
+--AnchoObjeto: 80px;
+--AltoObjeto: 80px;
+--RadioObjeto: 50%;
+--SombraObjeto: inset 0.3em 0.3em 1em rgb(0, 51, 109);
+--MargenArriba: 15px;
+--MargenDerecha: 30px;
+
+/*Suelo*/
+--AltoSuelo: 50px;
+--AnchoSuelo: 50px;
+--OpacidadSuelo: 0.5;
+
+/*Pared*/
+--AltoPared: 50px;
+--AnchoPared: 50px;
+
+/*Pilar*/
+--AltoPilar: 50px;
+--AnchoPilar: 50px;
+
+
+/*----------------------*/
+/*Imágenes juego*/
+/*----------------------*/
+
+/*PJ (Cthulhu manda always)*/
+--ImagenPJ: url("../img/cthulu.png");
+--TamañoPJ: 100% 100%; 
+
+/*Enemigo (Tintin por supuesto)*/
+--ImagenEnemigo: url("../img/tintin.gif");
+--TamañoEnemigo: 100% 100%;
+
+/*Barril*/
+--ImagenObj1: url("../img/Barrel.png");
+--TamañoObj1: 100% 100%;
+--AltoObj1: 50px;
+--AnchoObj1: 50px;
+
+/*Cañon*/
+--ImagenObj2: url("../img/cannon.png");
+--TamañoObj2: 100% 100%;
+--AltoObj2: 50px;
+--AnchoObj2: 50px;
+
+/*Bola Cañon*/
+--ImagenObj3: url("../img/CannonBall.png");
+--TamañoObj3: 100% 100%;
+--AltoObj3: 50px;
+--AnchoObj3: 50px;
+
 }
 
+/*Modificar tipo de letra*/
+
+@font-face{
+    font-family: var(--Family-font);
+    src: var(--font);
+}
+
+/*Cuerpo de la página*/
+
+body{
+    background: var(--negro);
+    display: grid;
+    grid-template-areas: var(--Areas);        
+    grid-template-rows: var(--Filas);
+    grid-template-columns: var(--Columnas);
+}
+
+/*Cabecera*/
+
 header{
-    position: fixed;
-    background: rgb(11, 85, 4);
+    position: var(--PosicionCabecera);
+    background: var(--AzulOscuro);
     top: 0px;
     left: 0px;
-    width: 100%;
-    height: 100px;
+    width: var(--AnchoCabecera);
+    height: var(--AltoCabecera);
 }
 
 header *{
     grid-area: header;
-    color: greenyellow;
-    font-size: 50px;
-    text-align: center;
-    font-family: 'Medusa', serif;
+    color: var(--AzulClaro);
+    font-size: var(--tamañoFuente);
+    text-align: var(--Centrado);
+    font-family: var(--TipoDeLetra);
 }
+
+
+/*Mapa*/
 
 section {
     grid-area: mapa;
-    margin-top: auto;
-    margin-left: auto;
-    margin-right: auto;
+    margin-top: var(--MargenMapa);
+    margin-left: var(--MargenMapa);
+    margin-right: var(--MargenMapa);
 }
 
 section *{    
     display: grid;
-    grid-template-columns: repeat(23,30px);
-    grid-template-rows: repeat(12,30px);
-    grid-row-gap: 15px;
-    grid-column-gap: 15px;
-    width: 1040px;
-    height: 550px;
-    background-image: url("../img/cthuluFondo.jpg");
-    background-size: 100%;
+    grid-template-columns: var(--ColumnasMapa);
+    grid-template-rows: var(--FilasMapa);
+    grid-row-gap: var(--EspacioMapa);
+    grid-column-gap: var(--EspacioMapa);
+    width: var(--AnchoMapa);
+    height: var(--AltoMapa);
+    background-image: var(--FondoMapa);
+    background-size: var(--ImagenMapa);
     background-repeat: no-repeat;
 }
 
+/*footer*/
+
 .hotbar{
     grid-area: footer;
-    position: fixed;
+    position: var(--PosicionFooter);
     left: 0px;
     bottom: 0px;
-    height: 100px;
-    width: 100%;
-    background: rgb(11, 85, 4);
+    height: var(--AltoFooter);
+    width: var(--AnchoFooter);
+    background: var(--AzulOscuro);
 }
 
-.camino{
-    height: 50px;
-    width: 50px;
-    background: rgb(0, 184, 212);
-    background-size: 100% 100%; 
-}
+/*Inventario*/
 
-.fuera{
-    height: 50px;
-    width: 50px;
-    background: black;
-    opacity: 0.1;
-}
-.pilar{
-    height: 50px;
-    width: 50px;
-    background: greenyellow;
-}
 .CuadroBarra{
-    height: 100px;
-    width: 600px;
-    margin: 0 auto;
+    height: var(--AltoInventario);
+    width: var(--AnchoInventario);
+    margin: var(--MargenInventario);
 }
+
+/*Objetos dentro del inventario*/
 
 .Objeto{    
-    height: 80px;
-    width: 80px;
-    border-radius: 50%;    
-    box-shadow: inset 0.3em 0.3em 1em rgb(11, 85, 4);
-    background: greenyellow;
+    height: var(--AnchoObjeto);
+    width: var(--AltoObjeto);
+    border-radius: var(--RadioObjeto);    
+    box-shadow: var(--SombraObjeto);
+    background: var(--AzulClaro);
     display: inline-block;
-    margin-right: 30px;
-    margin-top: 15px;
+    margin-right: var(--MargenDerecha);
+    margin-top: var(--MargenArriba);
 }
+
+/*Decoracion para el suelo*/
+
+.camino{
+    height: var(--AltoSuelo);
+    width: var(--AnchoSuelo);
+    background: var(--AzulClaro); 
+    opacity: var(--OpacidadSuelo);
+}
+
+/*Decoracion para la pared*/
+
+.fuera{
+    height: var(--AltoPared);
+    width: var(--AnchoPared);
+    background: var(--negro);
+}
+
+/*Decoracion para los pilares*/
+
+.pilar{
+    height: var(--AltoPilar);
+    width: var(--AnchoPilar);
+    background: var(--Gris);
+}
+
+
+/*Personaje principal*/
 
 .Personaje{
-    background-image: url("../img/cthulu.png");
-    background-size: 100% 100%;    
+    background-image: var(--ImagenPJ);
+    background-size: var(--TamañoPJ);    
 }
+
+/*Enemigos*/
 
 .Enemigo{
-    background-image: url("../img/tintin.gif");
-    background-size: 100% 100%;
+    background-image: var(--ImagenEnemigo);
+    background-size: var(--TamañoEnemigo);
 }
+
+/*Huellas*/
 
 .Pisadas{
-    background-image: url("../img/charco.gif");
-    background-size: 100% 100%;
+    background: blue;
 }
 
+/*Objetos que estarán en los pilares*/
+
 .Barril{
-    background-image: url("../img/Barrel.png");
-    background-size: 100% 100%;
+    background-image: var(--ImagenObj1);
+    background-size: var(--TamañoObj1);
+    height: var(--AltoObj1);
+    width: var(--AnchoObj1);
 }
 
 .BolaCanon{
-    background-image: url("../img/Cannon ball.png");
-    background-size: 100% 100%;
+    background-image: var(--ImagenObj3);
+    background-size: var(--TamañoObj3);
+    height: var(--AltoObj3);
+    width: var(--AnchoObj3);
 }
 
 .Canon{
-    background-image: url("../img/cannon.png");
-    background-size: 100% 100%;
+    background-image: var(--ImagenObj2);
+    background-size: var(--TamañoObj2);
+    height: var(--AltoObj2);
+    width: var(--AnchoObj2);
 }
