@@ -32,7 +32,7 @@ window.onload = function(){
     CrearMapa();
     BarraObjetos();
     document.addEventListener('keydown',mover);
-    /*ObjetosPilares();*/
+    /*PonerObjetoPilar();*/
     
     
     //console.table(mapa2);
@@ -42,36 +42,55 @@ window.onload = function(){
 
 /*Detectar movimiento personaje*/
 function mover (event) {
-    const keyName = event.key;
 
     switch(event.key){
         case "a":
             if (mapa2[PJY][PJX-1].className.indexOf("camino") >= 0) {
                 mapa2[PJY][PJX].classList.add("Pisadas");
                 mapa2[PJY][PJX].classList.remove("Personaje");
-                mapa2[PJY][--PJX].classList.add("Personaje");                
+                /* Algunos cambios para mover al personaje */
+                mapa2[PJY][PJX-1].classList.add("Personaje");
+                if (mapa2[PJY][PJX-1].classList.contains("Pisadas")){
+                    mapa2[PJY][PJX-1].classList.remove("Pisadas");
+                }
+                PJX--;
             }
         break;
         case "d":
             if (mapa2[PJY][PJX+1].className.indexOf("camino") >= 0) {
                 mapa2[PJY][PJX].classList.add("Pisadas");
-                mapa2[PJY][PJX].classList.remove("Personaje");
-                mapa2[PJY][++PJX].classList.add("Personaje");
+                mapa2[PJY][PJX].classList.remove("Personaje");                
+                /* Algunos cambios para mover al personaje */
+                mapa2[PJY][PJX+1].classList.add("Personaje");
+                if (mapa2[PJY][PJX+1].classList.contains("Pisadas")){
+                    mapa2[PJY][PJX+1].classList.remove("Pisadas");
+                }
+                PJX++;
             }
         break;
         case "w":
             if (mapa2[PJY-1][PJX].className.indexOf("camino") >= 0) {
                 mapa2[PJY][PJX].classList.add("Pisadas");
                 mapa2[PJY][PJX].classList.remove("Personaje");
-                mapa2[--PJY][PJX].classList.add("Personaje");
-            }   
+                mapa2[PJY-1][PJX].classList.add("Personaje");
+                /* Algunos cambios para mover al personaje */
+                if (mapa2[PJY-1][PJX].classList.contains("Pisadas")){
+                    mapa2[PJY-1][PJX].classList.remove("Pisadas");
+                }
+                PJY--;
+            }    
         break;
         case "s":
             if (mapa2[PJY+1][PJX].className.indexOf("camino") >= 0) {
                 mapa2[PJY][PJX].classList.add("Pisadas");
                 mapa2[PJY][PJX].classList.remove("Personaje");
-                mapa2[++PJY][PJX].classList.add("Personaje");
-            }            
+                mapa2[PJY+1][PJX].classList.add("Personaje");
+                /* Algunos cambios para mover al personaje */
+                if (mapa2[PJY+1][PJX].classList.contains("Pisadas")){
+                    mapa2[PJY+1][PJX].classList.remove("Pisadas");
+                }
+                PJY++;
+            }           
         break;
         default: break;
     }
@@ -94,6 +113,7 @@ function MovimientoEnemigo(){
                 mapa2[EnemigoY][EnemigoX].classList.remove("Enemigo");
                 mapa2[++EnemigoY][EnemigoX].classList.add("Enemigo");
             }
+            
         break;
         case 2:
         //Izquierda        
@@ -125,7 +145,7 @@ function CrearMapa(){
             let div = document.createElement("div");
             if (mapa2[i][j] == 2) div.classList.add("fuera");
             else if (mapa2[i][j] == 0) div.classList.add("camino");                
-            else if(mapa2[i][j] == 1){    
+            /*else if(mapa2[i][j] == 1){    
                 var RandomNumberObjeto = Math.floor(Math.random()*4);
                 switch(RandomNumberObjeto){
                     case 0:
@@ -149,7 +169,7 @@ function CrearMapa(){
                     default: break;
                 }
                 div.classList.add("pilar");              
-            }
+            }*/
             if((PJY == i) && (PJX == j)) div.classList.add("Personaje");
             if(mapa2[EnemigoY][EnemigoX] == 0 && cont == 0){
                 if((EnemigoX == j) && (EnemigoY == i))div.classList.add("Enemigo"),cont = 1;
@@ -176,5 +196,16 @@ function BarraObjetos(){
         var Objeto = document.createElement("div");
         Objeto.classList.add("Objeto");
         document.querySelector(".CuadroBarra").appendChild(Objeto);
+    }
+}
+
+function PonerObjetoPilar(){
+
+    for(let i=0;i<mapa2.length;i++){
+        for(let j=0;j<mapa2.length;j++){
+            if(mapa2[i][j]==1){
+                
+            }
+        }
     }
 }
