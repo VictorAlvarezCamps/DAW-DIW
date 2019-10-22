@@ -23,15 +23,15 @@ var mapa2 = [[2,2,2,2,2,2,2,2,2,2,2,0,2,2,2,2,2,2,2,2,2,2,2],
             [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
             [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]];
 
-let contObjeto1 = 0;
-let contObjeto2 = 0;
-let contObjeto3 = 0;
+var contObjeto1 = 0;
+var contObjeto2 = 0;
+var contObjeto3 = 0;
 
 var RandomPosObjeto = [[2,2],[2,6],[2,10],[2,14],[2,18],
                        [5,2],[5,6],[5,10],[5,14],[5,18],
                        [8,2],[8,6],[8,10],[8,14],[8,18]];
 var Objeto = ["Barril","BolaCanon","Canon"];
-
+var obj = "";
 
 
 window.onload = function(){
@@ -192,74 +192,91 @@ function BarraObjetos(){
     }
 }
 
-function ObjetoRandom(){
 
-    let RandomNumberObjeto = Math.floor(Math.random()*3);
-
-    let obj = "";
-
-    if(obj != Objeto[RandomNumberObjeto]){
-        obj = Objeto[RandomNumberObjeto];        
-        return obj;
-    }else{
-        RandomNumberObjeto = Math.floor(Math.random()*3);
-        obj = Objeto[RandomNumberObjeto];        
-        return obj;
-    }   
-    
-}
 
 function PonerObjetoPilar(){
 
-    var RandomObjeto = Math.floor(Math.random()*14);
-        
-        switch(RandomObjeto){
-            case 0:
-                mapa2[RandomPosObjeto[0][0]][RandomPosObjeto[0][1]].classList.add(ObjetoRandom());
-            break;
-            case 1:
-                mapa2[RandomPosObjeto[1][0]][RandomPosObjeto[1][1]].classList.add(ObjetoRandom());
-            break;
-            case 2:
-                mapa2[RandomPosObjeto[2][0]][RandomPosObjeto[2][1]].classList.add(ObjetoRandom());
-            break;
-            case 3:
-                mapa2[RandomPosObjeto[3][0]][RandomPosObjeto[3][1]].classList.add(ObjetoRandom());
-            break;
-            case 4:
-                mapa2[RandomPosObjeto[4][0]][RandomPosObjeto[4][1]].classList.add(ObjetoRandom());
-            break;
-            case 5:
-                mapa2[RandomPosObjeto[5][0]][RandomPosObjeto[5][1]].classList.add(ObjetoRandom());
-            break;
-            case 6:
-                mapa2[RandomPosObjeto[6][0]][RandomPosObjeto[6][1]].classList.add(ObjetoRandom());
-            break;
-            case 7:
-                mapa2[RandomPosObjeto[7][0]][RandomPosObjeto[7][1]].classList.add(ObjetoRandom());
-            break;
-            case 8:
-                mapa2[RandomPosObjeto[8][0]][RandomPosObjeto[8][1]].classList.add(ObjetoRandom());
-            break;
-            case 9:
-                mapa2[RandomPosObjeto[9][0]][RandomPosObjeto[9][1]].classList.add(ObjetoRandom());
-            break;
-            case 10:
-                mapa2[RandomPosObjeto[10][0]][RandomPosObjeto[10][1]].classList.add(ObjetoRandom());
-            break;
-            case 11:
-                mapa2[RandomPosObjeto[11][0]][RandomPosObjeto[11][1]].classList.add(ObjetoRandom());
-            break;
-            case 12:
-                mapa2[RandomPosObjeto[12][0]][RandomPosObjeto[12][1]].classList.add(ObjetoRandom());
-            break;
-            case 13:
-                mapa2[RandomPosObjeto[13][0]][RandomPosObjeto[13][1]].classList.add(ObjetoRandom());
-            break;
-            case 14:
-                mapa2[RandomPosObjeto[14][0]][RandomPosObjeto[14][1]].classList.add(ObjetoRandom());
-            break;
-            default: break;
-        }
+        let cont2 = 0;
+    
+        while(cont2 < 15){
+
+            var RandomObjeto = Math.floor(Math.random()*15);
+
+            switch(RandomObjeto){
+                case 0:
+                    mapa2[RandomPosObjeto[0][0]][RandomPosObjeto[0][1]].classList.add(ObjetoRandom());
+                break;
+                case 1:
+                    mapa2[RandomPosObjeto[1][0]][RandomPosObjeto[1][1]].classList.add(ObjetoRandom());
+                break;
+                case 2:
+                    mapa2[RandomPosObjeto[2][0]][RandomPosObjeto[2][1]].classList.add(ObjetoRandom());
+                break;
+                case 3:
+                    mapa2[RandomPosObjeto[3][0]][RandomPosObjeto[3][1]].classList.add(ObjetoRandom());
+                break;
+                case 4:
+                    mapa2[RandomPosObjeto[4][0]][RandomPosObjeto[4][1]].classList.add(ObjetoRandom());
+                break;
+                case 5:
+                    mapa2[RandomPosObjeto[5][0]][RandomPosObjeto[5][1]].classList.add(ObjetoRandom());
+                break;
+                case 6:
+                    mapa2[RandomPosObjeto[6][0]][RandomPosObjeto[6][1]].classList.add(ObjetoRandom());
+                break;
+                case 7:
+                    mapa2[RandomPosObjeto[7][0]][RandomPosObjeto[7][1]].classList.add(ObjetoRandom());
+                break;
+                case 8:
+                    mapa2[RandomPosObjeto[8][0]][RandomPosObjeto[8][1]].classList.add(ObjetoRandom());
+                break;
+                case 9:
+                    mapa2[RandomPosObjeto[9][0]][RandomPosObjeto[9][1]].classList.add(ObjetoRandom());
+                break;
+                case 10:
+                    mapa2[RandomPosObjeto[10][0]][RandomPosObjeto[10][1]].classList.add(ObjetoRandom());
+                break;
+                case 11:
+                    mapa2[RandomPosObjeto[11][0]][RandomPosObjeto[11][1]].classList.add(ObjetoRandom());
+                break;
+                case 12:
+                    mapa2[RandomPosObjeto[12][0]][RandomPosObjeto[12][1]].classList.add(ObjetoRandom());
+                break;
+                case 13:
+                    mapa2[RandomPosObjeto[13][0]][RandomPosObjeto[13][1]].classList.add(ObjetoRandom());
+                break;
+                case 14:
+                    mapa2[RandomPosObjeto[14][0]][RandomPosObjeto[14][1]].classList.add(ObjetoRandom());
+                break;
+                default: break;
+            }
+        cont2++;
+    }
 }
 
+function ObjetoRandom(){
+
+    let RandomNumberObjeto = Math.floor(Math.random()*3);   
+
+    switch(RandomNumberObjeto){
+        case 0:
+            if(contObjeto1 = 0){
+                obj = Objeto[0];
+                contObjeto1 = 1;
+            }
+        break;
+        case 1:
+            if(contObjeto2 = 0){
+                obj = Objeto[1];
+                contObjeto2 = 1; 
+            }
+        break;
+        case 2:
+            if(contObjeto3 = 0){
+                obj = Objeto[2];
+                contObjeto3 = 1;
+            }
+        break;
+    }
+    return obj;    
+}
