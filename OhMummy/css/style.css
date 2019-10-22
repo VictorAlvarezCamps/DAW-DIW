@@ -224,18 +224,6 @@ section *{
     background-size: var(--TamañoPJ);    
 }
 
-/*Enemigos*/
-
-.Enemigo{
-    background-image: var(--ImagenEnemigo);
-    background-size: var(--TamañoEnemigo);
-}
-
-/*Huellas*/
-
-.Pisadas{
-    background: blue;
-}
 
 /*Objetos que estarán en los pilares*/
 
@@ -258,4 +246,18 @@ section *{
     background-size: var(--TamañoObj2);
     height: var(--AltoObj2);
     width: var(--AnchoObj2);
+}
+
+/*Enemigos*/
+
+.Enemigo{
+    background-image: var(--ImagenEnemigo) !important;
+    background-size: var(--TamañoEnemigo);
+
+}
+
+/*Huellas*/
+
+.Pisadas{
+    background-color: blue !important;
 }

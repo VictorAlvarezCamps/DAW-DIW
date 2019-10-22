@@ -5,11 +5,11 @@ Papiro - Cañon*/
 
 /*Variables*/
 var mapa = document.getElementById("mapa");
-var pilar = document.getElementsByClassName("pilar");
 var PJX = 11;
 var PJY = 0;
 var EnemigoX = Math.floor(Math.random()*21);
 var EnemigoY = Math.floor(Math.random()*10);
+
 var mapa2 = [[2,2,2,2,2,2,2,2,2,2,2,0,2,2,2,2,2,2,2,2,2,2,2],
             [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
             [2,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,2],
@@ -22,9 +22,17 @@ var mapa2 = [[2,2,2,2,2,2,2,2,2,2,2,0,2,2,2,2,2,2,2,2,2,2,2],
             [2,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,2],
             [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
             [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]];
+
 let contObjeto1 = 0;
 let contObjeto2 = 0;
 let contObjeto3 = 0;
+
+var RandomPosObjeto = [[2,2],[2,6],[2,10],[2,14],[2,18],
+                       [5,2],[5,6],[5,10],[5,14],[5,18],
+                       [8,2],[8,6],[8,10],[8,14],[8,18]];
+var Objeto = ["Barril","BolaCanon","Canon"];
+
+
 
 window.onload = function(){
     
@@ -32,10 +40,7 @@ window.onload = function(){
     CrearMapa();
     BarraObjetos();
     document.addEventListener('keydown',mover);
-    /*PonerObjetoPilar();*/
-    
-    
-    //console.table(mapa2);
+    PonerObjetoPilar();
     
     setInterval(MovimientoEnemigo, 300); //300 son milisegundos
 };
@@ -129,7 +134,8 @@ function MovimientoEnemigo(){
                 mapa2[EnemigoY][++EnemigoX].classList.add("Enemigo");
             }
         break;
-    }
+    }    
+
 
 }
 
@@ -145,31 +151,7 @@ function CrearMapa(){
             let div = document.createElement("div");
             if (mapa2[i][j] == 2) div.classList.add("fuera");
             else if (mapa2[i][j] == 0) div.classList.add("camino");                
-            /*else if(mapa2[i][j] == 1){    
-                var RandomNumberObjeto = Math.floor(Math.random()*4);
-                switch(RandomNumberObjeto){
-                    case 0:
-                        if(contObjeto1==0){
-                            div.classList.add("Barril");
-                            contObjeto1 = 1;
-                        }
-                    break;
-                    case 1:
-                        if(contObjeto2==0){
-                            div.classList.add("BolaCanon");
-                            contObjeto2 = 1;
-                        }
-                    break;
-                    case 2:
-                        if(contObjeto3==0){
-                            div.classList.add("Canon");
-                            contObjeto3 = 1;
-                        }
-                    break;
-                    default: break;
-                }
-                div.classList.add("pilar");              
-            }*/
+            else if(mapa2[i][j] == 1)div.classList.add("pilar");
             if((PJY == i) && (PJX == j)) div.classList.add("Personaje");
             if(mapa2[EnemigoY][EnemigoX] == 0 && cont == 0){
                 if((EnemigoX == j) && (EnemigoY == i))div.classList.add("Enemigo"),cont = 1;
@@ -182,7 +164,18 @@ function CrearMapa(){
             mapa2[i][j] = div;
         }
     }
+
+    //pilares
+
+    //Crear un vector en la que cada posición es uno de los pilares. 15 en total
+
+    //En cada posición del vector de los pilares, ponemos un vector de dos posiciones con la x y la y
+
+    //
+
+
 }
+
 
 /*BarraObjetos*/
 
@@ -199,13 +192,74 @@ function BarraObjetos(){
     }
 }
 
+function ObjetoRandom(){
+
+    let RandomNumberObjeto = Math.floor(Math.random()*3);
+
+    let obj = "";
+
+    if(obj != Objeto[RandomNumberObjeto]){
+        obj = Objeto[RandomNumberObjeto];        
+        return obj;
+    }else{
+        RandomNumberObjeto = Math.floor(Math.random()*3);
+        obj = Objeto[RandomNumberObjeto];        
+        return obj;
+    }   
+    
+}
+
 function PonerObjetoPilar(){
 
-    for(let i=0;i<mapa2.length;i++){
-        for(let j=0;j<mapa2.length;j++){
-            if(mapa2[i][j]==1){
-                
-            }
+    var RandomObjeto = Math.floor(Math.random()*14);
+        
+        switch(RandomObjeto){
+            case 0:
+                mapa2[RandomPosObjeto[0][0]][RandomPosObjeto[0][1]].classList.add(ObjetoRandom());
+            break;
+            case 1:
+                mapa2[RandomPosObjeto[1][0]][RandomPosObjeto[1][1]].classList.add(ObjetoRandom());
+            break;
+            case 2:
+                mapa2[RandomPosObjeto[2][0]][RandomPosObjeto[2][1]].classList.add(ObjetoRandom());
+            break;
+            case 3:
+                mapa2[RandomPosObjeto[3][0]][RandomPosObjeto[3][1]].classList.add(ObjetoRandom());
+            break;
+            case 4:
+                mapa2[RandomPosObjeto[4][0]][RandomPosObjeto[4][1]].classList.add(ObjetoRandom());
+            break;
+            case 5:
+                mapa2[RandomPosObjeto[5][0]][RandomPosObjeto[5][1]].classList.add(ObjetoRandom());
+            break;
+            case 6:
+                mapa2[RandomPosObjeto[6][0]][RandomPosObjeto[6][1]].classList.add(ObjetoRandom());
+            break;
+            case 7:
+                mapa2[RandomPosObjeto[7][0]][RandomPosObjeto[7][1]].classList.add(ObjetoRandom());
+            break;
+            case 8:
+                mapa2[RandomPosObjeto[8][0]][RandomPosObjeto[8][1]].classList.add(ObjetoRandom());
+            break;
+            case 9:
+                mapa2[RandomPosObjeto[9][0]][RandomPosObjeto[9][1]].classList.add(ObjetoRandom());
+            break;
+            case 10:
+                mapa2[RandomPosObjeto[10][0]][RandomPosObjeto[10][1]].classList.add(ObjetoRandom());
+            break;
+            case 11:
+                mapa2[RandomPosObjeto[11][0]][RandomPosObjeto[11][1]].classList.add(ObjetoRandom());
+            break;
+            case 12:
+                mapa2[RandomPosObjeto[12][0]][RandomPosObjeto[12][1]].classList.add(ObjetoRandom());
+            break;
+            case 13:
+                mapa2[RandomPosObjeto[13][0]][RandomPosObjeto[13][1]].classList.add(ObjetoRandom());
+            break;
+            case 14:
+                mapa2[RandomPosObjeto[14][0]][RandomPosObjeto[14][1]].classList.add(ObjetoRandom());
+            break;
+            default: break;
         }
-    }
 }
+
