@@ -194,6 +194,30 @@ function BarraObjetos(){
 }
 
 
+function RellenaPilar(posX,posY,item){
+    mapa2[posX][posY+1].classList.add(item);
+    mapa2[posX][posY+2].classList.add(item);
+    mapa2[posX+1][posY].classList.add(item);
+    mapa2[posX+1][posY+1].classList.add(item);
+    mapa2[posX+1][posY+2].classList.add(item);
+}
+
+function ObjetoAleatorio(){
+        var quitar = Math.floor(Math.random()*Objeto.length);
+        return Objeto.splice(quitar,1);
+}
+
+/*function ComprobarContenidoPilar(){
+
+    for(let i=1;i<6;i++){
+        if(mapa2[1][i].classList.contains("Pisadas")){
+
+        }
+        i+=4;
+    }
+}*/
+
+
 
 function PonerObjetoPilar(){
 
@@ -205,333 +229,153 @@ function PonerObjetoPilar(){
 
             switch(RandomObjeto){
                 case 0:
-                    mapa2[RandomPosObjeto[0][0]][RandomPosObjeto[0][1]].classList.add(Objeto[Math.floor(Math.random()*3)]);
+                    mapa2[RandomPosObjeto[0][0]][RandomPosObjeto[0][1]].classList.add(ObjetoAleatorio());
                     if(mapa2[RandomPosObjeto[0][0]][RandomPosObjeto[0][1]].classList.contains("Barril")){
-                        mapa2[3][2].classList.add("Barril");
-                        mapa2[4][2].classList.add("Barril");
-                        mapa2[3][2].classList.add("Barril");
-                        mapa2[3][3].classList.add("Barril");
-                        mapa2[3][4].classList.add("Barril");
+                        RellenaPilar(RandomPosObjeto[0][0],RandomPosObjeto[0][1],"Barril");
                     }else if(mapa2[RandomPosObjeto[0][0]][RandomPosObjeto[0][1]].classList.contains("Canon")){
-                        mapa2[3][2].classList.add("Canon");
-                        mapa2[4][2].classList.add("Canon");
-                        mapa2[3][2].classList.add("Canon");
-                        mapa2[3][3].classList.add("Canon");
-                        mapa2[3][4].classList.add("Canon");
+                        RellenaPilar(RandomPosObjeto[0][0],RandomPosObjeto[0][1],"Canon");
                     }else if(mapa2[RandomPosObjeto[0][0]][RandomPosObjeto[0][1]].classList.contains("BolaCanon")){
-                        mapa2[3][2].classList.add("BolaCanon");
-                        mapa2[4][2].classList.add("BolaCanon");
-                        mapa2[3][2].classList.add("BolaCanon");
-                        mapa2[3][3].classList.add("BolaCanon");
-                        mapa2[3][4].classList.add("BolaCanon");
+                        RellenaPilar(RandomPosObjeto[0][0],RandomPosObjeto[0][1],"BolaCanon");
                     }
                 break;
                 case 1:
-                    mapa2[RandomPosObjeto[1][0]][RandomPosObjeto[1][1]].classList.add(Objeto[Math.floor(Math.random()*3)]);
+                    mapa2[RandomPosObjeto[1][0]][RandomPosObjeto[1][1]].classList.add(ObjetoAleatorio());
                     if(mapa2[RandomPosObjeto[1][0]][RandomPosObjeto[1][1]].classList.contains("Barril")){
-                        mapa2[3][2].classList.add("Barril");
-                        mapa2[4][2].classList.add("Barril");
-                        mapa2[3][2].classList.add("Barril");
-                        mapa2[3][3].classList.add("Barril");
-                        mapa2[3][4].classList.add("Barril");
+                        RellenaPilar(RandomPosObjeto[1][0],RandomPosObjeto[1][1],"Barril");
                     }else if(mapa2[RandomPosObjeto[1][0]][RandomPosObjeto[1][1]].classList.contains("Canon")){
-                        mapa2[3][2].classList.add("Canon");
-                        mapa2[4][2].classList.add("Canon");
-                        mapa2[3][2].classList.add("Canon");
-                        mapa2[3][3].classList.add("Canon");
-                        mapa2[3][4].classList.add("Canon");
+                        RellenaPilar(RandomPosObjeto[1][0],RandomPosObjeto[1][1],"Canon");
                     }else if(mapa2[RandomPosObjeto[1][0]][RandomPosObjeto[1][1]].classList.contains("BolaCanon")){
-                        mapa2[3][2].classList.add("BolaCanon");
-                        mapa2[4][2].classList.add("BolaCanon");
-                        mapa2[3][2].classList.add("BolaCanon");
-                        mapa2[3][3].classList.add("BolaCanon");
-                        mapa2[3][4].classList.add("BolaCanon");
+                        RellenaPilar(RandomPosObjeto[1][0],RandomPosObjeto[1][1],"BolaCanon");
                     }
                 break;
                 case 2:
-                    mapa2[RandomPosObjeto[2][0]][RandomPosObjeto[2][1]].classList.add(Objeto[Math.floor(Math.random()*3)]);
+                    mapa2[RandomPosObjeto[2][0]][RandomPosObjeto[2][1]].classList.add(ObjetoAleatorio());
                     if(mapa2[RandomPosObjeto[2][0]][RandomPosObjeto[2][1]].classList.contains("Barril")){
-                        mapa2[3][2].classList.add("Barril");
-                        mapa2[4][2].classList.add("Barril");
-                        mapa2[3][2].classList.add("Barril");
-                        mapa2[3][3].classList.add("Barril");
-                        mapa2[3][4].classList.add("Barril");
+                        RellenaPilar(RandomPosObjeto[2][0],RandomPosObjeto[2][1],"Barril");
                     }else if(mapa2[RandomPosObjeto[2][0]][RandomPosObjeto[2][1]].classList.contains("Canon")){
-                        mapa2[3][2].classList.add("Canon");
-                        mapa2[4][2].classList.add("Canon");
-                        mapa2[3][2].classList.add("Canon");
-                        mapa2[3][3].classList.add("Canon");
-                        mapa2[3][4].classList.add("Canon");
+                        RellenaPilar(RandomPosObjeto[2][0],RandomPosObjeto[2][1],"Canon");
                     }else if(mapa2[RandomPosObjeto[2][0]][RandomPosObjeto[2][1]].classList.contains("BolaCanon")){
-                        mapa2[3][2].classList.add("BolaCanon");
-                        mapa2[4][2].classList.add("BolaCanon");
-                        mapa2[3][2].classList.add("BolaCanon");
-                        mapa2[3][3].classList.add("BolaCanon");
-                        mapa2[3][4].classList.add("BolaCanon");
+                        RellenaPilar(RandomPosObjeto[2][0],RandomPosObjeto[2][1],"BolaCanon");
                     }
                 break;
                 case 3:
-                    mapa2[RandomPosObjeto[3][0]][RandomPosObjeto[3][1]].classList.add(Objeto[Math.floor(Math.random()*3)]);
+                    mapa2[RandomPosObjeto[3][0]][RandomPosObjeto[3][1]].classList.add(ObjetoAleatorio());
                     if(mapa2[RandomPosObjeto[3][0]][RandomPosObjeto[3][1]].classList.contains("Barril")){
-                        mapa2[3][2].classList.add("Barril");
-                        mapa2[4][2].classList.add("Barril");
-                        mapa2[3][2].classList.add("Barril");
-                        mapa2[3][3].classList.add("Barril");
-                        mapa2[3][4].classList.add("Barril");
+                        RellenaPilar(RandomPosObjeto[3][0],RandomPosObjeto[3][1],"Barril");
                     }else if(mapa2[RandomPosObjeto[3][0]][RandomPosObjeto[3][1]].classList.contains("Canon")){
-                        mapa2[3][2].classList.add("Canon");
-                        mapa2[4][2].classList.add("Canon");
-                        mapa2[3][2].classList.add("Canon");
-                        mapa2[3][3].classList.add("Canon");
-                        mapa2[3][4].classList.add("Canon");
+                        RellenaPilar(RandomPosObjeto[3][0],RandomPosObjeto[1][1],"Canon");
                     }else if(mapa2[RandomPosObjeto[3][0]][RandomPosObjeto[3][1]].classList.contains("BolaCanon")){
-                        mapa2[3][2].classList.add("BolaCanon");
-                        mapa2[4][2].classList.add("BolaCanon");
-                        mapa2[3][2].classList.add("BolaCanon");
-                        mapa2[3][3].classList.add("BolaCanon");
-                        mapa2[3][4].classList.add("BolaCanon");
+                        RellenaPilar(RandomPosObjeto[3][0],RandomPosObjeto[3][1],"BolaCanon");
                     }
                 break;
                 case 4:
-                    mapa2[RandomPosObjeto[4][0]][RandomPosObjeto[4][1]].classList.add(Objeto[Math.floor(Math.random()*3)]);
+                    mapa2[RandomPosObjeto[4][0]][RandomPosObjeto[4][1]].classList.add(ObjetoAleatorio());
                     if(mapa2[RandomPosObjeto[4][0]][RandomPosObjeto[4][1]].classList.contains("Barril")){
-                        mapa2[3][2].classList.add("Barril");
-                        mapa2[4][2].classList.add("Barril");
-                        mapa2[3][2].classList.add("Barril");
-                        mapa2[3][3].classList.add("Barril");
-                        mapa2[3][4].classList.add("Barril");
+                        RellenaPilar(RandomPosObjeto[4][0],RandomPosObjeto[4][1],"Barril");
                     }else if(mapa2[RandomPosObjeto[4][0]][RandomPosObjeto[4][1]].classList.contains("Canon")){
-                        mapa2[3][2].classList.add("Canon");
-                        mapa2[4][2].classList.add("Canon");
-                        mapa2[3][2].classList.add("Canon");
-                        mapa2[3][3].classList.add("Canon");
-                        mapa2[3][4].classList.add("Canon");
+                        RellenaPilar(RandomPosObjeto[4][0],RandomPosObjeto[4][1],"Canon");
                     }else if(mapa2[RandomPosObjeto[4][0]][RandomPosObjeto[4][1]].classList.contains("BolaCanon")){
-                        mapa2[3][2].classList.add("BolaCanon");
-                        mapa2[4][2].classList.add("BolaCanon");
-                        mapa2[3][2].classList.add("BolaCanon");
-                        mapa2[3][3].classList.add("BolaCanon");
-                        mapa2[3][4].classList.add("BolaCanon");
+                        RellenaPilar(RandomPosObjeto[4][0],RandomPosObjeto[4][1],"BolaCanon");
                     }
                 break;
                 case 5:
-                    mapa2[RandomPosObjeto[5][0]][RandomPosObjeto[5][1]].classList.add(Objeto[Math.floor(Math.random()*3)]);
+                    mapa2[RandomPosObjeto[5][0]][RandomPosObjeto[5][1]].classList.add(ObjetoAleatorio());
                     if(mapa2[RandomPosObjeto[5][0]][RandomPosObjeto[5][1]].classList.contains("Barril")){
-                        mapa2[3][2].classList.add("Barril");
-                        mapa2[4][2].classList.add("Barril");
-                        mapa2[3][2].classList.add("Barril");
-                        mapa2[3][3].classList.add("Barril");
-                        mapa2[3][4].classList.add("Barril");
+                        RellenaPilar(RandomPosObjeto[5][0],RandomPosObjeto[5][1],"Barril");
                     }else if(mapa2[RandomPosObjeto[5][0]][RandomPosObjeto[5][1]].classList.contains("Canon")){
-                        mapa2[3][2].classList.add("Canon");
-                        mapa2[4][2].classList.add("Canon");
-                        mapa2[3][2].classList.add("Canon");
-                        mapa2[3][3].classList.add("Canon");
-                        mapa2[3][4].classList.add("Canon");
+                        RellenaPilar(RandomPosObjeto[5][0],RandomPosObjeto[5][1],"Canon");
                     }else if(mapa2[RandomPosObjeto[5][0]][RandomPosObjeto[5][1]].classList.contains("BolaCanon")){
-                        mapa2[3][2].classList.add("BolaCanon");
-                        mapa2[4][2].classList.add("BolaCanon");
-                        mapa2[3][2].classList.add("BolaCanon");
-                        mapa2[3][3].classList.add("BolaCanon");
-                        mapa2[3][4].classList.add("BolaCanon");
+                        RellenaPilar(RandomPosObjeto[5][0],RandomPosObjeto[5][1],"BolaCanon");
                     }
                 break;
                 case 6:
-                    mapa2[RandomPosObjeto[6][0]][RandomPosObjeto[6][1]].classList.add(Objeto[Math.floor(Math.random()*3)]);
+                    mapa2[RandomPosObjeto[6][0]][RandomPosObjeto[6][1]].classList.add(ObjetoAleatorio());
                     if(mapa2[RandomPosObjeto[6][0]][RandomPosObjeto[6][1]].classList.contains("Barril")){
-                        mapa2[3][2].classList.add("Barril");
-                        mapa2[4][2].classList.add("Barril");
-                        mapa2[3][2].classList.add("Barril");
-                        mapa2[3][3].classList.add("Barril");
-                        mapa2[3][4].classList.add("Barril");
+                        RellenaPilar(RandomPosObjeto[6][0],RandomPosObjeto[6][1],"Barril");
                     }else if(mapa2[RandomPosObjeto[6][0]][RandomPosObjeto[6][1]].classList.contains("Canon")){
-                        mapa2[3][2].classList.add("Canon");
-                        mapa2[4][2].classList.add("Canon");
-                        mapa2[3][2].classList.add("Canon");
-                        mapa2[3][3].classList.add("Canon");
-                        mapa2[3][4].classList.add("Canon");
+                        RellenaPilar(RandomPosObjeto[6][0],RandomPosObjeto[6][1],"Canon");
                     }else if(mapa2[RandomPosObjeto[6][0]][RandomPosObjeto[6][1]].classList.contains("BolaCanon")){
-                        mapa2[3][2].classList.add("BolaCanon");
-                        mapa2[4][2].classList.add("BolaCanon");
-                        mapa2[3][2].classList.add("BolaCanon");
-                        mapa2[3][3].classList.add("BolaCanon");
-                        mapa2[3][4].classList.add("BolaCanon");
+                        RellenaPilar(RandomPosObjeto[6][0],RandomPosObjeto[6][1],"BolaCanon");
                     }
                 break;
                 case 7:
-                    mapa2[RandomPosObjeto[7][0]][RandomPosObjeto[7][1]].classList.add(Objeto[Math.floor(Math.random()*3)]);
+                    mapa2[RandomPosObjeto[7][0]][RandomPosObjeto[7][1]].classList.add(ObjetoAleatorio());
                     if(mapa2[RandomPosObjeto[7][0]][RandomPosObjeto[7][1]].classList.contains("Barril")){
-                        mapa2[3][2].classList.add("Barril");
-                        mapa2[4][2].classList.add("Barril");
-                        mapa2[3][2].classList.add("Barril");
-                        mapa2[3][3].classList.add("Barril");
-                        mapa2[3][4].classList.add("Barril");
+                        RellenaPilar(RandomPosObjeto[7][0],RandomPosObjeto[7][1],"Barril");
                     }else if(mapa2[RandomPosObjeto[7][0]][RandomPosObjeto[7][1]].classList.contains("Canon")){
-                        mapa2[3][2].classList.add("Canon");
-                        mapa2[4][2].classList.add("Canon");
-                        mapa2[3][2].classList.add("Canon");
-                        mapa2[3][3].classList.add("Canon");
-                        mapa2[3][4].classList.add("Canon");
+                        RellenaPilar(RandomPosObjeto[7][0],RandomPosObjeto[7][1],"Canon");
                     }else if(mapa2[RandomPosObjeto[7][0]][RandomPosObjeto[7][1]].classList.contains("BolaCanon")){
-                        mapa2[3][2].classList.add("BolaCanon");
-                        mapa2[4][2].classList.add("BolaCanon");
-                        mapa2[3][2].classList.add("BolaCanon");
-                        mapa2[3][3].classList.add("BolaCanon");
-                        mapa2[3][4].classList.add("BolaCanon");
+                        RellenaPilar(RandomPosObjeto[7][0],RandomPosObjeto[7][1],"BolaCanon");
                     }
                 break;
                 case 8:
-                    mapa2[RandomPosObjeto[8][0]][RandomPosObjeto[8][1]].classList.add(Objeto[Math.floor(Math.random()*3)]);
+                    mapa2[RandomPosObjeto[8][0]][RandomPosObjeto[8][1]].classList.add(ObjetoAleatorio());
                     if(mapa2[RandomPosObjeto[8][0]][RandomPosObjeto[8][1]].classList.contains("Barril")){
-                        mapa2[3][2].classList.add("Barril");
-                        mapa2[4][2].classList.add("Barril");
-                        mapa2[3][2].classList.add("Barril");
-                        mapa2[3][3].classList.add("Barril");
-                        mapa2[3][4].classList.add("Barril");
+                        RellenaPilar(RandomPosObjeto[8][0],RandomPosObjeto[8][1],"Barril");
                     }else if(mapa2[RandomPosObjeto[8][0]][RandomPosObjeto[8][1]].classList.contains("Canon")){
-                        mapa2[3][2].classList.add("Canon");
-                        mapa2[4][2].classList.add("Canon");
-                        mapa2[3][2].classList.add("Canon");
-                        mapa2[3][3].classList.add("Canon");
-                        mapa2[3][4].classList.add("Canon");
+                        RellenaPilar(RandomPosObjeto[8][0],RandomPosObjeto[8][1],"Canon");
                     }else if(mapa2[RandomPosObjeto[8][0]][RandomPosObjeto[8][1]].classList.contains("BolaCanon")){
-                        mapa2[3][2].classList.add("BolaCanon");
-                        mapa2[4][2].classList.add("BolaCanon");
-                        mapa2[3][2].classList.add("BolaCanon");
-                        mapa2[3][3].classList.add("BolaCanon");
-                        mapa2[3][4].classList.add("BolaCanon");
+                        RellenaPilar(RandomPosObjeto[8][0],RandomPosObjeto[8][1],"BolaCanon");
                     }
                 break;
                 case 9:
-                    mapa2[RandomPosObjeto[9][0]][RandomPosObjeto[9][1]].classList.add(Objeto[Math.floor(Math.random()*3)]);
+                    mapa2[RandomPosObjeto[9][0]][RandomPosObjeto[9][1]].classList.add(ObjetoAleatorio());
                     if(mapa2[RandomPosObjeto[9][0]][RandomPosObjeto[9][1]].classList.contains("Barril")){
-                        mapa2[3][2].classList.add("Barril");
-                        mapa2[4][2].classList.add("Barril");
-                        mapa2[3][2].classList.add("Barril");
-                        mapa2[3][3].classList.add("Barril");
-                        mapa2[3][4].classList.add("Barril");
+                        RellenaPilar(RandomPosObjeto[9][0],RandomPosObjeto[9][1],"Barril");
                     }else if(mapa2[RandomPosObjeto[9][0]][RandomPosObjeto[9][1]].classList.contains("Canon")){
-                        mapa2[3][2].classList.add("Canon");
-                        mapa2[4][2].classList.add("Canon");
-                        mapa2[3][2].classList.add("Canon");
-                        mapa2[3][3].classList.add("Canon");
-                        mapa2[3][4].classList.add("Canon");
+                        RellenaPilar(RandomPosObjeto[9][0],RandomPosObjeto[9][1],"Canon");
                     }else if(mapa2[RandomPosObjeto[9][0]][RandomPosObjeto[9][1]].classList.contains("BolaCanon")){
-                        mapa2[3][2].classList.add("BolaCanon");
-                        mapa2[4][2].classList.add("BolaCanon");
-                        mapa2[3][2].classList.add("BolaCanon");
-                        mapa2[3][3].classList.add("BolaCanon");
-                        mapa2[3][4].classList.add("BolaCanon");
+                        RellenaPilar(RandomPosObjeto[9][0],RandomPosObjeto[9][1],"BolaCanon");
                     }
                 break;
                 case 10:
-                    mapa2[RandomPosObjeto[10][0]][RandomPosObjeto[10][1]].classList.add(Objeto[Math.floor(Math.random()*3)]);
+                    mapa2[RandomPosObjeto[10][0]][RandomPosObjeto[10][1]].classList.add(ObjetoAleatorio());
                     if(mapa2[RandomPosObjeto[10][0]][RandomPosObjeto[10][1]].classList.contains("Barril")){
-                        mapa2[3][2].classList.add("Barril");
-                        mapa2[4][2].classList.add("Barril");
-                        mapa2[3][2].classList.add("Barril");
-                        mapa2[3][3].classList.add("Barril");
-                        mapa2[3][4].classList.add("Barril");
+                        RellenaPilar(RandomPosObjeto[10][0],RandomPosObjeto[10][1],"Barril");
                     }else if(mapa2[RandomPosObjeto[10][0]][RandomPosObjeto[10][1]].classList.contains("Canon")){
-                        mapa2[3][2].classList.add("Canon");
-                        mapa2[4][2].classList.add("Canon");
-                        mapa2[3][2].classList.add("Canon");
-                        mapa2[3][3].classList.add("Canon");
-                        mapa2[3][4].classList.add("Canon");
+                        RellenaPilar(RandomPosObjeto[10][0],RandomPosObjeto[10][1],"Canon");
                     }else if(mapa2[RandomPosObjeto[10][0]][RandomPosObjeto[10][1]].classList.contains("BolaCanon")){
-                        mapa2[3][2].classList.add("BolaCanon");
-                        mapa2[4][2].classList.add("BolaCanon");
-                        mapa2[3][2].classList.add("BolaCanon");
-                        mapa2[3][3].classList.add("BolaCanon");
-                        mapa2[3][4].classList.add("BolaCanon");
+                        RellenaPilar(RandomPosObjeto[10][0],RandomPosObjeto[10][1],"BolaCanon");
                     }
                 break;
                 case 11:
-                    mapa2[RandomPosObjeto[11][0]][RandomPosObjeto[11][1]].classList.add(Objeto[Math.floor(Math.random()*3)]);
+                    mapa2[RandomPosObjeto[11][0]][RandomPosObjeto[11][1]].classList.add(ObjetoAleatorio());
                     if(mapa2[RandomPosObjeto[11][0]][RandomPosObjeto[11][1]].classList.contains("Barril")){
-                        mapa2[3][2].classList.add("Barril");
-                        mapa2[4][2].classList.add("Barril");
-                        mapa2[3][2].classList.add("Barril");
-                        mapa2[3][3].classList.add("Barril");
-                        mapa2[3][4].classList.add("Barril");
+                        RellenaPilar(RandomPosObjeto[11][0],RandomPosObjeto[11][1],"Barril");
                     }else if(mapa2[RandomPosObjeto[11][0]][RandomPosObjeto[11][1]].classList.contains("Canon")){
-                        mapa2[3][2].classList.add("Canon");
-                        mapa2[4][2].classList.add("Canon");
-                        mapa2[3][2].classList.add("Canon");
-                        mapa2[3][3].classList.add("Canon");
-                        mapa2[3][4].classList.add("Canon");
+                        RellenaPilar(RandomPosObjeto[11][0],RandomPosObjeto[11][1],"Canon");
                     }else if(mapa2[RandomPosObjeto[11][0]][RandomPosObjeto[11][1]].classList.contains("BolaCanon")){
-                        mapa2[3][2].classList.add("BolaCanon");
-                        mapa2[4][2].classList.add("BolaCanon");
-                        mapa2[3][2].classList.add("BolaCanon");
-                        mapa2[3][3].classList.add("BolaCanon");
-                        mapa2[3][4].classList.add("BolaCanon");
+                        RellenaPilar(RandomPosObjeto[11][0],RandomPosObjeto[11][1],"BolaCanon");
                     }
                 break;
                 case 12:
-                    mapa2[RandomPosObjeto[12][0]][RandomPosObjeto[12][1]].classList.add(Objeto[Math.floor(Math.random()*3)]);
+                    mapa2[RandomPosObjeto[12][0]][RandomPosObjeto[12][1]].classList.add(ObjetoAleatorio());
                     if(mapa2[RandomPosObjeto[12][0]][RandomPosObjeto[12][1]].classList.contains("Barril")){
-                        mapa2[3][2].classList.add("Barril");
-                        mapa2[4][2].classList.add("Barril");
-                        mapa2[3][2].classList.add("Barril");
-                        mapa2[3][3].classList.add("Barril");
-                        mapa2[3][4].classList.add("Barril");
+                        RellenaPilar(RandomPosObjeto[12][0],RandomPosObjeto[12][1],"Barril");
                     }else if(mapa2[RandomPosObjeto[12][0]][RandomPosObjeto[12][1]].classList.contains("Canon")){
-                        mapa2[3][2].classList.add("Canon");
-                        mapa2[4][2].classList.add("Canon");
-                        mapa2[3][2].classList.add("Canon");
-                        mapa2[3][3].classList.add("Canon");
-                        mapa2[3][4].classList.add("Canon");
+                        RellenaPilar(RandomPosObjeto[12][0],RandomPosObjeto[12][1],"Canon");
                     }else if(mapa2[RandomPosObjeto[12][0]][RandomPosObjeto[12][1]].classList.contains("BolaCanon")){
-                        mapa2[3][2].classList.add("BolaCanon");
-                        mapa2[4][2].classList.add("BolaCanon");
-                        mapa2[3][2].classList.add("BolaCanon");
-                        mapa2[3][3].classList.add("BolaCanon");
-                        mapa2[3][4].classList.add("BolaCanon");
+                        RellenaPilar(RandomPosObjeto[12][0],RandomPosObjeto[12][1],"BolaCanon");
                     }
                 break;
                 case 13:
-                    mapa2[RandomPosObjeto[13][0]][RandomPosObjeto[13][1]].classList.add(Objeto[Math.floor(Math.random()*3)]);
+                    mapa2[RandomPosObjeto[13][0]][RandomPosObjeto[13][1]].classList.add(ObjetoAleatorio());
                     if(mapa2[RandomPosObjeto[13][0]][RandomPosObjeto[13][1]].classList.contains("Barril")){
-                        mapa2[3][2].classList.add("Barril");
-                        mapa2[4][2].classList.add("Barril");
-                        mapa2[3][2].classList.add("Barril");
-                        mapa2[3][3].classList.add("Barril");
-                        mapa2[3][4].classList.add("Barril");
+                        RellenaPilar(RandomPosObjeto[13][0],RandomPosObjeto[13][1],"Barril");
                     }else if(mapa2[RandomPosObjeto[13][0]][RandomPosObjeto[13][1]].classList.contains("Canon")){
-                        mapa2[3][2].classList.add("Canon");
-                        mapa2[4][2].classList.add("Canon");
-                        mapa2[3][2].classList.add("Canon");
-                        mapa2[3][3].classList.add("Canon");
-                        mapa2[3][4].classList.add("Canon");
+                        RellenaPilar(RandomPosObjeto[13][0],RandomPosObjeto[13][1],"Canon");
                     }else if(mapa2[RandomPosObjeto[13][0]][RandomPosObjeto[13][1]].classList.contains("BolaCanon")){
-                        mapa2[3][2].classList.add("BolaCanon");
-                        mapa2[4][2].classList.add("BolaCanon");
-                        mapa2[3][2].classList.add("BolaCanon");
-                        mapa2[3][3].classList.add("BolaCanon");
-                        mapa2[3][4].classList.add("BolaCanon");
+                        RellenaPilar(RandomPosObjeto[13][0],RandomPosObjeto[13][1],"BolaCanon");
                     }
                 break;
                 case 14:
-                    mapa2[RandomPosObjeto[14][0]][RandomPosObjeto[14][1]].classList.add(Objeto[Math.floor(Math.random()*3)]);
+                    mapa2[RandomPosObjeto[14][0]][RandomPosObjeto[14][1]].classList.add(ObjetoAleatorio());
                     if(mapa2[RandomPosObjeto[14][0]][RandomPosObjeto[14][1]].classList.contains("Barril")){
-                        mapa2[3][2].classList.add("Barril");
-                        mapa2[4][2].classList.add("Barril");
-                        mapa2[3][2].classList.add("Barril");
-                        mapa2[3][3].classList.add("Barril");
-                        mapa2[3][4].classList.add("Barril");
+                        RellenaPilar(RandomPosObjeto[14][0],RandomPosObjeto[14][1],"Barril");
                     }else if(mapa2[RandomPosObjeto[14][0]][RandomPosObjeto[14][1]].classList.contains("Canon")){
-                        mapa2[3][2].classList.add("Canon");
-                        mapa2[4][2].classList.add("Canon");
-                        mapa2[3][2].classList.add("Canon");
-                        mapa2[3][3].classList.add("Canon");
-                        mapa2[3][4].classList.add("Canon");
+                        RellenaPilar(RandomPosObjeto[14][0],RandomPosObjeto[14][1],"Canon");
                     }else if(mapa2[RandomPosObjeto[14][0]][RandomPosObjeto[14][1]].classList.contains("BolaCanon")){
-                        mapa2[3][2].classList.add("BolaCanon");
-                        mapa2[4][2].classList.add("BolaCanon");
-                        mapa2[3][2].classList.add("BolaCanon");
-                        mapa2[3][3].classList.add("BolaCanon");
-                        mapa2[3][4].classList.add("BolaCanon");
+                        RellenaPilar(RandomPosObjeto[14][0],RandomPosObjeto[14][1],"BolaCanon");
                     }
                 break;
                 default: break;
@@ -539,3 +383,8 @@ function PonerObjetoPilar(){
         cont2++;
     }
 }
+
+
+
+
+// vector[ "1 2 3"," 1 3 2" ,"2 3 1","2 1 3"," 3 1 2"," 3 2 1 "] 
