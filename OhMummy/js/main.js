@@ -9,6 +9,7 @@ var PJX = 11;
 var PJY = 0;
 var EnemigoX = Math.floor(Math.random()*21);
 var EnemigoY = Math.floor(Math.random()*10);
+var inventario = document.getElementById("CuadroBarra");
 
 var mapa2 = [[2,2,2,2,2,2,2,2,2,2,2,0,2,2,2,2,2,2,2,2,2,2,2],
             [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
@@ -33,18 +34,58 @@ var RandomPosObjeto = [[2,2],[2,6],[2,10],[2,14],[2,18],
 
 let RandomNumberObjeto;
 var Objeto = ["Barril","BolaCanon","Canon"];
+var Enemigos = new Array();
 
 
 window.onload = function(){
+
+    /*
+        for(let i=1;i<=20;i++){
+
+            console.log("Nivel: "+i);
+
+            CrearMapa();
+
+            if(Enemigos.length == 1){
+                Enemigos.push(div.classList.add("Enemigo"));
+            }
+
+            for(let j=0;j<inventario.length;j++){
+                if(inventario.classList.contains("Barril") && inventario.classList.contains("BolaCanon") && inventario.classList.contains("Canon")){
+                    setInterval(AbrirPuerta, 1000);
+                }else{
+                    setInterval(CerrarPuerta, 1000);
+                }
+            }       
+            
+        }   
     
+    */
 
     CrearMapa();
+
+
     BarraObjetos();
     document.addEventListener('keydown',mover);
-    PonerObjetoPilar();
-    
+    PonerObjetoPilar();    
     setInterval(MovimientoEnemigo, 300); //300 son milisegundos
+    
 };
+
+function CerrarPuerta(){
+    if(!mapa2[0][11].classList.contains("Personaje")){
+        mapa2[0][11].classList.remove("camino");
+        mapa2[0][11].classList.remove("Pisadas");
+        mapa2[0][11].classList.add("fuera");
+    }
+}
+
+function AbrirPuerta(){
+    if(!mapa2[0][11].classList.contains("Personaje")){        
+        mapa2[0][11].classList.remove("fuera");
+        mapa2[0][11].classList.add("Camino");
+    }
+}
 
 /*Detectar movimiento personaje*/
 function mover (event) {
@@ -155,7 +196,7 @@ function CrearMapa(){
             else if(mapa2[i][j] == 1)div.classList.add("pilar");
             if((PJY == i) && (PJX == j)) div.classList.add("Personaje");
             if(mapa2[EnemigoY][EnemigoX] == 0 && cont == 0){
-                if((EnemigoX == j) && (EnemigoY == i))div.classList.add("Enemigo"),cont = 1;
+                if((EnemigoX == j) && (EnemigoY == i))Enemigos.push(div.classList.add("Enemigo")),cont = 1;
             }else if(mapa2[EnemigoY][EnemigoX] == 1 || mapa2[EnemigoY][EnemigoX] == 2){
                 EnemigoX = Math.floor(Math.random()*21);
                 EnemigoY = Math.floor(Math.random()*10);
@@ -165,15 +206,6 @@ function CrearMapa(){
             mapa2[i][j] = div;
         }
     }
-
-    //pilares
-
-    //Crear un vector en la que cada posición es uno de los pilares. 15 en total
-
-    //En cada posición del vector de los pilares, ponemos un vector de dos posiciones con la x y la y
-
-    //
-
 
 }
 
@@ -203,21 +235,19 @@ function RellenaPilar(posX,posY,item){
 }
 
 function ObjetoAleatorio(){
-        var quitar = Math.floor(Math.random()*Objeto.length);
-        return Objeto.splice(quitar,1);
+    var random = Math.floor(Math.random()*Objeto.length);
+    return Objeto.splice(random,1);
 }
 
-/*function ComprobarContenidoPilar(){
+function ComprobarContenidoPilar(){
+    for(let i = 0; i < mapa2.length ; i++) {
+        for (let j = 0; j < mapa2[i].length ; j++) {
+            if(mapa[1][i].classList.contains("Pisadas")){
 
-    for(let i=1;i<6;i++){
-        if(mapa2[1][i].classList.contains("Pisadas")){
-
+            }
         }
-        i+=4;
-    }
-}*/
-
-
+    }    
+}
 
 function PonerObjetoPilar(){
 
@@ -237,6 +267,7 @@ function PonerObjetoPilar(){
                     }else if(mapa2[RandomPosObjeto[0][0]][RandomPosObjeto[0][1]].classList.contains("BolaCanon")){
                         RellenaPilar(RandomPosObjeto[0][0],RandomPosObjeto[0][1],"BolaCanon");
                     }
+                    RandomPosObjeto.splice(RandomPosObjeto[0],1);
                 break;
                 case 1:
                     mapa2[RandomPosObjeto[1][0]][RandomPosObjeto[1][1]].classList.add(ObjetoAleatorio());
@@ -247,6 +278,7 @@ function PonerObjetoPilar(){
                     }else if(mapa2[RandomPosObjeto[1][0]][RandomPosObjeto[1][1]].classList.contains("BolaCanon")){
                         RellenaPilar(RandomPosObjeto[1][0],RandomPosObjeto[1][1],"BolaCanon");
                     }
+                    RandomPosObjeto.splice(RandomPosObjeto[1],1);
                 break;
                 case 2:
                     mapa2[RandomPosObjeto[2][0]][RandomPosObjeto[2][1]].classList.add(ObjetoAleatorio());
@@ -257,6 +289,7 @@ function PonerObjetoPilar(){
                     }else if(mapa2[RandomPosObjeto[2][0]][RandomPosObjeto[2][1]].classList.contains("BolaCanon")){
                         RellenaPilar(RandomPosObjeto[2][0],RandomPosObjeto[2][1],"BolaCanon");
                     }
+                    RandomPosObjeto.splice(RandomPosObjeto[2],1);
                 break;
                 case 3:
                     mapa2[RandomPosObjeto[3][0]][RandomPosObjeto[3][1]].classList.add(ObjetoAleatorio());
@@ -267,6 +300,7 @@ function PonerObjetoPilar(){
                     }else if(mapa2[RandomPosObjeto[3][0]][RandomPosObjeto[3][1]].classList.contains("BolaCanon")){
                         RellenaPilar(RandomPosObjeto[3][0],RandomPosObjeto[3][1],"BolaCanon");
                     }
+                    RandomPosObjeto.splice(RandomPosObjeto[3],1);
                 break;
                 case 4:
                     mapa2[RandomPosObjeto[4][0]][RandomPosObjeto[4][1]].classList.add(ObjetoAleatorio());
@@ -277,6 +311,7 @@ function PonerObjetoPilar(){
                     }else if(mapa2[RandomPosObjeto[4][0]][RandomPosObjeto[4][1]].classList.contains("BolaCanon")){
                         RellenaPilar(RandomPosObjeto[4][0],RandomPosObjeto[4][1],"BolaCanon");
                     }
+                    RandomPosObjeto.splice(RandomPosObjeto[4],1);
                 break;
                 case 5:
                     mapa2[RandomPosObjeto[5][0]][RandomPosObjeto[5][1]].classList.add(ObjetoAleatorio());
@@ -287,6 +322,7 @@ function PonerObjetoPilar(){
                     }else if(mapa2[RandomPosObjeto[5][0]][RandomPosObjeto[5][1]].classList.contains("BolaCanon")){
                         RellenaPilar(RandomPosObjeto[5][0],RandomPosObjeto[5][1],"BolaCanon");
                     }
+                    RandomPosObjeto.splice(RandomPosObjeto[5],1);
                 break;
                 case 6:
                     mapa2[RandomPosObjeto[6][0]][RandomPosObjeto[6][1]].classList.add(ObjetoAleatorio());
@@ -297,6 +333,7 @@ function PonerObjetoPilar(){
                     }else if(mapa2[RandomPosObjeto[6][0]][RandomPosObjeto[6][1]].classList.contains("BolaCanon")){
                         RellenaPilar(RandomPosObjeto[6][0],RandomPosObjeto[6][1],"BolaCanon");
                     }
+                    RandomPosObjeto.splice(RandomPosObjeto[6],1);
                 break;
                 case 7:
                     mapa2[RandomPosObjeto[7][0]][RandomPosObjeto[7][1]].classList.add(ObjetoAleatorio());
@@ -307,6 +344,7 @@ function PonerObjetoPilar(){
                     }else if(mapa2[RandomPosObjeto[7][0]][RandomPosObjeto[7][1]].classList.contains("BolaCanon")){
                         RellenaPilar(RandomPosObjeto[7][0],RandomPosObjeto[7][1],"BolaCanon");
                     }
+                    RandomPosObjeto.splice(RandomPosObjeto[7],1);
                 break;
                 case 8:
                     mapa2[RandomPosObjeto[8][0]][RandomPosObjeto[8][1]].classList.add(ObjetoAleatorio());
@@ -317,6 +355,7 @@ function PonerObjetoPilar(){
                     }else if(mapa2[RandomPosObjeto[8][0]][RandomPosObjeto[8][1]].classList.contains("BolaCanon")){
                         RellenaPilar(RandomPosObjeto[8][0],RandomPosObjeto[8][1],"BolaCanon");
                     }
+                    RandomPosObjeto.splice(RandomPosObjeto[8],1);
                 break;
                 case 9:
                     mapa2[RandomPosObjeto[9][0]][RandomPosObjeto[9][1]].classList.add(ObjetoAleatorio());
@@ -327,6 +366,7 @@ function PonerObjetoPilar(){
                     }else if(mapa2[RandomPosObjeto[9][0]][RandomPosObjeto[9][1]].classList.contains("BolaCanon")){
                         RellenaPilar(RandomPosObjeto[9][0],RandomPosObjeto[9][1],"BolaCanon");
                     }
+                    RandomPosObjeto.splice(RandomPosObjeto[9],1);
                 break;
                 case 10:
                     mapa2[RandomPosObjeto[10][0]][RandomPosObjeto[10][1]].classList.add(ObjetoAleatorio());
@@ -337,6 +377,7 @@ function PonerObjetoPilar(){
                     }else if(mapa2[RandomPosObjeto[10][0]][RandomPosObjeto[10][1]].classList.contains("BolaCanon")){
                         RellenaPilar(RandomPosObjeto[10][0],RandomPosObjeto[10][1],"BolaCanon");
                     }
+                    RandomPosObjeto.splice(RandomPosObjeto[10],1);
                 break;
                 case 11:
                     mapa2[RandomPosObjeto[11][0]][RandomPosObjeto[11][1]].classList.add(ObjetoAleatorio());
@@ -347,6 +388,7 @@ function PonerObjetoPilar(){
                     }else if(mapa2[RandomPosObjeto[11][0]][RandomPosObjeto[11][1]].classList.contains("BolaCanon")){
                         RellenaPilar(RandomPosObjeto[11][0],RandomPosObjeto[11][1],"BolaCanon");
                     }
+                    RandomPosObjeto.splice(RandomPosObjeto[11],1);
                 break;
                 case 12:
                     mapa2[RandomPosObjeto[12][0]][RandomPosObjeto[12][1]].classList.add(ObjetoAleatorio());
@@ -357,6 +399,7 @@ function PonerObjetoPilar(){
                     }else if(mapa2[RandomPosObjeto[12][0]][RandomPosObjeto[12][1]].classList.contains("BolaCanon")){
                         RellenaPilar(RandomPosObjeto[12][0],RandomPosObjeto[12][1],"BolaCanon");
                     }
+                    RandomPosObjeto.splice(RandomPosObjeto[12],1);
                 break;
                 case 13:
                     mapa2[RandomPosObjeto[13][0]][RandomPosObjeto[13][1]].classList.add(ObjetoAleatorio());
@@ -367,6 +410,7 @@ function PonerObjetoPilar(){
                     }else if(mapa2[RandomPosObjeto[13][0]][RandomPosObjeto[13][1]].classList.contains("BolaCanon")){
                         RellenaPilar(RandomPosObjeto[13][0],RandomPosObjeto[13][1],"BolaCanon");
                     }
+                    RandomPosObjeto.splice(RandomPosObjeto[13],1);
                 break;
                 case 14:
                     mapa2[RandomPosObjeto[14][0]][RandomPosObjeto[14][1]].classList.add(ObjetoAleatorio());
@@ -377,14 +421,11 @@ function PonerObjetoPilar(){
                     }else if(mapa2[RandomPosObjeto[14][0]][RandomPosObjeto[14][1]].classList.contains("BolaCanon")){
                         RellenaPilar(RandomPosObjeto[14][0],RandomPosObjeto[14][1],"BolaCanon");
                     }
+                    RandomPosObjeto.splice(RandomPosObjeto[14],1);
                 break;
                 default: break;
+                
             }
         cont2++;
     }
 }
-
-
-
-
-// vector[ "1 2 3"," 1 3 2" ,"2 3 1","2 1 3"," 3 1 2"," 3 2 1 "] 
