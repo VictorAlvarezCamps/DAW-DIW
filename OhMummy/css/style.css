@@ -158,6 +158,8 @@ section *{
     background-repeat: no-repeat;
 }
 
+
+
 /*footer*/
 
 .hotbar{
@@ -208,13 +210,7 @@ section *{
     background: var(--negro);
 }
 
-/*Decoracion para los pilares*/
 
-.pilar{
-    height: var(--AltoPilar);
-    width: var(--AnchoPilar);
-    background: var(--Gris);
-}
 
 
 /*Personaje principal*/
@@ -242,6 +238,11 @@ section *{
     background-color: blue !important;
 }
 
+.destapado{
+    height: var(--AltoPilar);
+    width: var(--AnchoPilar);
+    background: rgb(0, 255, 149);
+}
 
 .Barril{
     background-image: var(--ImagenObj1);
@@ -262,4 +263,13 @@ section *{
     background-size: var(--TamañoObj2);
     height: var(--AltoObj2);
     width: var(--AnchoObj2);
+}
+
+
+/*Decoracion para los pilares*/
+
+.pilar{
+    height: var(--AltoPilar);
+    width: var(--AnchoPilar);
+    background: var(--Gris);
 }
