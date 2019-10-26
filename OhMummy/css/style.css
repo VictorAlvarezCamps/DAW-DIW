@@ -273,3 +273,17 @@ section *{
     width: var(--AnchoPilar);
     background: var(--Gris);
 }
+
+/*Vida*/
+.vida{
+    float: left;
+    margin-right: 50px;
+    font-size: 60px;
+    color: white;
+}
+
+/*Puntuación*/
+.puntuacion{
+    float: left;
+    font-size: 30px;
+}
