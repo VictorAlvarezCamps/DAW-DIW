@@ -9,6 +9,7 @@
 --AzulOscuro: rgb(4, 42, 85);
 --AzulClaro: rgb(0, 184, 212);
 --Gris: rgb(158, 158, 158);
+--Blanco: white;
 
 /*Body*/
 --Areas:"header"
@@ -36,14 +37,9 @@
 --ImagenMapa: 100%;
 
 /*Footer*/
---PosicionFooter: fixed;
+--PosicionFooter: absolute;
 --AnchoFooter: 100%;
 --AltoFooter: 100px;
-
-/*Inventario de Objetos*/
---AnchoInventario: 600px;
---AltoInventario: 100px;
---MargenInventario: 0 auto;
 
 /*Objetos*/
 --AnchoObjeto: 80px;
@@ -52,6 +48,8 @@
 --SombraObjeto: inset 0.3em 0.3em 1em rgb(0, 51, 109);
 --MargenArriba: 15px;
 --MargenDerecha: 30px;
+--ImagenRanura: url("../img/Ranura.png");
+--TamañoRanura: 100% 100%;
 
 /*Suelo*/
 --AltoSuelo: 50px;
@@ -65,6 +63,10 @@
 /*Pilar*/
 --AltoPilar: 50px;
 --AnchoPilar: 50px;
+
+/*Inventario*/
+--altoInventario: 100px;
+--anchoInventario: 200px;
 
 
 /*----------------------*/
@@ -97,6 +99,9 @@
 --AltoObj3: 50px;
 --AnchoObj3: 50px;
 
+/*Texto Footer*/
+--fontSize: 60px;
+--marginRight: 300px;
 }
 
 /*Modificar tipo de letra*/
@@ -170,27 +175,44 @@ section *{
     height: var(--AltoFooter);
     width: var(--AnchoFooter);
     background: var(--AzulOscuro);
+    position: fixed;
+    display: flex;
+    align-items: center;
 }
 
-/*Inventario*/
-
-.CuadroBarra{
-    height: var(--AltoInventario);
-    width: var(--AnchoInventario);
-    margin: var(--MargenInventario);
+/*Vida*/
+.vida{
+    color: var(--AzulClaro);
+    font-size: 40px;
+    margin-right: 200px;
 }
 
-/*Objetos dentro del inventario*/
+/*Puntuación*/
+.puntuacion{
+    color: var(--AzulClaro);
+    font-size: 40px;
+    margin-right: 200px;
+}
+
+/*Inventario y objetos*/
+
+.inventario{
+    height: var(--altoInventario);
+    width: var(--anchoInventario);
+    color:var(--AzulClaro);
+    font-size: 40px;
+    margin-top: 50px;
+}
 
 .Objeto{    
     height: var(--AnchoObjeto);
     width: var(--AltoObjeto);
-    border-radius: var(--RadioObjeto);    
-    box-shadow: var(--SombraObjeto);
-    background: var(--AzulClaro);
-    display: inline-block;
+    display: flex;
+    align-items: center;
     margin-right: var(--MargenDerecha);
     margin-top: var(--MargenArriba);
+    background-image: var(--ImagenRanura);
+    background-size: var(--TamañoRanura);
 }
 
 /*Decoracion para el suelo*/
@@ -209,9 +231,6 @@ section *{
     width: var(--AnchoPared);
     background: var(--negro);
 }
-
-
-
 
 /*Personaje principal*/
 
@@ -272,18 +291,4 @@ section *{
     height: var(--AltoPilar);
     width: var(--AnchoPilar);
     background: var(--Gris);
-}
-
-/*Vida*/
-.vida{
-    float: left;
-    margin-right: 50px;
-    font-size: 60px;
-    color: white;
-}
-
-/*Puntuación*/
-.puntuacion{
-    float: left;
-    font-size: 30px;
 }
