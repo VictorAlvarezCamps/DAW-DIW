@@ -47,7 +47,7 @@
 --RadioObjeto: 50%;
 --SombraObjeto: inset 0.3em 0.3em 1em rgb(0, 51, 109);
 --MargenArriba: 15px;
---MargenDerecha: 30px;
+--MargenDerecha: 10px;
 --ImagenRanura: url("../img/Ranura.png");
 --TamañoRanura: 100% 100%;
 
@@ -184,14 +184,21 @@ section *{
 .vida{
     color: var(--AzulClaro);
     font-size: 40px;
-    margin-right: 200px;
+    margin-right: 100px;
 }
 
 /*Puntuación*/
 .puntuacion{
     color: var(--AzulClaro);
     font-size: 40px;
-    margin-right: 200px;
+    margin-right: 100px;
+}
+
+/*Nivel*/
+.nivel{
+    color: var(--AzulClaro);
+    font-size: 40px;
+    margin-right: 100px;
 }
 
 /*Inventario y objetos*/

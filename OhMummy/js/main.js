@@ -36,6 +36,7 @@ var vidaP = document.createElement("div");
 var PuntosP = document.createElement("div");
 var TextoObjetos = document.createElement("div");
 var BarraInventario = document.createElement("div");
+var textoNivel = document.createElement("div");
 var ObjetoP;
 var esquinaPintar1;
 var esquinaPintar2;
@@ -56,24 +57,26 @@ var PonerVidas;
 window.onload = function(){
 
     /*while(nivel<=2){*/
-        //if(contObjeto1 == 0 && contObjeto2 == 0){
+        if(contObjeto1 == 0 && contObjeto2 == 0){
             construirMapa();
-            //setInterval(nivelCompletado,200);
-        //}else if(contObjeto1 == 1 && contObjeto2 == 1){
-            //if(mapa2[0][11].classList.contains("Personaje")){
-                //GuardaPuntos = puntuacion;
-                //GuardaVidas = vida;
-                //document.location.reload();
-                //sumarPuntos(GuardaPuntos);
-                //document.querySelector(".vida").innerHTML = "Vida: "+ GuardaVidas;
-                //nivel++;        
-                //console.log(nivel);
-            //}
-        //}
+        }else if((contObjeto1 == 1 && contObjeto2 == 1) && mapa2[0][11].classList.contains("Personaje")){            
+            subirNivel();
+            eliminarMapa();
+        }
     //}
     
 
 };
+
+function eliminarMapa(){
+    document.classList.remove(mapa);
+    document.classList.add(mapa);
+}
+
+function subirNivel(level){
+    nivel += level;
+    document.querySelector(".nivel").innerHTML = "Nivel: "+ nivel;
+}
 
 /*function nivelCompletado(){
     if(contObjeto1 == 1 && contObjeto2 == 1){
@@ -482,19 +485,27 @@ function CrearMapa(nivel){
 }
 
 function PJ(){
+    
     /*Vida restante*/
     vidaP.classList.add("vida");
     document.querySelector(".hotbar").appendChild(vidaP);
     vidaP.innerHTML = "Vida: " + 5;
+    
     /*Puntos*/
     PuntosP.classList.add("puntuacion");
     document.querySelector(".hotbar").appendChild(PuntosP);
     PuntosP.innerHTML = "Puntos: " + 0;
+
+    /*Nivel*/
+
+    textoNivel.classList.add("nivel");
+    document.querySelector(".hotbar").appendChild(textoNivel);
+    textoNivel.innerHTML = "Nivel: "+nivel;
     
     /*Inventario*/
     TextoObjetos.classList.add("inventario");
     document.querySelector(".hotbar").appendChild(TextoObjetos);
-    TextoObjetos.innerHTML = "Objetos: ";
+    TextoObjetos.innerHTML = "Objetos: ";    
 
     /*Objetos ObjetoP*/
     for(let i=0;i<3;i++){
