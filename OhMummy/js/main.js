@@ -59,18 +59,25 @@ window.onload = function(){
     /*while(nivel<=2){*/
         if(contObjeto1 == 0 && contObjeto2 == 0){
             construirMapa();
-        }else if((contObjeto1 == 1 && contObjeto2 == 1) && mapa2[0][11].classList.contains("Personaje")){            
+        }else if((contObjeto1 == 1 && contObjeto2 == 1) && mapa2[0][11].classList.contains(0)){            
+            console.log("nivel");
             subirNivel();
-            eliminarMapa();
+            nuevoNivel();
         }
     //}
     
 
 };
 
-function eliminarMapa(){
-    document.classList.remove(mapa);
-    document.classList.add(mapa);
+function nuevoNivel(){
+
+    var principal = document.getElementById("PantallaJuego");
+    var crearNuevoMapa = document.createElement("div");
+
+    crearNuevoMapa.classList.add("mapa");
+
+    principal.removeChild(mapa);
+    principal.appendChild(crearNuevoMapa);
 }
 
 function subirNivel(level){
