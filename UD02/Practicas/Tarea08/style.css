@@ -1,0 +1,48 @@
+:root{
+
+}
+body{
+    background-image: url("img/Thresh.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top:400px;
+}
+
+.cuadro{
+    border: 2px solid rgb(6, 49, 5);
+    background-color: rgba(33, 252, 219, 0.747);
+    border-radius: 5px;
+    font-style:bold;
+    font-size: 20px;
+    margin-right: 50px;
+    width: 100px;
+    height: 100px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    transition: all 0.07s;
+    text-decoration-style: solid;
+}
+
+.cuadro kbd{
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.cuadro p{
+    display: flex;
+    justify-content: center;    
+}
+
+.animacion{
+    transform: scale(1.1);
+    border-color:black;
+    box-shadow: 0 0 10px rgba(33, 252, 219, 0.747);
+}
+
+.habilidades{
+    font-size:20px;
+    color: #000000;
+}

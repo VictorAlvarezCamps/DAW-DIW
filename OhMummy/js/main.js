@@ -1,6 +1,6 @@
 /*Llave-Barril
-Sarcófago-Bola de cañon
-Papiro - Cañon*/
+Sarcófago-Bola de cañon(Momias)
+Papiro - Cañon(Mata momias)*/
 
 
 /*Variables*/
@@ -37,6 +37,7 @@ var PuntosP = document.createElement("div");
 var TextoObjetos = document.createElement("div");
 var BarraInventario = document.createElement("div");
 var textoNivel = document.createElement("div");
+var momiaTintin = document.createElement("div");
 var ObjetoP;
 var esquinaPintar1;
 var esquinaPintar2;
@@ -53,18 +54,18 @@ var GuardaPuntos;
 var GuardaVidas;
 var PonerPuntos;
 var PonerVidas;
+var Enemigos = new Array();
 
 window.onload = function(){
 
-    /*while(nivel<=2){*/
-        if(contObjeto1 == 0 && contObjeto2 == 0){
-            construirMapa();
-        }else if((contObjeto1 == 1 && contObjeto2 == 1) && mapa2[0][11].classList.contains(0)){            
-            console.log("nivel");
-            subirNivel();
-            nuevoNivel();
-        }
-    //}
+    
+    if(contObjeto1 == 0 && contObjeto2 == 0){
+        construirMapa();
+    }else if(document.getElementById("1").classList.contains("Barril") && mapa2[0][11].classList.contains(0)){            
+        console.log("nivel");
+        subirNivel();
+        nuevoNivel();
+    }
     
 
 };
@@ -85,41 +86,16 @@ function subirNivel(level){
     document.querySelector(".nivel").innerHTML = "Nivel: "+ nivel;
 }
 
-/*function nivelCompletado(){
-    if(contObjeto1 == 1 && contObjeto2 == 1){
-        for(let i = 0; i < mapa2.length ; i++) {
-            for (let j = 0; j < mapa2[i].length ; j++) {
-                if((PJY == i) && (PJX == j)){
-                    if(mapa2[i][j].classList.contains("Personaje")){
-                        GuardaVidas = localStorage.getItem("vida");
-                        GuardaPuntos = localStorage.getItem("puntuacion"); 
-                        document.location.reload();
-                        PonerPuntos = localStorag.setItem(GuardaPuntos);
-                        PonerVidas = localStorage.setItem(GuardaVidas);       
-                        sumarPuntos(PonerPuntos);
-                        document.querySelector(".vida").innerHTML = "Vida: "+ PonerVidas;
-                        nivel++;
-                        contObjeto1 = 0;
-                        contObjeto2 = 0;
-                        console.log(nivel);
-                    }
-                } 
-            }
-        }  
-    }
-}*/
-
 function construirMapa(){
-    console.log("Nivel " + nivel);
     CrearMapa(nivel);
     document.addEventListener('keydown',mover);
     setInterval(MovimientoEnemigo, 400); //300 son milisegundos
-    setInterval(matarEnemigo, 100);        
+    setInterval(Objetos, 100);
     PJ();
     setInterval(AbrirCerrar, 100);    
 }
 
-function matarEnemigo(){
+function Objetos(){
     if(contObjeto3 == 1){
         document.getElementById("2").classList.remove("Canon");
         for(let i = 0; i < caminoEnemigo.length ; i++) {
@@ -129,8 +105,27 @@ function matarEnemigo(){
                 ExisteEnemigo = 1;
             }
         }
-    }    
+    }else if(contObjeto2 == 1){
+        document.getElementById("1").classList.remove("BolaCanon");
+        for(var i=0;i<mapa2.length;i++){
+            for(var j=0;j<mapa2[i].length;j++){
+                if(mapa2[EnemigoY][EnemigoX] == 0){
+                    if((EnemigoX == j) && (EnemigoY == i)){
+                        momiaTintin.classList.add("Enemigo");
+                        mapa.appendChild(momiaTintin);
+                        mapa2[i][j] = momiaTintin;
+                    }else if(mapa2[EnemigoY][EnemigoX] == 1 || mapa2[EnemigoY][EnemigoX] == 2){
+                        EnemigoX = Math.floor(Math.random()*21);
+                        EnemigoY = Math.floor(Math.random()*10);
+                    }
+                }
+            }
+        }
+                
+    }  
 }
+
+
 
 function AbrirCerrar(){
 
@@ -201,10 +196,6 @@ function mover (event) {
                 mapa2[PJY][PJX-1].classList.add("Personaje");
                 PJX--;                
             }
-            if(mapa2[PJY][PJX].classList.contains("Enemigo")){
-                restarVida();
-            }
-            
         break;
         case "d":
             if (mapa2[PJY][PJX+1].className.indexOf("camino") >= 0) {
@@ -214,10 +205,6 @@ function mover (event) {
                 mapa2[PJY][PJX+1].classList.add("Personaje");
                 PJX++;
             }
-            if(mapa2[PJY][PJX].classList.contains("Enemigo")){
-                restarVida();
-            }
-            
         break;
         case "w":
             if (mapa2[PJY-1][PJX].className.indexOf("camino") >= 0) {
@@ -226,11 +213,7 @@ function mover (event) {
                 mapa2[PJY-1][PJX].classList.add("Personaje");
                 /* Algunos cambios para mover al personaje */
                 PJY--;
-            }
-            if(mapa2[PJY][PJX].classList.contains("Enemigo")){
-                restarVida();
-            }
-                     
+            }      
         break;
         case "s":
             if (mapa2[PJY+1][PJX].className.indexOf("camino") >= 0) {
@@ -239,11 +222,7 @@ function mover (event) {
                 mapa2[PJY+1][PJX].classList.add("Personaje");
                 /* Algunos cambios para mover al personaje */
                 PJY++;
-            } 
-            if(mapa2[PJY][PJX].classList.contains("Enemigo")){
-                restarVida();                        
-            }
-            
+            }            
         break;
         default: break;
     }
@@ -314,14 +293,16 @@ function ComprobarPilar(){
 
         ComprobarPasos(esquina[0],esquina[1],esquinaPintar1,esquinaPintar2);
     }
-    if (mapa2[PJY-1][PJX].className.indexOf("pilar") >= 0) {
-        esquina = buscarEsquina(PJY-1,PJX);
-        esquinaPintar1 = esquina[0];
-        esquinaPintar2 = esquina[1];     
-        esquina[0] -= 1;
-        esquina[1] -= 1;
+    if(mapa2[PJY][PJX]>=0){
+        if (mapa2[PJY-1][PJX].classList.contains("pilar")) {
+            esquina = buscarEsquina(PJY-1,PJX);
+            esquinaPintar1 = esquina[0];
+            esquinaPintar2 = esquina[1];     
+            esquina[0] -= 1;
+            esquina[1] -= 1;
 
-        ComprobarPasos(esquina[0],esquina[1],esquinaPintar1,esquinaPintar2);
+            ComprobarPasos(esquina[0],esquina[1],esquinaPintar1,esquinaPintar2);
+        }
     }
     if (mapa2[PJY+1][PJX].className.indexOf("pilar") >= 0) {
         esquina = buscarEsquina(PJY+1,PJX);
@@ -379,6 +360,9 @@ function MovimientoEnemigo(){
                     }
                 }*/
             }
+            if(mapa2[EnemigoY][EnemigoX].classList.contains("Personaje")){
+                restarVida();
+            }
         break;
         case 1:
             //Abajo        
@@ -395,7 +379,9 @@ function MovimientoEnemigo(){
                     }
                 }*/
             }
-            
+            if(mapa2[EnemigoY][EnemigoX].classList.contains("Personaje")){
+                restarVida();
+            }
         break;
         case 2:
         //Izquierda        
@@ -412,6 +398,9 @@ function MovimientoEnemigo(){
                         mapa2[EnemigoY][--EnemigoX].classList.add("Enemigo");
                     }
                 }*/
+            }
+            if(mapa2[EnemigoY][EnemigoX].classList.contains("Personaje")){
+                restarVida();
             }
         break;
         case 3:
@@ -430,16 +419,20 @@ function MovimientoEnemigo(){
                     }
                 }*/
             }
+            if(mapa2[EnemigoY][EnemigoX].classList.contains("Personaje")){
+                restarVida();
+            }
         break;
     }
 }
 
 /*Crear mapa*/
 
-function CrearMapa(nivel){ 
+function CrearMapa(){ 
     //var contador = 0;
     var camino = false;
     var pos = 0;
+    var cont = 0;
     for(let i = 0; i < mapa2.length ; i++) {
         for (let j = 0; j < mapa2[i].length ; j++) {
             let div = document.createElement("div");
@@ -464,26 +457,15 @@ function CrearMapa(nivel){
                 }
             }
             if((PJY == i) && (PJX == j)) div.classList.add("Personaje");
-            /*if(mapa2[EnemigoY][EnemigoX] == 0 && cont == 0){
-                if((EnemigoX == j) && (EnemigoY == i)){
-                    div.classList.add("Enemigo");
+            if(mapa2[EnemigoY][EnemigoX] == 0 && cont == 0){
+                if((EnemigoX == j) && (EnemigoY == i)){                    
+                    Enemigos.push(div.classList.add("Enemigo"));
+                    cont = 1;
                 }
             }else if(mapa2[EnemigoY][EnemigoX] == 1 || mapa2[EnemigoY][EnemigoX] == 2){
                 EnemigoX = Math.floor(Math.random()*21);
                 EnemigoY = Math.floor(Math.random()*10);
                 cont = 0;
-            }*/
-            for(let k=0;k<nivel;k++){
-                if(mapa2[EnemigoY][EnemigoX] == 0){
-                    if((EnemigoX == j) && (EnemigoY == i)){
-                        for(let k=0;k<nivel;k++){
-                            div.classList.add("Enemigo");
-                        }
-                    }
-                }else if(mapa2[EnemigoY][EnemigoX] == 1 || mapa2[EnemigoY][EnemigoX] == 2){
-                    EnemigoX = Math.floor(Math.random()*21);
-                    EnemigoY = Math.floor(Math.random()*10);
-                }
             }
             mapa.appendChild(div);
             mapa2[i][j] = div;
