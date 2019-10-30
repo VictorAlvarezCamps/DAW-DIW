@@ -299,3 +299,12 @@ section *{
     width: var(--AnchoPilar);
     background: var(--Gris);
 }
+
+.finJuego{
+    display: flex;
+    justify-content: center;
+    width: 600px;
+    height: 500px;
+    background-image: url("img/fin.png") !important;
+    background-size: 100% 100%;
+}
