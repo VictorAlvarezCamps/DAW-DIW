@@ -1,25 +1,29 @@
 :root{
 
 }
+
+html{
+    height: 100%;
+}
+
 body{
-    background-image: url("img/Thresh.jpg");
-    background-repeat: no-repeat;
-    background-size: 100%;
+    min-height: 98vh;
+    background-image: url("img/1.png");
+    background-repeat:no-repeat;
+    background-size: 100% 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top:400px;
 }
 
 .cuadro{
-    border: 2px solid rgb(6, 49, 5);
-    background-color: rgba(33, 252, 219, 0.747);
+    border: 3px solid black;
+    background-color: rgba(118, 255, 91, 0.452);
     border-radius: 5px;
     font-style:bold;
     font-size: 20px;
     margin-right: 50px;
-    width: 100px;
-    height: 100px;
+    padding: 3px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     transition: all 0.07s;
     text-decoration-style: solid;
@@ -39,7 +43,7 @@ body{
 .animacion{
     transform: scale(1.1);
     border-color:black;
-    box-shadow: 0 0 10px rgba(33, 252, 219, 0.747);
+    box-shadow: 0 0 10px rgba(118, 255, 91, 0.452);
 }
 
 .habilidades{
