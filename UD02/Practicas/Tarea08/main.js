@@ -1,4 +1,3 @@
-
 window.addEventListener('keydown',sonido);
 
 function sonido(e){
@@ -57,4 +56,4 @@ function quitarEfecto(){
 }
 function quitarAnimacion(e){
     e.target.classList.remove('animacion');
-}
+} 
