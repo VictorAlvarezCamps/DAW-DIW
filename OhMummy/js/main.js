@@ -29,7 +29,6 @@ var esquina = new Array(2);
 var esquinaPilar = new Array(2);
 var contadorPasos;
 var vidaEnemigo = 1;
-var contNivel = 0;
 var vida = 5;
 var puntuacion = 0;
 var vidaP = document.createElement("div");
@@ -37,53 +36,39 @@ var PuntosP = document.createElement("div");
 var TextoObjetos = document.createElement("div");
 var BarraInventario = document.createElement("div");
 var textoNivel = document.createElement("div");
-var ObjetoP;
 var esquinaPintar1;
 var esquinaPintar2;
-var Pintado = false;
 var contObjeto1 = 0;
 var contObjeto2 = 0;
 var contObjeto3 = 0;
 var objetoRandom = "";
-var puerta = false;
 var nivel = 1;
-var ExisteEnemigo = 0;
-var SigNivel = false;
-var GuardaPuntos;
-var GuardaVidas;
-var PonerPuntos;
-var PonerVidas;
 var enemigos;
-var cuentaEnemigos = 0;
-var almacenamiento = window.localStorage;
 
 /*main*/
 
-window.onload = function(){    
+window.onload = function(){
     construirMapa();
 };
-
-/*Construir Mapa*/
-
 
 function construirMapa(){
     CrearMapa();
     document.addEventListener('keydown',mover);
     setInterval(MovimientoEnemigo, 400); //300 son milisegundos
     //setInterval(ponerEnemigo,10000);
-    PJ();
     setInterval(AbrirCerrar, 100);    
 }
 
 function CrearMapa(){ 
+    
     //var contador = 0;
     var camino = false;
     var pos = 0;
-    var cont = 0;
     for(let i = 0; i < mapa2.length ; i++) {
         for (let j = 0; j < mapa2[i].length ; j++) {
             let div = document.createElement("div");
-            if (mapa2[i][j] == 2) div.classList.add("fuera");
+            console.log(mapa2[i][j]);
+            if (mapa2[i][j] == 2) console.log("creando mapa"),div.classList.add("fuera");
             else if (mapa2[i][j] == 0) {
                 div.classList.add("camino");                
                 camino = true;
@@ -108,6 +93,7 @@ function CrearMapa(){
             mapa2[i][j] = div;
         }
     }
+    PJ();
     crearEjercito(1);
 }
 
@@ -142,17 +128,13 @@ function AbrirCerrar(){
     if(contObjeto1 == 1){
         AbrirPuerta();
     }else if(contObjeto2 == 1){
-        console.log("1 enemigo");
         objetoBomba();
-    }else if(contObjeto3 == 1){
-        //matarUnEnemigo();
     }else{
         CerrarPuerta();
     }
 }
 
 function objetoBomba(){
-    console.log("sale enemigo");
     document.getElementById("1").classList.remove("BolaCanon");
     ponerEnemigo();
     contObjeto2 = 0;
@@ -258,37 +240,35 @@ function mover (event) {
         case "m":
             if(contObjeto3 == 1){
             
-                if (mapa2[PJY][PJX-1].className.indexOf("Enemigo") >= 0) {
-                    console.log("bum!");
+                if (mapa2[PJY][PJX-1].classList.contains("Enemigo")) {
                     document.getElementById("2").classList.remove("Canon");
                     quitarEnemigo();
-                        
-                }else if (mapa2[PJY][PJX+1].className.indexOf("Enemigo") >= 0) {
+                    mapa2[PJY][PJX-1].classList.remove("Enemigo");
+                }else if (mapa2[PJY][PJX+1].classList.contains("Enemigo")) {
                     document.getElementById("2").classList.remove("Canon");
                     quitarEnemigo();
-                }else if (mapa2[PJY+1][PJX].className.indexOf("Enemigo") >= 0) {
+                    mapa2[PJY][PJX+1].classList.remove("Enemigo");
+                }else if (mapa2[PJY+1][PJX].classList.contains("Enemigo")) {
                     document.getElementById("2").classList.remove("Canon");
                     quitarEnemigo();
+                    mapa2[PJY+1][PJX].classList.remove("Enemigo");
                 }
                 if(PJY >0){
-                    if (mapa2[PJY-1][PJX].className.indexOf("Enemigo") >= 0) {
+                    if (mapa2[PJY-1][PJX].classList.contains("Enemigo")) {
                         document.getElementById("2").classList.remove("Canon");
                         quitarEnemigo();
+                        mapa2[PJY-1][PJX].classList.remove("Enemigo");
                     }
                 }
             }     
         break;
         case "n":
-            if(contObjeto1 == 1 && contObjeto2 == 1 && mapa2[0][11].classList.contains("Personaje")){
+            if(contObjeto1 == 1 && mapa2[0][11].classList.contains("Personaje")){
                 subirNivel(1);
                 borrarMapa();              
-                CrearMapa();
+                construirMapa();
                 posicionInicialPJ();
                 quitarObjetosInventario();
-                console.log(enemigos.length);
-                /*for(let i=0;i<enemigos.length;i++){
-                    ponerEnemigo();
-                }*/
             }
         default: break;
     }
@@ -312,9 +292,9 @@ function quitarObjetosInventario(){
 }
 
 function borrarMapa(){
-    var padre = document.querySelector("#PantallaJuego");
-    var hijo = document.querySelector("#mapa");
-    var nuevo = document.createElement("div");
+    const padre = document.getElementById("PantallaJuego");
+    const hijo = document.getElementById("mapa");
+    const nuevo = document.createElement("div");
 
     nuevo.classList.add("mapa");
 
@@ -322,13 +302,15 @@ function borrarMapa(){
     padre.appendChild(nuevo);
 }
 
-function quitarEnemigo(){
-    enemigos.splice(i, 1);
+function quitarEnemigo(){    
+    for(let i=0;i<enemigos.length;i++){
+        enemigos.pop();
+        console.log("borrando enemigo");
+    }
 }
 
 function ComprobarPasos(x,y,Pintar1,Pintar2){
     if(contadorPasos < 14){
-        Pintado = false;
         for(let i=0;i<5;i++){           
             for(let j=0;j<=4;j++){               
                 if(mapa2[x][y].classList.contains("Pisadas")){
@@ -545,11 +527,13 @@ function ObjetoPilar(posY,posX,item){
     mapa2[posY+1][posX+2].classList.add(item);
 }
 
+/*Objeto aleatorio para el pilar*/
+
 function ObjetoAleatorio(){
     var objeto = "";
     while(Objeto.length > 0){
         var x = Math.floor(Math.random()*Objeto.length);
-        objeto = Objeto[x];        
+        objeto = Objeto.splice(x,1);        
         return objeto;
     }    
 }
