@@ -1,4 +1,43 @@
+/*Zed exterminador galáctico*/
+
+
 :root{
+
+    /*colores*/
+    --negro: black;
+    --rojo: rgba(255, 34, 34, 0.452);
+
+    /*body*/
+    --alturaMinima: 98vh;
+    --background-repeat: no-repeat;
+    --background-size: 100% 100%;
+
+    /*video*/
+    --right: 0;
+    --bottom: 0;
+    --min-width: 100%;
+    --min-height: 100%;
+    --zindex: -1000;
+
+    /*cuadros*/
+    --border: 3px solid black;
+    --radius: 5px;
+    --font-style:bold;
+    --font-size: 20px;
+    --margin-right: 50px;
+    --padding: 3px;
+    --font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    --transition: all 0.07s;
+    --textStyle: solid;
+
+    /*kbd*/
+    --margin-top: 15px;
+
+    /*animacion cuadros*/
+    --animacion: scale(1.1);
+
+    /*texto habilidades*/
+    --tamañoLetra: 20px;
 
 }
 
@@ -7,30 +46,38 @@ html{
 }
 
 body{
-    min-height: 98vh;
-    background-image: url("img/1.png");
-    background-repeat:no-repeat;
-    background-size: 100% 100%;
+    min-height: var(--alturaMinima);
+    background-repeat: var(--background-repeat);
+    background-size: var(--background-size);
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+#video{
+    position: absolute;
+    right: var(--right);
+    bottom: var(--bottom);
+    min-width: var(--min-width);
+    min-height: var(--min-height);
+    z-index: var(--zindex);
+}
+
 .cuadro{
-    border: 3px solid black;
-    background-color: rgba(118, 255, 91, 0.452);
-    border-radius: 5px;
-    font-style:bold;
-    font-size: 20px;
-    margin-right: 50px;
-    padding: 3px;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    transition: all 0.07s;
-    text-decoration-style: solid;
+    border: var(--border);
+    background-color: var(--rojo);
+    border-radius: var(--radius);
+    font-style: var(--font-style);
+    font-size: var(--font-size);
+    margin-right: var(--margin-right);
+    padding: var(--padding);
+    font-family: var(--font-family);
+    transition: var(--transition);
+    text-decoration-style: var(--textStyle);
 }
 
 .cuadro kbd{
-    margin-top: 15px;
+    margin-top: var(--margin-top);
     display: flex;
     justify-content: center;
 }
@@ -41,12 +88,13 @@ body{
 }
 
 .animacion{
-    transform: scale(1.1);
-    border-color:black;
-    box-shadow: 0 0 10px rgba(118, 255, 91, 0.452);
+    transform: var(--animacion);
+    border-color: var(--negro);
+    box-shadow: 0 0 10px var(--rojo);
 }
 
 .habilidades{
-    font-size:20px;
-    color: #000000;
+    font-size: var(--tamañoLetra);
+    color:var(--negro);
 }
+
