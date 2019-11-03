@@ -1,18 +1,8 @@
-/*Llave-Barril
-Sarcófago-Bola de cañon(Momias)
-Papiro - Cañon(Mata momias)*/
-
-
 /*Variables*/
-var mapa = document.getElementById("mapa");
-var pisadas = document.getElementsByClassName("pisadas");
-var PJX = 11;
-var PJY = 0;
-var EnemigoX = Math.floor(Math.random()*21);
-var EnemigoY = Math.floor(Math.random()*10);
-var Item = document.createElement("div");
-var pilares = new Array(15);
-var mapa2 = [[2,2,2,2,2,2,2,2,2,2,2,0,2,2,2,2,2,2,2,2,2,2,2],
+
+/*Construcción del mapa*/
+let dibujoMapa = document.querySelector(".mapa");
+var mapa = [[2,2,2,2,2,2,2,2,2,2,2,0,2,2,2,2,2,2,2,2,2,2,2],
             [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
             [2,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,2],
             [2,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,2],
@@ -24,516 +14,506 @@ var mapa2 = [[2,2,2,2,2,2,2,2,2,2,2,0,2,2,2,2,2,2,2,2,2,2,2],
             [2,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,2],
             [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
             [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]];
-var Objeto = ["Barril","BolaCanon","Canon",""];
-var esquina = new Array(2);
-var esquinaPilar = new Array(2);
-var contadorPasos;
-var vidaEnemigo = 1;
-var vida = 5;
-var puntuacion = 0;
-var vidaP = document.createElement("div");
-var PuntosP = document.createElement("div");
-var TextoObjetos = document.createElement("div");
-var BarraInventario = document.createElement("div");
-var textoNivel = document.createElement("div");
-var esquinaPintar1;
-var esquinaPintar2;
-var contObjeto1 = 0;
-var contObjeto2 = 0;
-var contObjeto3 = 0;
-var objetoRandom = "";
-var nivel = 1;
-var enemigos;
+let nivel = 1;
+let pantallaJuego;
+let divNivel;
+
+/*Enemigos*/
+let enemigos = new Array();
+Enemigo.x = 1;
+Enemigo.y = 10;
+let dir;
+let vidaEnemigo = 1;
+let cantidadEnemigos = 1;
+
+/*Personaje*/
+Jugador.x = 11; 
+Jugador.y = 0;
+let dirPJ;
+let vida = 5;
+let puntuacion = 0;
+
+/*Pilares*/
+let coordsEsquina;
+let esquina = new Array(2);
+let coordenadasEsquina = new Array(2);
+let contadorPasos = 0;
+let objetoAleatorio = "";
+let buscar;
+
+/*Inventario*/
+let vidaP = document.createElement("div");
+let PuntosP = document.createElement("div");
+let TextoObjetos = document.createElement("div");
+let BarraInventario = document.createElement("div");
+let textoNivel = document.createElement("div");
+let Objetos = document.getElementsByClassName(".Objeto");
+let Objeto1 = 0;
+let Objeto2 = 0;
+let Objeto3 = 0;
+let Objeto = ["Barril","BolaCanon","Canon",""];
+let item = "";
 
 /*main*/
 
 window.onload = function(){
-    construirMapa();
-};
-
-function construirMapa(){
-    CrearMapa();
-    document.addEventListener('keydown',mover);
-    setInterval(MovimientoEnemigo, 400); //300 son milisegundos
-    //setInterval(ponerEnemigo,10000);
-    setInterval(AbrirCerrar, 100);    
+    crearMapa();
+    setInterval(moverEnemigo, 400);
+    setInterval(AbrirCerrar, 400);
 }
 
-function CrearMapa(){ 
-    
-    //var contador = 0;
-    var camino = false;
-    var pos = 0;
-    for(let i = 0; i < mapa2.length ; i++) {
-        for (let j = 0; j < mapa2[i].length ; j++) {
+/*Evento teclas personaje*/
+
+window.addEventListener('keydown',moverJugador);
+
+/*Pintar el mapa*/
+
+function crearMapa(){
+    for(let i=0;i<mapa.length;i++){
+        for(let j=0;j<mapa[i].length;j++){
             let div = document.createElement("div");
-            console.log(mapa2[i][j]);
-            if (mapa2[i][j] == 2) console.log("creando mapa"),div.classList.add("fuera");
-            else if (mapa2[i][j] == 0) {
-                div.classList.add("camino");                
-                camino = true;
-            }
-            else if(mapa2[i][j] == 1) {
-                div.classList.add("pilar");
-                if (camino && ((i - 2)%3 == 0 || i == 2)) { 
-                    var pil = new Array(2);
-                    pil[0] = i;
-                    pil[1] = j;
-                    pilares[pos] = pil;
-                    pos++;
-                    //div.classList.add(pilares[contador]);
-                    //div.dataset.posicion = contador;                    
-                    //div.innerText = i + ":" + contador;
-                    //contador++;
-                    camino = false;
-                }
-            }
-            if((PJY == i) && (PJX == j)) div.classList.add("Personaje");
-            mapa.appendChild(div);
-            mapa2[i][j] = div;
+            if (mapa[i][j] == 2)div.classList.add("fuera");
+            else if (mapa[i][j] == 0)div.classList.add("camino");
+            else if(mapa[i][j] == 1) div.classList.add("pilar");
+            if((Jugador.y == i && Jugador.x == j)) div.classList.add("Personaje");
+            //if(Enemigo.y == i && Enemigo.x == j)agregarEnemigo(Enemigo.x,Enemigo.y), div.classList.add("Enemigo");
+            dibujoMapa.appendChild(div);
+            mapa[i][j] = div;
         }
     }
-    PJ();
-    crearEjercito(1);
+    Inventario();
+    ponerEnemigos(nivel);
+    AbrirCerrar();
 }
 
-/*Enemigos*/
-
-function crearEjercito(num){
-
-    enemigos = new Array();
-
-    for(let i=0;i<num;i++){
-        enemigos[i] = crearEnemigo(EnemigoX,EnemigoY);
-    }
-}
-
-function Enemigo(x = 0,y = 0){
-    this.x = x;
-    this.y = y;
-}
-
-function crearEnemigo(x,y){
-    let enemigo = new Enemigo(x,y);
-    return enemigo;
-}
-
-function ponerEnemigo(){
-    enemigos.push(crearEnemigo(EnemigoX,EnemigoY));
-}
-
-/*Puerta nivel*/
-
+/*Puerta*/
 function AbrirCerrar(){
-    if(contObjeto1 == 1){
+    if(Objeto1 == 1){
         AbrirPuerta();
-    }else if(contObjeto2 == 1){
-        objetoBomba();
     }else{
         CerrarPuerta();
     }
 }
 
-function objetoBomba(){
-    document.getElementById("1").classList.remove("BolaCanon");
-    ponerEnemigo();
-    contObjeto2 = 0;
-}
-
 function CerrarPuerta(){
-    if(!mapa2[0][11].classList.contains("Personaje")){
-        mapa2[0][11].classList.remove("camino");
-        mapa2[0][11].classList.remove("Pisadas");
-        mapa2[0][11].classList.add("fuera");
+    if(!mapa[0][11].classList.contains("Personaje")){
+        mapa[0][11].classList.remove("camino");
+        mapa[0][11].classList.remove("Pisadas");
+        mapa[0][11].classList.add("fuera");
     }
 }
 
 function AbrirPuerta(){
-    if(mapa2[0][11].classList.contains("fuera")){
-        mapa2[0][11].classList.remove("fuera");  
-        mapa2[0][11].classList.add("camino"); 
+    if(mapa[0][11].classList.contains("fuera")){
+        mapa[0][11].classList.remove("fuera");  
+        mapa[0][11].classList.add("camino"); 
     }
 }
 
+/*Creación de enemigos*/
 
-function subirNivel(level){
-    nivel += level;
-    document.querySelector(".nivel").innerHTML = "Nivel: "+ nivel;
+/*Crear objeto enemigo*/
+function Enemigo(x=0,y=0){
+    this.x = x;
+    this.y = y;
 }
 
-
-
-function restart(){
-    almacenamiento.setItem("vidas", vida);
-    almacenamiento.setItem("puntos", puntuacion);
-    almacenamiento.setItem("nivel", nivel);
-    document.querySelector(".vida").innerHTML = "Vida: " + almacenamiento.getItem("vidas");
-    document.querySelector(".puntuacion").innerHTML = "Puntos: " + almacenamiento.getItem("puntos");
-    document.querySelector(".nivel").innerHTML = "Nivel: " + almacenamiento.getItem("nivel");
+/*Devuelve un enemigo*/
+function crearEnemigo(x,y){
+    const enemigo = new Enemigo(x,y);
+    return enemigo;
 }
+
+/*Agregar enemigos*/
+
+function agregarEnemigo(x,y){
+    enemigos.push(crearEnemigo(x,y));
+}
+
+function ponerEnemigos(num){    
+    for(let i=0;i<num;i++){
+        enemigos.push(crearEnemigo(Enemigo.x,Enemigo.y));
+    }
+}
+
+/*Mata 1 enemigo*/
+function matarEnemigo(){
+    enemigos.pop();
+}
+
+/*Añade 1 enemigo*/
+function recogerBomba(){
+    document.getElementById("1").classList.remove("BolaCanon");
+    agregarEnemigo(Enemigo.x,Enemigo.y);
+    cantidadEnemigos++;
+    Objeto2 = 0;
+}
+
+/*Mover enemigo*/
+
+function moverEnemigo(){
+    for(let i=0;i<enemigos.length;i++){
+        //Arriba
+        if(enemigos[i].y > Jugador.y){
+            if(mapa[enemigos[i].y-1][enemigos[i].x].className.indexOf("camino") >=0){
+                mapa[enemigos[i].y][enemigos[i].x].classList.remove("Enemigo");
+                mapa[enemigos[i].y-1][enemigos[i].x].classList.add("Enemigo");
+                enemigos[i].y--;
+            }
+            if(mapa[enemigos[i].y][enemigos[i].x].classList.contains("Personaje"))restarVida();
+        }
+        //izquierda
+        if(enemigos[i].x > Jugador.x){
+            if(mapa[enemigos[i].y][enemigos[i].x-1].className.indexOf("camino") >=0){
+                mapa[enemigos[i].y][enemigos[i].x].classList.remove("Enemigo");
+                mapa[enemigos[i].y][enemigos[i].x-1].classList.add("Enemigo");
+                enemigos[i].x--;
+            }
+            if(mapa[enemigos[i].y][enemigos[i].x].classList.contains("Personaje"))restarVida();
+        }
+        //abajo
+        if(enemigos[i].y < Jugador.y){
+            if(mapa[enemigos[i].y+1][enemigos[i].x].className.indexOf("camino") >=0){
+                mapa[enemigos[i].y][enemigos[i].x].classList.remove("Enemigo");
+                mapa[enemigos[i].y+1][enemigos[i].x].classList.add("Enemigo");
+                enemigos[i].y++;
+            }
+            if(mapa[enemigos[i].y][enemigos[i].x].classList.contains("Personaje"))restarVida();
+        }
+        //derecha
+        if(enemigos[i].x < Jugador.x){
+            if(mapa[enemigos[i].y][enemigos[i].x+1].className.indexOf("camino") >=0){
+                mapa[enemigos[i].y][enemigos[i].x].classList.remove("Enemigo");
+                mapa[enemigos[i].y][enemigos[i].x+1].classList.add("Enemigo");
+                enemigos[i].x++;
+            }
+            if(mapa[enemigos[i].y][enemigos[i].x].classList.contains("Personaje"))restarVida();
+        }
+    }
+}
+
+/*Creación del personaje inicial*/
+
+/*Crear objeto enemigo*/
+
+function Jugador(x=0,y=0){
+    this.x = x;
+    this.y = y;
+}
+
+/*Devuelve un personaje*/
+
+function crearJugador(x,y){
+    const jugador = new Jugador(x,y);
+    return jugador;
+}
+
+/*Mover jugador*/
+
+function moverJugador(e){
+    const tecla = e.keyCode;
+    //Arriba
+    if(tecla == 87)moverArriba();
+    //izquierda
+    if(tecla == 65)moverIzquierda();
+    //abajo
+    if(tecla == 83)moverAbajo();
+    //derecha
+    if(tecla == 68)moverDerecha();
+    //matar enemigo (m)
+    if(tecla ==77)document.getElementById("2").classList.remove("Canon"),matarEnemigo();
+    //pasar nivel (n)
+    if(tecla ==78)comprobarNivel();
+}
+
+function moverArriba(){
+    if(Jugador.y >0){
+        if(mapa[Jugador.y-1][Jugador.x].className.indexOf("camino") >=0){
+            mapa[Jugador.y][Jugador.x].classList.add("Pisadas");
+            mapa[Jugador.y][Jugador.x].classList.remove("Personaje");                    
+            mapa[Jugador.y-1][Jugador.x].classList.add("Personaje");
+            Jugador.y--;  
+        }
+        if(mapa[Jugador.y][Jugador.x].classList.contains("Enemigo"))restarVida();
+        /*Comprobando el pilar*/
+        comprobarPilar();
+    }  
+}
+function moverIzquierda(){
+    if(mapa[Jugador.y][Jugador.x-1].className.indexOf("camino") >=0){
+        mapa[Jugador.y][Jugador.x].classList.add("Pisadas");
+        mapa[Jugador.y][Jugador.x].classList.remove("Personaje");        
+        mapa[Jugador.y][Jugador.x-1].classList.add("Personaje");
+        Jugador.x--;
+    }
+    if(mapa[Jugador.y][Jugador.x].classList.contains("Enemigo"))restarVida();
+    /*Comprobando el pilar*/
+    comprobarPilar();   
+}
+function moverAbajo(){
+    if(mapa[Jugador.y+1][Jugador.x].className.indexOf("camino") >=0){
+        mapa[Jugador.y][Jugador.x].classList.add("Pisadas");
+        mapa[Jugador.y][Jugador.x].classList.remove("Personaje");        
+        mapa[Jugador.y+1][Jugador.x].classList.add("Personaje");  
+        Jugador.y++;
+    }          
+    if(mapa[Jugador.y][Jugador.x].classList.contains("Enemigo"))restarVida();
+    /*Comprobando el pilar*/
+    comprobarPilar();  
+}
+function moverDerecha(){
+    if(mapa[Jugador.y][Jugador.x+1].className.indexOf("camino") >=0){
+        mapa[Jugador.y][Jugador.x].classList.add("Pisadas");
+        mapa[Jugador.y][Jugador.x].classList.remove("Personaje");       
+        mapa[Jugador.y][Jugador.x+1].classList.add("Personaje");
+        Jugador.x++;
+    }
+    if(mapa[Jugador.y][Jugador.x].classList.contains("Enemigo"))restarVida();
+    /*Comprobando el pilar*/
+    comprobarPilar();  
+}
+
+/*Restar vida*/
 
 function restarVida(){
     if(vida>0){
         vida -= 1;
         document.querySelector(".vida").innerHTML = "Vida: "+ vida;
-    }else if(vida<=0){
+    }else if(vida==0){
         vida = 0;
         alert("Has perdido!, pulsa F5 para volver a jugar");
     }    
 }
 
-function posicionInicialPJ(){
-    mapa2[PJY][PJX].classList.remove("Personaje");
-    mapa2[0][11].classList.add("Personaje");
-    mapa2[0][11].classList.add("Camino");
-    PJY = 0;
-    PJX = 11;
-}
+/*Pilares*/
 
-function sumarPuntos(puntos){
-    puntuacion += puntos;
-    document.querySelector(".puntuacion").innerHTML = "Puntos: "+ puntuacion;
-}
-
-/*Detectar movimiento personaje*/
-function mover (event) {
-     
-    switch(event.key){
-        case "a":
-            if (mapa2[PJY][PJX-1].className.indexOf("camino") >= 0) {
-                mapa2[PJY][PJX].classList.add("Pisadas");
-                mapa2[PJY][PJX].classList.remove("Personaje");
-                /* Algunos cambios para mover al personaje */
-                mapa2[PJY][PJX-1].classList.add("Personaje");
-                PJX--;                
-            }            
-        break;
-        case "d":
-            if (mapa2[PJY][PJX+1].className.indexOf("camino") >= 0) {
-                mapa2[PJY][PJX].classList.add("Pisadas");
-                mapa2[PJY][PJX].classList.remove("Personaje");                
-                /* Algunos cambios para mover al personaje */
-                mapa2[PJY][PJX+1].classList.add("Personaje");
-                PJX++;
-            }
-        break;
-        case "w":
-            if(PJY >0){
-                if (mapa2[PJY-1][PJX].className.indexOf("camino") >= 0) {
-                    mapa2[PJY][PJX].classList.add("Pisadas");
-                    mapa2[PJY][PJX].classList.remove("Personaje");
-                    mapa2[PJY-1][PJX].classList.add("Personaje");
-                    /* Algunos cambios para mover al personaje */
-                    PJY--;
-                }
-            }
-        break;
-        case "s":
-            if (mapa2[PJY+1][PJX].className.indexOf("camino") >= 0) {
-                mapa2[PJY][PJX].classList.add("Pisadas");
-                mapa2[PJY][PJX].classList.remove("Personaje");
-                mapa2[PJY+1][PJX].classList.add("Personaje");
-                /* Algunos cambios para mover al personaje */
-                PJY++;
-            }            
-        break;
-        case "m":
-            if(contObjeto3 == 1){
-            
-                if (mapa2[PJY][PJX-1].classList.contains("Enemigo")) {
-                    document.getElementById("2").classList.remove("Canon");
-                    quitarEnemigo();
-                    mapa2[PJY][PJX-1].classList.remove("Enemigo");
-                }else if (mapa2[PJY][PJX+1].classList.contains("Enemigo")) {
-                    document.getElementById("2").classList.remove("Canon");
-                    quitarEnemigo();
-                    mapa2[PJY][PJX+1].classList.remove("Enemigo");
-                }else if (mapa2[PJY+1][PJX].classList.contains("Enemigo")) {
-                    document.getElementById("2").classList.remove("Canon");
-                    quitarEnemigo();
-                    mapa2[PJY+1][PJX].classList.remove("Enemigo");
-                }
-                if(PJY >0){
-                    if (mapa2[PJY-1][PJX].classList.contains("Enemigo")) {
-                        document.getElementById("2").classList.remove("Canon");
-                        quitarEnemigo();
-                        mapa2[PJY-1][PJX].classList.remove("Enemigo");
-                    }
-                }
-            }     
-        break;
-        case "n":
-            if(contObjeto1 == 1 && mapa2[0][11].classList.contains("Personaje")){
-                subirNivel(1);
-                borrarMapa();              
-                construirMapa();
-                posicionInicialPJ();
-                quitarObjetosInventario();
-            }
-        default: break;
-    }
-    ComprobarPilar();
-       
-}
-
-function quitarObjetosInventario(){
-    if(document.getElementById("0").classList.contains("Barril")){
-        document.getElementById("0").classList.remove("Barril");
-        contObjeto1 = 0;
-    }
-    if(document.getElementById("1").classList.contains("BolaCanon")){
-        document.getElementById("1").classList.remove("BolaCanon");
-        contObjeto2 = 0;
-    }
-    if(document.getElementById("2").classList.contains("Canon")){
-        document.getElementById("2").classList.remove("Canon");
-        contObjeto3 = 0;
-    }
-}
-
-function borrarMapa(){
-    const padre = document.getElementById("PantallaJuego");
-    const hijo = document.getElementById("mapa");
-    const nuevo = document.createElement("div");
-
-    nuevo.classList.add("mapa");
-
-    padre.removeChild(hijo);
-    padre.appendChild(nuevo);
-}
-
-function quitarEnemigo(){    
-    for(let i=0;i<enemigos.length;i++){
-        enemigos.pop();
-        console.log("borrando enemigo");
-    }
-}
-
-function ComprobarPasos(x,y,Pintar1,Pintar2){
-    if(contadorPasos < 14){
-        for(let i=0;i<5;i++){           
-            for(let j=0;j<=4;j++){               
-                if(mapa2[x][y].classList.contains("Pisadas")){
-                    contadorPasos++;
-                    if(contadorPasos == 14){
-                        RellenaPilar(Pintar1,Pintar2,"destapado");                        
-                        objetoRandom = ObjetoAleatorio();
-                        if(objetoRandom == "Barril" && contObjeto1 == 0){
-                            ObjetoPilar(Pintar1,Pintar2,"Barril");
-                            if(!document.getElementById("0").classList.contains("Barril")){
-                                document.getElementById("0").classList.add("Barril");
-                                contObjeto1 = 1;
-                            }                            
-                        }else if(objetoRandom == "BolaCanon" && contObjeto2 == 0){
-                            ObjetoPilar(Pintar1,Pintar2,"BolaCanon");
-                            if(!document.getElementById("1").classList.contains("BolaCanon")){
-                                document.getElementById("1").classList.add("BolaCanon");
-                                contObjeto2 = 1;
-                            }
-                        }else if(objetoRandom == "Canon" && contObjeto3 == 0){
-                            ObjetoPilar(Pintar1,Pintar2,"Canon");
-                            if(!document.getElementById("2").classList.contains("Canon")){
-                                document.getElementById("2").classList.add("Canon");
-                                contObjeto3 = 1;
-                            }
-                        }
-                        sumarPuntos(200);
-                        contadorPasos=0;
-                    }                                                
-                }
-                y+=1;                                      
-            }
-            x+=1;
-            y-=5;                                 
-        }
-        contadorPasos=0;
-    }
-}
-
-function ComprobarPilar(){
+/*Comprobar el pilar*/
+function comprobarPilar(){
     contadorPasos = 0;
-    if(mapa2[PJY][PJX-1].className.indexOf("pilar") >= 0) {
-        esquina = buscarEsquina(PJY,PJX-1);
-        esquinaPintar1 = esquina[0];
-        esquinaPintar2 = esquina[1];
-        esquina[0] -= 1;
-        esquina[1] -= 1;
-        
-        ComprobarPasos(esquina[0],esquina[1],esquinaPintar1,esquinaPintar2);
-    }
-    if (mapa2[PJY][PJX+1].className.indexOf("pilar") >= 0) {
-        esquina = buscarEsquina(PJY,PJX+1);
-        esquinaPintar1 = esquina[0];
-        esquinaPintar2 = esquina[1];
-        esquina[0] -= 1;
-        esquina[1] -= 1;
+    if(Jugador.y >0)if(mapa[Jugador.y-1][Jugador.x].className.indexOf("pilar") >= 0)comprobar(Jugador.y-1,Jugador.x);
+    if(mapa[Jugador.y+1][Jugador.x].className.indexOf("pilar") >= 0)comprobar(Jugador.y+1,Jugador.x);
+    if(mapa[Jugador.y][Jugador.x-1].className.indexOf("pilar") >= 0)comprobar(Jugador.y,Jugador.x-1);
+    if(mapa[Jugador.y][Jugador.x+1].className.indexOf("pilar") >= 0)comprobar(Jugador.y,Jugador.x+1);
+}
 
-        ComprobarPasos(esquina[0],esquina[1],esquinaPintar1,esquinaPintar2);
-    }
-    if(PJY >0){
-        if (mapa2[PJY-1][PJX].classList.contains("pilar")) {
-            esquina = buscarEsquina(PJY-1,PJX);
-            esquinaPintar1 = esquina[0];
-            esquinaPintar2 = esquina[1];     
-            esquina[0] -= 1;
-            esquina[1] -= 1;
+function comprobar(y,x){
+    esquina = comprobarEsquina(y,x);
+    coordenadasEsquina[0] = esquina[0];
+    coordenadasEsquina[1] = esquina[1];
+    esquina[0] -= 1;
+    esquina[1] -= 1;
+    comprobarPasos(esquina[1],esquina[0],coordenadasEsquina[1],coordenadasEsquina[0]);
+}
 
-            ComprobarPasos(esquina[0],esquina[1],esquinaPintar1,esquinaPintar2);
+/*Comprobar la esquina*/
+function comprobarEsquina(y,x){
+    coordsEsquina = new Array(2);
+    if(!mapa[y-1][x].classList.contains("camino")) y--;
+    buscar = false;
+    while(!buscar)if(!mapa[y][x-1].classList.contains("camino"))x--;else buscar = true;
+    coordsEsquina[0]=y;
+    coordsEsquina[1]=x;
+    return coordsEsquina;
+}
+
+/*Comprobar los pasos al rodear pilar*/
+
+function comprobarPasos(x,y,colorearX,colorearY){
+    //y+=1;
+    for(let i=0;i<5;i++){        
+        for(let j=0;j<4;j++){
+            if(mapa[y][x].classList.contains("Pisadas")){      
+                contadorPasos++;                
+                if(contadorPasos == 14){  
+                    objetoAleatorio = devuelveAleatorio();
+                    if(objetoAleatorio == "Barril" && Objeto1 == 0)objetoPilar(colorearY,colorearX,objetoAleatorio),comprobarInventario(objetoAleatorio);
+                    if(objetoAleatorio == "BolaCanon" && Objeto1 == 0)objetoPilar(colorearY,colorearX,objetoAleatorio),comprobarInventario(objetoAleatorio);
+                    if(objetoAleatorio == "Canon" && Objeto1 == 0)objetoPilar(colorearY,colorearX,objetoAleatorio),comprobarInventario(objetoAleatorio);
+                    sumarPuntos(200);
+                    contadorPasos=0;
+                }
+            }
+            y+=1;    
         }
+        x+=1;
+        y-=4;
     }
-    if (mapa2[PJY+1][PJX].className.indexOf("pilar") >= 0) {
-        esquina = buscarEsquina(PJY+1,PJX);
-        esquinaPintar1 = esquina[0];
-        esquinaPintar2 = esquina[1];
-        esquina[0] -= 1;
-        esquina[1] -= 1;
-
-        ComprobarPasos(esquina[0],esquina[1],esquinaPintar1,esquinaPintar2);
-    }
+    contadorPasos=0;    
 }
 
-function buscarEsquina(y,x) {
-    
-    let esquina2 = new Array(2);
-
-    if(!mapa2[y-1][x].classList.contains("camino")) y--;
-    //Ya tenemos las coordenadas en la parte superior del pilar
-
-    var salir = false;
-    while(!salir) {
-        
-        if(!mapa2[y][x-1].classList.contains("camino")){
-            x--;
-        }else{
-            salir = true;
-        }
-        
-    }
-
-    esquina2[0] = y;
-    esquina2[1] = x;
-    return esquina2;
+/*Comprobar que el objeto no esté en el inventario*/
+function comprobarInventario(objeto){    
+    if(objeto=="Barril")if(!document.getElementById("0").classList.contains("Barril"))document.getElementById("0").classList.add("Barril"),Objeto1 = 1;
+    if(objeto=="BolaCanon")if(!document.getElementById("1").classList.contains("BolaCanon"))document.getElementById("1").classList.add("BolaCanon"),Objeto2 = 1,recogerBomba();
+    if(objeto=="Canon")if(!document.getElementById("2").classList.contains("Canon"))document.getElementById("2").classList.add("Canon"),Objeto3 = 1;
 }
 
-function MovimientoEnemigo(){    
-
-    for(let i=0;i<enemigos.length;i++){
-        var RandomDirection = Math.floor(Math.random()*4);
-
-        switch(RandomDirection){
-            case 0:
-            //Arriba
-                if (mapa2[enemigos[i].y -1][enemigos[i].x].classList.contains("camino")) {
-                    mapa2[enemigos[i].y][enemigos[i].x].classList.remove("Enemigo");
-                    mapa2[--enemigos[i].y][enemigos[i].x].classList.add("Enemigo");
-                }
-                if(mapa2[enemigos[i].y][enemigos[i].x].classList.contains("Personaje")){
-                    restarVida();
-                }
-            break;
-            case 1:
-                //Abajo        
-                if(mapa2[enemigos[i].y+1][enemigos[i].x].classList.contains("camino")) {
-                    mapa2[enemigos[i].y][enemigos[i].x].classList.remove("Enemigo");
-                    mapa2[++enemigos[i].y][enemigos[i].x].classList.add("Enemigo");
-                }
-                if(mapa2[enemigos[i].y][enemigos[i].x].classList.contains("Personaje")){
-                    restarVida();
-                }
-            break;
-            case 2:
-            //Izquierda        
-                if (mapa2[enemigos[i].y][enemigos[i].x-1].classList.contains("camino")) {
-                    mapa2[enemigos[i].y][enemigos[i].x].classList.remove("Enemigo");
-                    mapa2[enemigos[i].y][--enemigos[i].x].classList.add("Enemigo");
-                }
-                if(mapa2[enemigos[i].y][enemigos[i].x].classList.contains("Personaje")){
-                    restarVida();
-                }
-            break;
-            case 3:
-            //Derecha
-                if (mapa2[enemigos[i].y][enemigos[i].x+1].classList.contains("camino")) {
-                    mapa2[enemigos[i].y][enemigos[i].x].classList.remove("Enemigo");
-                    mapa2[enemigos[i].y][++enemigos[i].x].classList.add("Enemigo");
-                }
-                if(mapa2[enemigos[i].y][enemigos[i].x].classList.contains("Personaje")){
-                    restarVida();
-                }
-            break;
-        }
-    }
-
-    
-}
-
-function PJ(){
-    
-    /*Vida restante*/
-    vidaP.classList.add("vida");
-    document.querySelector(".hotbar").appendChild(vidaP);
-    vidaP.innerHTML = "Vida: " + 5;
-    
-    /*Puntos*/
-    PuntosP.classList.add("puntuacion");
-    document.querySelector(".hotbar").appendChild(PuntosP);
-    PuntosP.innerHTML = "Puntos: " + 0;
-
-    /*Nivel*/
-
-    textoNivel.classList.add("nivel");
-    document.querySelector(".hotbar").appendChild(textoNivel);
-    textoNivel.innerHTML = "Nivel: "+nivel;
-    
-    /*Inventario*/
-    TextoObjetos.classList.add("inventario");
-    document.querySelector(".hotbar").appendChild(TextoObjetos);
-    TextoObjetos.innerHTML = "Objetos: ";    
-
-    /*Objetos ObjetoP*/
-    for(let i=0;i<3;i++){
-        BarraInventario = document.createElement("div");        
-        BarraInventario.className = "Objeto";
-        BarraInventario.id = i;
-        document.querySelector(".hotbar").appendChild(BarraInventario);
-    }
-
-}
-
-
-function RellenaPilar(posY,posX,item){
-    mapa2[posY][posX].classList.remove("pilar");
-    mapa2[posY][posX+1].classList.remove("pilar");
-    mapa2[posY][posX+2].classList.remove("pilar");
-    mapa2[posY+1][posX].classList.remove("pilar");
-    mapa2[posY+1][posX+1].classList.remove("pilar");
-    mapa2[posY+1][posX+2].classList.remove("pilar");
-
-
-    mapa2[posY][posX].classList.add(item);
-    mapa2[posY][posX+1].classList.add(item);
-    mapa2[posY][posX+2].classList.add(item);
-    mapa2[posY+1][posX].classList.add(item);
-    mapa2[posY+1][posX+1].classList.add(item);
-    mapa2[posY+1][posX+2].classList.add(item);
-}
-
-function ObjetoPilar(posY,posX,item){
-    mapa2[posY][posX].classList.add(item);
-    mapa2[posY][posX+1].classList.add(item);
-    mapa2[posY][posX+2].classList.add(item);
-    mapa2[posY+1][posX].classList.add(item);
-    mapa2[posY+1][posX+1].classList.add(item);
-    mapa2[posY+1][posX+2].classList.add(item);
-}
 
 /*Objeto aleatorio para el pilar*/
-
-function ObjetoAleatorio(){
+function devuelveAleatorio(){
     var objeto = "";
     while(Objeto.length > 0){
         var x = Math.floor(Math.random()*Objeto.length);
         objeto = Objeto.splice(x,1);        
         return objeto;
     }    
+}
+
+/*Rellenar pilar con objeto*/
+function objetoPilar(y,x,item){
+    mapa[y][x].classList.remove("pilar");
+    mapa[y][x+1].classList.remove("pilar");
+    mapa[y][x+2].classList.remove("pilar");
+    mapa[y+1][x].classList.remove("pilar");
+    mapa[y+1][x+1].classList.remove("pilar");
+    mapa[y+1][x+2].classList.remove("pilar");
+
+    mapa[y][x].classList.add(item);
+    mapa[y][x+1].classList.add(item);
+    mapa[y][x+2].classList.add(item);
+    mapa[y+1][x].classList.add(item);
+    mapa[y+1][x+1].classList.add(item);
+    mapa[y+1][x+2].classList.add(item);
+}
+
+/*Inventario*/
+
+/*Pintar inventario*/
+function Inventario(){
+    if (nivel <= 1) {
+        /*Vida restante*/
+        vidaP.classList.add("vida");
+        document.querySelector(".hotbar").appendChild(vidaP);
+        vidaP.innerHTML = "Vida: " + 5;
+        
+        /*Puntos*/
+        PuntosP.classList.add("puntuacion");
+        document.querySelector(".hotbar").appendChild(PuntosP);
+        PuntosP.innerHTML = "Puntos: " + 0;
+    
+        /*Nivel*/    
+        textoNivel.classList.add("nivel");
+        document.querySelector(".hotbar").appendChild(textoNivel);
+        textoNivel.innerHTML = "Nivel: "+nivel;
+        
+        /*Inventario*/
+        TextoObjetos.classList.add("inventario");
+        document.querySelector(".hotbar").appendChild(TextoObjetos);
+        TextoObjetos.innerHTML = "Objetos: ";    
+    
+        /*Objetos ObjetoP*/
+        for(let i=0;i<3;i++){
+            BarraInventario = document.createElement("div");        
+            BarraInventario.className = "Objeto";
+            BarraInventario.id = i;
+            document.querySelector(".hotbar").appendChild(BarraInventario);
+        }            
+    }
+}
+
+/*Puntuación*/
+function sumarPuntos(puntos){
+    puntuacion += puntos;
+    document.querySelector(".puntuacion").innerHTML = "Puntos: "+ puntuacion;
+}
+
+/*Niveles*/
+
+/*Nivel*/
+function subirNivel(level){
+    nivel += level;
+    document.querySelector(".nivel").innerHTML = "Nivel: "+ nivel;
+}
+
+/*Comprobar nivel completado*/ 
+function comprobarNivel(){
+    if(mapa[0][11].classList.contains("Personaje")){
+        //Si tengo el barril que es la llave, paso de nivel
+        if(Objeto1==1)cambiarNivel();
+    }
+}
+
+/*Función para reiniciar variables eliminar mapa y poner uno nuevo*/
+function cambiarNivel(){
+    limpiarInventario();
+    reiniciarVariables();
+    subirNivel(1);
+    crearMapa();
+    cantidadEnemigos = cantidadEnemigos + 1;
+    for(let i=0;i<cantidadEnemigos;i++){
+        agregarEnemigo(Enemigo.x,Enemigo.y);
+    }
+}
+
+/*Quitar todos los objetos del inventario*/
+function limpiarInventario(){
+    if(document.getElementById("0").classList.contains("Barril"))document.getElementById("0").classList.remove("Barril"),Objeto1 = 0;
+    if(document.getElementById("1").classList.contains("BolaCanon"))document.getElementById("1").classList.remove("BolaCanon"),Objeto2 = 0;
+    if(document.getElementById("2").classList.contains("Canon"))document.getElementById("2").classList.remove("Canon"),Objeto3 = 0;
+}
+
+/*Borrar todo el mapa*/
+function borrarMapa(){
+    const padre = document.getElementById("PantallaJuego");
+    const hijo = document.querySelector(".mapa");
+    padre.removeChild(hijo);
+}
+
+/*Reiniciar variables*/
+function reiniciarVariables(){
+    /*Borramos el mapa*/
+    borrarMapa();
+
+    /*Creamos nuevo nivel*/
+    pantallaJuego = document.getElementById("PantallaJuego");
+    divNivel = document.createElement("div");
+    divNivel.classList.add("mapa");
+    pantallaJuego.appendChild(divNivel);
+
+    /*Construcción del mapa*/
+    dibujoMapa = document.querySelector(".mapa");
+    mapa = [[2,2,2,2,2,2,2,2,2,2,2,0,2,2,2,2,2,2,2,2,2,2,2],
+                [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
+                [2,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,2],
+                [2,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,2],
+                [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
+                [2,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,2],
+                [2,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,2],
+                [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
+                [2,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,2],
+                [2,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,2],
+                [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
+                [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]];
+
+    /*Enemigos*/
+    Enemigo.x = 1;
+    Enemigo.y = 10;
+    dir;
+    vidaEnemigo = 1;
+
+    /*Personaje*/
+    Jugador.x = 11; 
+    Jugador.y = 0;
+    dirPJ;
+
+    /*Pilares*/
+    coordsEsquina = new Array(2);
+    esquina = new Array(2);
+    coordenadasEsquina = new Array(2);
+    buscar = false;
+    contadorPasos = 0;
+    objetoAleatorio = "";
+
+    /*Inventario*/
+    vidaP = document.createElement("div");
+    PuntosP = document.createElement("div");
+    TextoObjetos = document.createElement("div");
+    BarraInventario = document.createElement("div");
+    if(nivel <= 1)textoNivel = document.createElement("div");
+    Objetos = document.getElementsByClassName(".Objeto");
+    Objeto1 = 0;
+    Objeto2 = 0;
+    Objeto3 = 0;
+    Objeto = ["Barril","BolaCanon","Canon",""];
+    item = "";
 }
