@@ -1,0 +1,37 @@
+button{
+    font-size: 10px;
+    text-align: center;
+}
+p{
+    text-align: center;
+}
+
+.caja{
+    background-image: url("cthulhu.svg");
+    background-size: 50px 50px;
+    background-repeat: no-repeat;
+    width: 200px;
+    height: 100px;
+    transform: translateX(0px);
+    transition: transform 2s linear;
+}
+
+.mover{
+    transform: translateX(1000px);
+}
+
+.ease{
+    transition-timing-function: ease;
+}
+
+.ease-in{
+    transition-timing-function: ease-in;
+}
+
+.ease-out{
+    transition-timing-function: ease-out;
+}
+
+.ease-in-out{
+    transition-timing-function: ease-in-out;
+}

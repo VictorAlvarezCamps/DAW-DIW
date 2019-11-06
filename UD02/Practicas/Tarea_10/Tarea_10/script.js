@@ -1,1 +1,1 @@
-document.querySelector("button").addEventListener("click",)
+document.querySelector("button").addEventListener("click", function moverCthulhus(){ document.querySelectorAll(".caja").forEach(element => element.classList.toggle("mover"))});
