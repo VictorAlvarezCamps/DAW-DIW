@@ -1,0 +1,109 @@
+body{
+    background-color:grey;
+    padding: 3rem;
+}
+header div{
+    display: inline-block;
+    margin-right: 15px;
+}
+
+container{
+    margin: 1rem;
+    display: grid;
+    grid-template-columns: repeat(5,150px);
+    grid-template-rows: repeat(4,1fr);    
+}
+
+button{
+    border: 3px solid darkgrey;
+}
+
+
+box{
+    background-color: #1e0;
+    border:3px solid #AABBAA;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    height: 150px;
+    width: 100px;    
+    transition: transform 0.5s linear;
+}
+
+.evoluciona{
+    background-color: #e10;
+    transform: translateX(150px);
+}
+
+.desevoluciona{
+    background-color: #10e;
+    transform: translateX(0);
+}
+
+.ultimate{
+    background-color: #441155;
+    transform: translateX(0);
+    background-image: url("cthulhu.svg");
+    background-size: 100% 100%;
+}
+
+.ultimate:hover{
+    transform: scale(1.2);
+}
+
+.rotar{
+    background-image: url("rotar.gif");
+    background-size: 100% 100%;
+    height: 100px;
+    width: 100px;
+}
+
+.girarEnV{
+    background-image: url("enV.gif");
+    background-size: 100% 100%;
+    height: 100px;
+    width: 100px;
+}
+
+.rotacion{
+    animation-name: rotando;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+.moverV{
+    animation-name: moviendoEnV;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes rotando {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes moviendoEnV {
+    from {
+        top: 0px;
+        left: 0px;
+    }
+    25% {
+        top: 0px;
+        left: 30px;
+    }
+    50% {
+        top: 30px;
+        left: 30px;
+    }
+    75% {
+        top: 30px;
+        left: 0px;
+    }
+    to {
+        top: 0px;
+        left: 0px;
+    }
+}
