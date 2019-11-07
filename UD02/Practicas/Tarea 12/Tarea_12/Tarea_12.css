@@ -6,9 +6,8 @@ body{
 container{
     margin: 1rem;
     display: grid;
-    grid-template-columns: repeat(4,1fr);
-    grid-template-rows: repeat(4,1fr);
-    
+    grid-template-columns: repeat(5,150px);
+    grid-template-rows: repeat(4,1fr);    
 }
 
 button{
@@ -20,45 +19,29 @@ box{
     background-color: #1e0;
     border:3px solid #AABBAA;
     border-radius: 10px;
+    margin-bottom: 10px;
     height: 150px;
-    width: 100px;
+    width: 100px;    
+    transition: transform 0.5s linear;
 }
 
 .evoluciona{
     background-color: #e10;
-    border:3px solid #AABBAA;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    border-radius: 10px;
-    /* 
- 
-    ^(;,;)^ : Fragmento perdido
-
-   */
+    transform: translateX(150px);
 }
 
 .desevoluciona{
     background-color: #10e;
-        /* 
- 
-    ^(;,;)^ : Fragmento perdido
-
-   */
+    transform: translateX(0);
 }
 
 .ultimate{
     background-color: #441155;
-    /* 
- 
-    ^(;,;)^ : Fragmento perdido
-
-   */
+    transform: translateX(0);
+    background-image: url("cthulhu.svg");
+    background-size: 100% 100%;
 }
 
 .ultimate:hover{
-    /* 
- 
-    ^(;,;)^ : Fragmento perdido
-
-   */
+    transform: scale(1.2);
 }
