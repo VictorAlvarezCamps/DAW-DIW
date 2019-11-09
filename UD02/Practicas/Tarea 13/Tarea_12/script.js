@@ -1,6 +1,7 @@
 let limiteCajas = 0;
-let activarRotacion = false;
-let activarEnV = false;
+let animarRotacion = false;
+let animarEnV = false;
+let accion = "";
 
 function init(){
     document.querySelector("button").addEventListener("click",ponerCaja);
@@ -23,14 +24,15 @@ function Poder(){
 }
 
 function quitarEvolucion(){
+    this.classList.remove("evoluciona");
     this.classList.add("desevoluciona");
     this.addEventListener("mousedown",apareceSer);
 }
 
 function apareceSer(){
+    this.classList.remove("desevoluciona");
     this.classList.add("ultimate");
-    this.addEventListener("click",rotacion);
-    this.addEventListener("click",girarEnV);
+    this.addEventListener("click",Animacion);
 }
 
 function ponerImagenes(){
@@ -39,29 +41,42 @@ function ponerImagenes(){
     let img2 = document.createElement("div");
     let img3 = document.createElement("div");
     img1.classList.add("rotar");
-    img1.addEventListener("click",encenderRotacion);
+    img1.addEventListener("click",accionRotar);
     img2.classList.add("girarEnV");
-    img2.addEventListener("click",encenderEnV);
-    /*img3.classList.add("girarEnV");
-    img3.addEventListener("click",girarEnV);*/
+    img2.addEventListener("click",accionEnV);
+    img3.classList.add("quitarEfecto");
+    img3.addEventListener("click",accionSinNada);
     padre.appendChild(img1);
     padre.appendChild(img2);
+    padre.appendChild(img3);
 }
 
-function encenderRotacion(){
-    if(encenderRotacion == false)encenderRotacion = true,encenderEnV = false;
+function accionRotar(){
+    accion = "rotar";
 }
 
-function encenderEnV(){
-    if(encenderEnV == false)encenderRotacion = false,encenderEnV = true;   
+function accionEnV(){
+    accion = "enV";
 }
 
-function rotacion(){
-    if(encenderRotacion == true)this.classList.add("rotacion");
+function accionSinNada(){
+    accion = "sinNada";
 }
 
-function girarEnV(){
-    if(encenderEnV == true)this.classList.add("moverV");
+function Animacion(){
+    switch(accion){
+        case "rotar":
+            this.classList.add("rotacion");
+        break;
+        case "enV":
+            console.log("en uvesita");
+            this.classList.add("moverV");
+        break;
+        case "sinNada":
+            this.classList.remove('moverV');
+            this.classList.remove('rotacion');
+        break;
+    }
 }
 
 window.onload=init;
