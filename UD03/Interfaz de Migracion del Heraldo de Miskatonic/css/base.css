@@ -89,6 +89,7 @@ button:active {
      * Fragmentos perdidos 
      * ^(;,;)^
      */
+     box-shadow: inset 10px 10px 5px 0px rgba(0,0,0,0.75);
 }
 
 
@@ -109,7 +110,7 @@ steps{
      display: grid;
      grid-template-columns: repeat(3,1fr);
      grid-template-rows: repeat(6,1fr);
-     grid-row-gap: 5px;
+     grid-row-gap: 15px;
 }
 
 /*
@@ -123,6 +124,8 @@ steps * {
      * Fragmentos perdidos 
      * ^(;,;)^
      */
+     opacity: 0;
+     transition: 1s;
 }
 
 .estabaEscondido{
@@ -131,6 +134,8 @@ steps * {
      * Fragmentos perdidos 
      * ^(;,;)^
      */
+     opacity: 1;
+    transition:3s;
 }
 
 
@@ -157,6 +162,7 @@ finalmsg{
      * Fragmentos perdidos 
      * ^(;,;)^
      */
+     transition: neon 1s;
 }
 
 @keyframes neon {
@@ -165,5 +171,8 @@ finalmsg{
      * Fragmentos perdidos 
      * ^(;,;)^
      */
+     0% { opacity: 1.0; }
+   50% { opacity: 0.0; }
+  100% { opacity: 1.0; }
 }
 
