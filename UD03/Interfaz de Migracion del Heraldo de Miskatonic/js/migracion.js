@@ -19,8 +19,6 @@ function startMigration(){
     // Fragmentos perdidos
     // ^(;,;)^
 
-    
-
 }
 
 function init(){

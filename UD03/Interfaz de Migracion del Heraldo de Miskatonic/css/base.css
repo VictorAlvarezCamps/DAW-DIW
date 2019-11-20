@@ -37,10 +37,12 @@ items{
      * Fragmentos perdidos 
      * ^(;,;)^
      */
-    text-align: center;
     display: grid;
     grid-template-columns: 1 1fr;
-    grid-template-rows: 100px 50px 300px;
+    grid-template-rows: 100px 50px 300px;    
+    background-color: rgba(66, 65, 66, 0.5);
+    width: 95%;
+    height: 550px;
 }
 
 item{
@@ -48,7 +50,7 @@ item{
      * Fragmentos perdidos 
      * ^(;,;)^
      */
-    background-color: rgb(141, 2, 255,0.5);
+     text-align: center;
 }
 
 /*
@@ -107,7 +109,7 @@ steps{
      display: grid;
      grid-template-columns: repeat(3,1fr);
      grid-template-rows: repeat(6,1fr);
-     grid-row-gap: 20px;
+     grid-row-gap: 5px;
 }
 
 /*
