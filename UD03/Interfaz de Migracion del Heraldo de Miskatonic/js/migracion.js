@@ -18,11 +18,12 @@ let step;
 let progress;
 let msg;
 
-function actualizarBarra(e){
-    //var barraVideo = document.getElementById("barraVideo");
+/*Dataset.step*/
+let dataStep;
+
+function actualizarBarra(){
     var progreso = 10;
-    e.value += progreso;
-    //console.log(this);
+    this.value += progreso;
 }
 
 function startMigration(){
@@ -31,32 +32,19 @@ function startMigration(){
     // ^(;,;)^
 
     //Seleccionamos todos los hijos de steps.
-    let allSteps = document.querySelector("steps");
-    console.log(allSteps);
-    //Accion por cada step, progress y message.
-    for(let i=0;i<allSteps.length;i++){
-        //Cogemos el step.
-        step = allSteps[i].getElementsByTagName("steplabel");
-        
-        //Cogemos la barra.
-        progress = allSteps[i+1];
+    let allSteps = document.querySelectorAll("[data-step]");
 
-        //Cogemos el mensaje de completado.
-        msg = allSteps[i+2];
+    let contador = 1;
 
-        //Le añadimos al step la clase estabaEscondido para volver a mostrarlo.
-        step.classList.add("estabaEscondido");
+    allSteps[contador].classList.add("estabaEscondido");
 
-        //Añadimos a la barra la misma clase para mostrarlo de nuevo.
-        progress.classList.add("estabaEscondido");
-        //Evento para ir completando la barra
-        progress.addEventListener("transitionend",actualizarBarra);
+    if(allSteps[contador].localName == "progress")allSteps[contador].addEventListener("transitionend",actualizarBarra);
 
-        //Cogemos el mensaje y añadimos la clase para mostrarlo de nuevo también.
-        msg.classList.add("estabaEscondido");
-        //Añadimos la clase neon
-        msg.classList.add("finalmsg");
-    }
+    if(allSteps[contador].localName == "finalmsg")allSteps[contador].classList.add("finalmsg");
+
+    contador++;
+
+    allSteps[contador].addEventListener("transitionend",startMigration);
 }
 
 function init(){
