@@ -110,7 +110,7 @@ steps{
      display: grid;
      grid-template-columns: repeat(3,1fr);
      grid-template-rows: repeat(6,1fr);
-     grid-row-gap: 35px;
+     grid-row-gap: 15px;
 }
 
 /*
@@ -124,8 +124,8 @@ steps * {
      * Fragmentos perdidos 
      * ^(;,;)^
      */
-    opacity: 0;
-    transition: 1s;
+     opacity: 0;
+     transition: 1s;
 }
 
 .estabaEscondido{
@@ -134,8 +134,9 @@ steps * {
      * Fragmentos perdidos 
      * ^(;,;)^
      */
+
+    transition-duration:2s;
     opacity: 1;
-    transition:3s;
 }
 
 
@@ -152,6 +153,7 @@ progress{
      height: 25px;
      width: 500px;
      color: cornflowerblue;
+     transition: 1s;
 }
 
 
@@ -162,7 +164,10 @@ finalmsg{
      * Fragmentos perdidos 
      * ^(;,;)^
      */
-     transition: neon 1s;
+     animation-name: neon;
+     animation-duration: 1s;
+     opacity: 0;
+     animation-iteration-count: infinite;
 }
 
 @keyframes neon {
@@ -171,8 +176,14 @@ finalmsg{
      * Fragmentos perdidos 
      * ^(;,;)^
      */
-     0% { opacity: 1.0; }
-   50% { opacity: 0.0; }
-  100% { opacity: 1.0; }
+    0% {
+        color: white;
+    }
+    50% {
+        color: orange;
+    }
+    100% {
+        color: white;
+    }
 }
 

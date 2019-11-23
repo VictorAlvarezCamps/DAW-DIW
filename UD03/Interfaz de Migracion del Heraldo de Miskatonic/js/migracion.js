@@ -13,39 +13,40 @@ FUNCIONES PERDIDAS
 ^(;,;)^
 
 */
+
+/*Contador para los steps*/
+let contador=0;
+
 /*Hijos de steps*/
 let step;
 let progress;
 let msg;
 
-/*Dataset.step*/
-let dataStep;
-
-function actualizarBarra(){
-    var progreso = 10;
-    this.value += progreso;
-}
-
 function startMigration(){
 
     // Fragmentos perdidos
     // ^(;,;)^
-
-    //Seleccionamos todos los hijos de steps.
-    let allSteps = document.querySelectorAll("[data-step]");
-
-    let contador = 1;
-
-    allSteps[contador].classList.add("estabaEscondido");
-
-    if(allSteps[contador].localName == "progress")allSteps[contador].addEventListener("transitionend",actualizarBarra);
-
-    if(allSteps[contador].localName == "finalmsg")allSteps[contador].classList.add("finalmsg");
-
-    contador++;
-
-    allSteps[contador].addEventListener("transitionend",startMigration);
+    step = document.querySelectorAll("[data-step]");
+    if(contador<step.length){
+        step[contador].classList.add("estabaEscondido");
+        if(step[contador].localName == "progress")actualizaBarra(step[contador]);
+        step[contador].addEventListener("transitionend",startMigration);
+        contador++;
+    }
 }
+
+async function actualizaBarra(barra){
+    let salir = false;
+    while(!salir){
+        barra.value += 1;
+        await sleep(20);
+        if(barra.value == 100)salir = true;
+    }
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+ }
 
 function init(){
     console.info(" * Init envirnoment ");
