@@ -1,0 +1,18 @@
+{
+  "name": "ud04_formularios",
+  "version": "1.0.0",
+  "description": "Servidor de páginas web en NodeJS",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scss": "node-sass -watch scss public/scss -o public/css"
+  },
+  "keywords": [
+    "server"
+  ],
+  "author": "Victor Alvarez Camps",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

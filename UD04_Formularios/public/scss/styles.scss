@@ -1,0 +1,60 @@
+
+h1{
+    text-align: center;
+    color: black;
+}
+
+.buscar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.textoBusqueda{
+    font-size: 16px;
+    color: #43383e;
+    @extend %cuadroDecorado;
+}
+
+.botonBuscar{
+    margin-top: 2%;
+    margin-left: 50%;
+}
+
+body{
+    background-image: url("https://picsum.photos/1080/2000");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+%cuadroDecorado{
+    line-height: 1.2;
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 30px;
+    background: #fff;
+    border-radius: 31px;
+    padding: 0 35px 0 35px;
+}
+
+
+.resultado{
+    color: white;
+    ul{
+        list-style-type: none;
+        
+    }
+    li{
+        border: 1px solid black;
+    }
+}
+
+.resultados{
+    ul{
+        li{
+            list-style:none;
+            width:50vw;
+        }
+    }
+}

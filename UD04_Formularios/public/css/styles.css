@@ -1,0 +1,52 @@
+/* line 2, public/scss/styles.scss */
+h1 {
+  text-align: center;
+  color: black; }
+
+/* line 7, public/scss/styles.scss */
+.buscar {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+/* line 13, public/scss/styles.scss */
+.textoBusqueda {
+  font-size: 16px;
+  color: #43383e; }
+
+/* line 19, public/scss/styles.scss */
+.botonBuscar {
+  margin-top: 2%;
+  margin-left: 50%; }
+
+/* line 24, public/scss/styles.scss */
+body {
+  background-image: url("https://picsum.photos/1080/2000");
+  background-repeat: no-repeat;
+  background-size: cover; }
+
+/* line 30, public/scss/styles.scss */
+.textoBusqueda {
+  line-height: 1.2;
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 30px;
+  background: #fff;
+  border-radius: 31px;
+  padding: 0 35px 0 35px; }
+
+/* line 42, public/scss/styles.scss */
+.resultado {
+  color: white; }
+  /* line 44, public/scss/styles.scss */
+  .resultado ul {
+    list-style-type: none; }
+  /* line 48, public/scss/styles.scss */
+  .resultado li {
+    border: 1px solid black; }
+
+/* line 55, public/scss/styles.scss */
+.resultados ul li {
+  list-style: none;
+  width: 50vw; }
