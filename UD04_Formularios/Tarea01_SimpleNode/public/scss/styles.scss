@@ -50,11 +50,18 @@ body{
     }
 }
 
-.resultados{
+.resultado{
     ul{
         li{
-            list-style:none;
-            width:50vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            @extend %decoradoLista;
         }
     }
+}
+
+%decoradoLista{
+    background-color: gray;
+    list-style:none;
 }
