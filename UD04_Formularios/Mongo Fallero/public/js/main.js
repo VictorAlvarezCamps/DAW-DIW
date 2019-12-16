@@ -4,7 +4,7 @@
 const url = "http://mapas.valencia.es/lanzadera/opendata/Monumentos_falleros/JSON";
 
 /*Seccion busqueda y contenido fallas*/
-let sect,option,PI,s,section,fecha,desde,hasta,tabla,fila,img,btn;
+let sect,option,PI,s,section,fecha,desde,hasta,seleccionado,tabla,fila,img,btn;
 
 //let JS={};
 
@@ -38,6 +38,10 @@ function seccion(JS){
     option.innerText = "Todas";
 }
 
+function getRadio(){
+    console.log(this.value);
+}
+
 function parseJSON(e){
     fetch(url).then(function(e) {
         return e.json();
@@ -59,6 +63,18 @@ function parseJSON(e){
 
             desde = document.getElementById("desde").value;
             hasta = document.getElementById("hasta").value;
+
+            let radios = document.getElementsByClassName("PI");
+            
+            let Principal = document.getElementById("Principal");
+            let Infantil = document.getElementById("Infantil");
+
+            Principal.checked = false;
+            Infantil.checked = false;
+
+            (Principal.checked)?seleccionado = "Principal":(Infantil.checked)?seleccionado = "Infantil"
+
+            console.log(seleccionado);
 
             //if(fecha >= desde && fecha <= hasta)
 
