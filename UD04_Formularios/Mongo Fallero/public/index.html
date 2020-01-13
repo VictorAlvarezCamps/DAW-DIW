@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Mongo Fallero</title>
+    <style>
+        @import url("css/style.css");
+    </style>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.6.0/proj4.js"> </script>
+    <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+    <script src="js/main.js"></script>
+</head>
+<body>
+    <div id="menuToggle">
+        <input type="checkbox" id="buttonMenu">
+        <img class="LogoPrinc">
+    </div>
+    <header id="header">
+        <div class="Menu">
+            <img class="Logo">    
+            <h1>Listado de fallas</h1>
+            <div class="buscar">
+                <form id="busqueda">
+                    <div class="SeccionFallas">
+                        <t>Sección:</t>
+                        <br>
+                        <select id="Seccion">
+                            <option value="Todas">Todas</option>
+                        </select>
+                    </div>
+                    <div class="anyosFundacion">
+                        Año de fundación:<br>
+                        <input type="text" placeholder="Desde" id="desde"><br>
+                        <input type="text" placeholder="Hasta" id="hasta">
+                    </div>
+                    <div class="PrincInf">
+                        <input type="radio" name="PI" id="Principal"  checked>Principal
+                        <input type="radio" name="PI" id="Infantil" >Infantil
+                    </div>
+                    <input type="button" id="btnBuscar" value="buscar">
+                </form>      
+            </div>
+        </div> 
+    </header>
+    <div id="resultado">
+        <div id="ContenedorMapa">
+            <div id="Mapa"></div>
+        </div>
+    </div>
+</body>
+</html>

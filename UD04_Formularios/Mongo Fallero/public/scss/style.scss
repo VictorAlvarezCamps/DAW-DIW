@@ -1,0 +1,460 @@
+/*Variables*/
+
+$empresa: EvilCorp;
+//$empresa: Starbred;
+$color: #947B4F;
+$logoEmpresa: "";
+
+@if ($empresa == EvilCorp) {
+    $color: #C51F45;
+    $logoEmpresa: url("../img/evilcorp.png");
+}@else{
+    $color: #2E6D34;
+    $logoEmpresa: url("../img/cthulhu.jpg");
+}
+
+//VISTA PARA ESCRITORIO
+
+/*Cuerpo entero de la página*/
+
+@media (min-width: 500px){
+
+    html, body {
+        height: 100%;
+    }
+
+    body{
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-template-areas: "d e";
+        background-color: $color;
+        position: absolute;
+    }
+
+    /*Filtros*/
+
+    header{
+        grid-area: d;
+        border-top-right-radius: 25px;
+        border-bottom-right-radius: 25px;
+        box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+        height: 100%;
+        width: 250px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+
+        .Logo{
+            background-image: $logoEmpresa;
+            background-size: 100%;
+            height: 220px;
+            width: 100%;
+            background-repeat: no-repeat;
+        }
+
+        h1{
+            text-align: center;
+            color: black;
+        }
+
+        .buscar{
+            font-size: 15px;
+
+            #busqueda{
+                color: black;
+                display: flex;
+                flex-direction: column;
+
+                .SeccionFallas{
+                    margin-top: 20px;
+                }
+                
+                .SeccionFallas t{
+                    font-size: 30px;
+                }
+
+                .anyosFundacion{
+                    margin-top: 20px;
+                }
+
+                .anyosFundacion #desde, .anyosFundacion #hasta{
+                    box-sizing: border-box;
+                    outline: none;
+                    display: block;
+                    width: 100%;
+                    padding: 7px;
+                    border: none;
+                    border-bottom: 1px solid black;
+                    background: transparent;
+                    margin-bottom: 10px;
+                    font: 16px Arial, Helvetica, sans-serif;
+                    height: 45px;
+                    color: black;
+                }
+                
+                .PrincInf{
+                    outline: none;
+                    display: block;
+                    width: 100%;
+                    padding: 7px;
+                    border: none;
+                    background: transparent;
+                    font: 16px Arial, Helvetica, sans-serif;
+                    height: 45px;
+                    color: black;
+                }
+
+            }
+
+        }
+    }
+    /*Resultados de las fallas*/
+
+    #resultado{
+        grid-area: e;
+        margin-top: 10px;
+        z-index: 1;
+        width: 100%;
+        transform: translateX(-100px);
+
+        .Tabla{
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(auto, 1fr);
+            grid-gap: 20px;
+            grid-template-areas: "f g h";
+            width: 100%;
+
+            .Falla {
+                grid-area: f g h;
+                display: grid;
+                grid-template-columns: repeat(2,1fr);
+                grid-template-areas: "i j";
+                height: auto;
+                width: 320px;
+                background-color: white;
+
+                .liSquare{
+                    grid-area: j;
+                    float: right;
+                    list-style-type: none;
+                    text-justify: auto;
+                    font-size: 20px;
+                    position: relative;
+                }
+
+                .Squareimg{
+                    grid-area: i;
+                    height: 200px;
+                    width: 200px;
+                    float: left;
+                }
+
+                .ratingTextSquare{
+                    grid-area: j;
+                    transform: translateY(80px);
+                }
+
+                .cuadroEstrellas{
+                    grid-area: j;
+                    background-color: $color;
+                    transform: translateY(120px);
+                    position: relative;
+                    height: 20px;
+                    width: 70%;
+
+                    .ratingSquare{
+                        background: white;
+                        clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+                        display: inline-block;
+                        height: 20px;
+                        width: 20px;
+                    }
+                    
+                    .ratingSquare:hover{
+                        background-color: gold;
+                    }
+
+                }
+
+                .btnSquare{
+                    grid-area: j;
+                    width: 100%;
+                    height: 20px;
+                    transform: translateY(180px);
+                    position: relative;
+                }
+
+            }
+
+        }
+        
+        /*Contenedor mapa*/
+        #ContenedorMapa{
+            position: fixed;
+            height: 500px;
+            width: 800px;
+            z-index: 3;
+            border-radius: 2%;
+            transform: translate(40%,30%);
+        }
+
+        #Mapa{
+            height: 500px;
+            width: 400px;
+            border-radius: 2%;
+            position: relative;
+        }
+
+        .aspaVentanaUbicacion{
+            background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwQDoaPcBUPlW6FeEbV6kdxcDuEKTF0CA1CKg67Uwr-0EroHdq&s");
+            height: 50px;
+            width: 50px;
+            background-size: 100%;
+            float: right;
+            border: none;
+            transform: translate(-350px,-500px);
+        }
+
+    }
+}
+
+////VISTA PARA MOVIL
+
+@media (max-width : 700px){
+
+    /*Cuerpo entero de la página*/
+
+html, body {
+    height: 100%;
+}
+
+body{
+    background-color: $color;
+}
+
+#menuToggle
+{
+  display: block;
+  position: relative;
+  top: 0;
+  left: 0;  
+  z-index: 1;  
+}
+
+#menuToggle input{
+  display: block;
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  top: -7px;
+  left: -5px;  
+  cursor: pointer;  
+  opacity: 0;
+  z-index: 2;
+}
+
+.LogoPrinc{
+    top: 0;
+    left: 0;
+    background-image: $logoEmpresa;
+    background-size: 100%;
+    height: 100px;
+    width: 100px;
+    background-repeat: no-repeat;
+}
+
+/*Filtros*/
+
+header{
+    text-align: center;
+    width: 60%;
+    position: relative;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    background-color: white;
+    transform: translate(-100%, 0);
+    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+    z-index: 900;
+}
+
+.abrirMenu{
+    transform: translate(2%, 0);
+}
+
+.cerrarMenu{
+    transform: translate(-100%, 0);
+}
+
+
+.Logo{
+    background-image: $logoEmpresa;
+    background-size: 100%;
+    height: 100px;
+    width: 100px;
+    background-repeat: no-repeat;
+}
+
+h1{
+    margin-top: 50px;
+    text-align: center;
+    color: black;
+}
+
+.buscar{
+    font-size: 15px;
+
+    #busqueda{
+        color: black;
+
+        /*.SeccionFallas{
+            margin-top: 20px;
+        }*/
+        
+        .SeccionFallas t{
+            font-size: 30px;
+        }
+
+        .anyosFundacion{
+            margin-top: 20px;
+        }
+
+        .anyosFundacion #desde, .anyosFundacion #hasta{
+            box-sizing: border-box;
+            outline: none;
+            display: block;
+            width: 100%;
+            padding: 7px;
+            border: none;
+            border-bottom: 1px solid black;
+            background: transparent;
+            margin-bottom: 10px;
+            font: 16px Arial, Helvetica, sans-serif;
+            height: 45px;
+            color: black;
+        }
+        
+        .PrincInf{
+            outline: none;
+            display: block;
+            width: 100%;
+            padding: 7px;
+            border: none;
+            background: transparent;
+            font: 16px Arial, Helvetica, sans-serif;
+            height: 45px;
+            color: black;
+        }
+
+    }
+
+}
+
+/*Resultados de las fallas*/
+
+#resultado{
+    width: 90%;
+    max-width: 100%;
+    margin: auto;    
+    transform: translate(-50px,-450px);
+
+    .Tabla{
+        display: flex;
+        flex-direction: column;        
+        width: 100%;
+
+        .Falla {
+            margin: 20px;
+            height: auto;
+            width: 80vw;
+            background-color: white;
+
+            .liSquare{
+                float: right;
+                list-style-type: none;
+                margin-right: 20px;
+                text-justify: auto;
+                font-size: 30px;
+                position: relative;
+            }
+
+            .Squareimg{
+                height: 250px;
+                width: 100%;
+            }
+
+            .ratingTextSquare{
+            }
+
+            .cuadroEstrellas{
+                background-color: $color;
+                position: relative;
+                height: 20px;
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-content: center;
+
+                .ratingSquare{
+                    background: white;
+                    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+                    display: inline-block;
+                    height: 20px;
+                    width: 20px;
+                }
+                
+                .ratingSquare:hover{
+                    background-color: gold;
+                }
+
+            }
+
+            .btnSquare{
+                width: 100%;
+                height: 20px;
+                position: relative;
+                color: $color;
+                background-color: white;
+            }
+
+        }
+
+    }
+    
+        /*Contenedor mapa*/
+        #ContenedorMapa{
+            position: sticky;
+            height: 500px;
+            width: 700px;
+            z-index: 3;
+            border-radius: 2%;
+            transform: translateX(10%);
+            display: none;
+        }
+
+        #Mapa{
+            height: 500px;
+            width: 300px;
+            border-radius: 2%;
+            position: relative;
+        }
+
+        .aspaVentanaUbicacion{
+            background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwQDoaPcBUPlW6FeEbV6kdxcDuEKTF0CA1CKg67Uwr-0EroHdq&s");
+            height: 50px;
+            width: 50px;
+            background-size: 100%;
+            float: right;
+            border: none;
+            transform: translate(-350px,-500px);
+        }
+    }
+}
