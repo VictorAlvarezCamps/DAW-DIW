@@ -1,0 +1,355 @@
+@charset "UTF-8";
+/*Variables*/
+/*Cuerpo entero de la página*/
+@media (min-width: 500px) {
+  /* line 22, public/scss/style.scss */
+  html, body {
+    height: 100%; }
+  /* line 26, public/scss/style.scss */
+  body {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas: "d e";
+    background-color: #C51F45;
+    position: absolute; }
+  /*Filtros*/
+  /* line 36, public/scss/style.scss */
+  header {
+    grid-area: d;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2; }
+    /* line 52, public/scss/style.scss */
+    header .Logo {
+      background-image: url("../img/evilcorp.png");
+      background-size: 100%;
+      height: 220px;
+      width: 100%;
+      background-repeat: no-repeat; }
+    /* line 60, public/scss/style.scss */
+    header h1 {
+      text-align: center;
+      color: black; }
+    /* line 65, public/scss/style.scss */
+    header .buscar {
+      font-size: 15px; }
+      /* line 68, public/scss/style.scss */
+      header .buscar #busqueda {
+        color: black;
+        display: flex;
+        flex-direction: column; }
+        /* line 73, public/scss/style.scss */
+        header .buscar #busqueda .SeccionFallas {
+          margin-top: 20px; }
+        /* line 77, public/scss/style.scss */
+        header .buscar #busqueda .SeccionFallas t {
+          font-size: 30px; }
+        /* line 81, public/scss/style.scss */
+        header .buscar #busqueda .anyosFundacion {
+          margin-top: 20px; }
+        /* line 85, public/scss/style.scss */
+        header .buscar #busqueda .anyosFundacion #desde, header .buscar #busqueda .anyosFundacion #hasta {
+          box-sizing: border-box;
+          outline: none;
+          display: block;
+          width: 100%;
+          padding: 7px;
+          border: none;
+          border-bottom: 1px solid black;
+          background: transparent;
+          margin-bottom: 10px;
+          font: 16px Arial, Helvetica, sans-serif;
+          height: 45px;
+          color: black; }
+        /* line 100, public/scss/style.scss */
+        header .buscar #busqueda .PrincInf {
+          outline: none;
+          display: block;
+          width: 100%;
+          padding: 7px;
+          border: none;
+          background: transparent;
+          font: 16px Arial, Helvetica, sans-serif;
+          height: 45px;
+          color: black; }
+  /*Resultados de las fallas*/
+  /* line 118, public/scss/style.scss */
+  #resultado {
+    grid-area: e;
+    margin-top: 10px;
+    z-index: 1;
+    width: 100%;
+    transform: translateX(-100px);
+    /*Contenedor mapa*/ }
+    /* line 125, public/scss/style.scss */
+    #resultado .Tabla {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(auto, 1fr);
+      grid-gap: 20px;
+      grid-template-areas: "f g h";
+      width: 100%; }
+      /* line 133, public/scss/style.scss */
+      #resultado .Tabla .Falla {
+        grid-area: f g h;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas: "i j";
+        height: auto;
+        width: 320px;
+        background-color: white; }
+        /* line 142, public/scss/style.scss */
+        #resultado .Tabla .Falla .liSquare {
+          grid-area: j;
+          float: right;
+          list-style-type: none;
+          text-justify: auto;
+          font-size: 20px;
+          position: relative; }
+        /* line 151, public/scss/style.scss */
+        #resultado .Tabla .Falla .Squareimg {
+          grid-area: i;
+          height: 200px;
+          width: 200px;
+          float: left; }
+        /* line 158, public/scss/style.scss */
+        #resultado .Tabla .Falla .ratingTextSquare {
+          grid-area: j;
+          transform: translateY(80px); }
+        /* line 163, public/scss/style.scss */
+        #resultado .Tabla .Falla .cuadroEstrellas {
+          grid-area: j;
+          background-color: #C51F45;
+          transform: translateY(120px);
+          position: relative;
+          height: 20px;
+          width: 70%; }
+          /* line 171, public/scss/style.scss */
+          #resultado .Tabla .Falla .cuadroEstrellas .ratingSquare {
+            background: white;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            display: inline-block;
+            height: 20px;
+            width: 20px; }
+          /* line 179, public/scss/style.scss */
+          #resultado .Tabla .Falla .cuadroEstrellas .ratingSquare:hover {
+            background-color: gold; }
+        /* line 185, public/scss/style.scss */
+        #resultado .Tabla .Falla .btnSquare {
+          grid-area: j;
+          width: 100%;
+          height: 20px;
+          transform: translateY(180px);
+          position: relative; }
+    /* line 198, public/scss/style.scss */
+    #resultado .aspaVentanaUbicacion {
+      background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwQDoaPcBUPlW6FeEbV6kdxcDuEKTF0CA1CKg67Uwr-0EroHdq&s");
+      height: 50px;
+      width: 50px;
+      background-size: 100%;
+      float: right;
+      transform: translateY(-500px);
+      border: none; }
+    /* line 208, public/scss/style.scss */
+    #resultado .divTextoFalla {
+      height: 500px;
+      width: 400px;
+      float: right; }
+    /* line 214, public/scss/style.scss */
+    #resultado .textoFalla {
+      transform: translate(40px, -450px);
+      font-size: 25px; } }
+
+@media (max-width: 700px) {
+  /*Cuerpo entero de la página*/
+  /* line 228, public/scss/style.scss */
+  html, body {
+    height: 100%; }
+  /* line 232, public/scss/style.scss */
+  body {
+    background-color: #C51F45; }
+  /* line 236, public/scss/style.scss */
+  #menuToggle {
+    display: block;
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 1; }
+  /* line 245, public/scss/style.scss */
+  #menuToggle input {
+    display: block;
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    top: -7px;
+    left: -5px;
+    cursor: pointer;
+    opacity: 0;
+    z-index: 2; }
+  /* line 257, public/scss/style.scss */
+  .LogoPrinc {
+    top: 0;
+    left: 0;
+    background-image: url("../img/evilcorp.png");
+    background-size: 100%;
+    height: 100px;
+    width: 100px;
+    background-repeat: no-repeat; }
+  /*Filtros*/
+  /* line 269, public/scss/style.scss */
+  header {
+    text-align: center;
+    width: 60%;
+    position: relative;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    background-color: white;
+    transform: translate(-100%, 0);
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+    z-index: 900; }
+  /* line 283, public/scss/style.scss */
+  .abrirMenu {
+    transform: translate(2%, 0); }
+  /* line 287, public/scss/style.scss */
+  .cerrarMenu {
+    transform: translate(-100%, 0); }
+  /* line 292, public/scss/style.scss */
+  .Logo {
+    background-image: url("../img/evilcorp.png");
+    background-size: 100%;
+    height: 100px;
+    width: 100px;
+    background-repeat: no-repeat; }
+  /* line 300, public/scss/style.scss */
+  h1 {
+    margin-top: 50px;
+    text-align: center;
+    color: black; }
+  /* line 306, public/scss/style.scss */
+  .buscar {
+    font-size: 15px; }
+    /* line 309, public/scss/style.scss */
+    .buscar #busqueda {
+      color: black;
+      /*.SeccionFallas{
+            margin-top: 20px;
+        }*/ }
+      /* line 316, public/scss/style.scss */
+      .buscar #busqueda .SeccionFallas t {
+        font-size: 30px; }
+      /* line 320, public/scss/style.scss */
+      .buscar #busqueda .anyosFundacion {
+        margin-top: 20px; }
+      /* line 324, public/scss/style.scss */
+      .buscar #busqueda .anyosFundacion #desde, .buscar #busqueda .anyosFundacion #hasta {
+        box-sizing: border-box;
+        outline: none;
+        display: block;
+        width: 100%;
+        padding: 7px;
+        border: none;
+        border-bottom: 1px solid black;
+        background: transparent;
+        margin-bottom: 10px;
+        font: 16px Arial, Helvetica, sans-serif;
+        height: 45px;
+        color: black; }
+      /* line 339, public/scss/style.scss */
+      .buscar #busqueda .PrincInf {
+        outline: none;
+        display: block;
+        width: 100%;
+        padding: 7px;
+        border: none;
+        background: transparent;
+        font: 16px Arial, Helvetica, sans-serif;
+        height: 45px;
+        color: black; }
+  /*Resultados de las fallas*/
+  /* line 357, public/scss/style.scss */
+  #resultado {
+    width: 90%;
+    max-width: 100%;
+    margin: auto;
+    transform: translate(-50px, -450px);
+    /*Contenedor mapa*/ }
+    /* line 363, public/scss/style.scss */
+    #resultado .Tabla {
+      display: flex;
+      flex-direction: column;
+      width: 100%; }
+      /* line 368, public/scss/style.scss */
+      #resultado .Tabla .Falla {
+        margin: 20px;
+        height: auto;
+        width: 80vw;
+        background-color: white; }
+        /* line 374, public/scss/style.scss */
+        #resultado .Tabla .Falla .liSquare {
+          float: right;
+          list-style-type: none;
+          margin-right: 20px;
+          text-justify: auto;
+          font-size: 30px;
+          position: relative; }
+        /* line 383, public/scss/style.scss */
+        #resultado .Tabla .Falla .Squareimg {
+          height: 250px;
+          width: 100%; }
+        /* line 391, public/scss/style.scss */
+        #resultado .Tabla .Falla .cuadroEstrellas {
+          background-color: #C51F45;
+          position: relative;
+          height: 20px;
+          width: 100%;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-content: center; }
+          /* line 401, public/scss/style.scss */
+          #resultado .Tabla .Falla .cuadroEstrellas .ratingSquare {
+            background: white;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            display: inline-block;
+            height: 20px;
+            width: 20px; }
+          /* line 409, public/scss/style.scss */
+          #resultado .Tabla .Falla .cuadroEstrellas .ratingSquare:hover {
+            background-color: gold; }
+        /* line 415, public/scss/style.scss */
+        #resultado .Tabla .Falla .btnSquare {
+          width: 100%;
+          height: 20px;
+          position: relative;
+          color: #C51F45;
+          background-color: white; }
+    /* line 428, public/scss/style.scss */
+    #resultado .aspaVentanaUbicacion {
+      background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwQDoaPcBUPlW6FeEbV6kdxcDuEKTF0CA1CKg67Uwr-0EroHdq&s");
+      height: 50px;
+      width: 50px;
+      background-size: 100%;
+      float: right;
+      transform: translateY(-500px);
+      border: none; }
+    /* line 438, public/scss/style.scss */
+    #resultado .divTextoFalla {
+      height: 500px;
+      width: 400px;
+      float: right; }
+    /* line 444, public/scss/style.scss */
+    #resultado .textoFalla {
+      transform: translate(40px, -450px);
+      font-size: 25px; } }
