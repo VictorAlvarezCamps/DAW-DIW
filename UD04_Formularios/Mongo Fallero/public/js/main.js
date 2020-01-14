@@ -28,6 +28,7 @@ let formRating;
 
 /*Mapa ubicación*/
 let contenedorMapa;
+let borrarContenedor;
 let aspa;
 let coord1;
 let coord2;
@@ -97,18 +98,23 @@ function Fallas(falla){
 
 /*Función que abrira un div con el mapa y la Ubicación*/
 function mostrarUbicacion(){
+    let contenedorMapa = document.createElement("div");
+    contenedorMapa.id = "ContenedorMapa";
+    document.body.appendChild(contenedorMapa);
     
-    //Construimos un div (contenedor) para mostrar la Ubicación del mapa y info
-    contenedorMapa = document.getElementById("ContenedorMapa");
+    //contenedorMapa.style.display = "block";
+    let mapa2 = document.createElement("div")
+    mapa2.id = "Mapa";
 
-    //Mostramos el contenedor
-    contenedorMapa.style.display = "block";
+    contenedorMapa.appendChild(mapa2);    
 
     //Añadimos un aspa al contenedor para poder cerrarlo
     aspa = document.createElement("img");
     aspa.classList.add("aspaVentanaUbicacion");
     aspa.id = "aspa";
     aspa.addEventListener("click",cerrarUbicacion);
+
+    contenedorMapa.appendChild(aspa);
 
     nombreFalla = document.createElement("h1");
     nombreFalla.innerText = "Falla: "+fallas.features[this.dataset.num].properties.nombre;
@@ -127,7 +133,7 @@ function mostrarUbicacion(){
 
     coordenadas = proj4(firstProjection, secondProjection, iarCoordinate);
 
-    let mapa = L.map('Mapa').setView([coordenadas[1], coordenadas[0]], 17);
+    var mapa = L.map('Mapa').setView([coordenadas[1], coordenadas[0]], 17);
 
     let tilerMapUrl = 'https://api.maptiler.com/maps/streets/256/{z}/{x}/{y}.png?key=FeZF25xvZUuP463NS59g';
   
@@ -139,17 +145,19 @@ function mostrarUbicacion(){
   
     var punto = new L.Marker([coordenadas[1], coordenadas[0]]);
     punto.addTo(mapa);
-    punto.bindPopup(nombreFalla).openPopup();   
-
-    //Unimos
-    contenedorMapa.appendChild(aspa);
+    punto.bindPopup(nombreFalla).openPopup();    
     
     
 }
 
 /*Funcion para cerrar la ventana de ubicación*/
 function cerrarUbicacion(){
-    document.getElementById("resultado").children[0].style.display = "none";
+    //document.getElementById("ContenedorMapa").style.display = "none";
+    document.body.removeChild(document.getElementById("ContenedorMapa"));
+    //console.log(document.querySelector("body").children);
+
+
+    
 }
 
 /*Función para guardarnos las secciones según sea principal o infantil*/
