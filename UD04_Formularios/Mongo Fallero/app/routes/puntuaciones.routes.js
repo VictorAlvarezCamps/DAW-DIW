@@ -1,19 +1,18 @@
- 
 module.exports = (app) => {
     const puntuaciones = require('../controllers/puntuacion.controller.js');
 
     // Create a new puntuaciones
-    app.post('/puntuaciones', puntuaciones.create);
+    app.post('/api/puntuaciones', puntuaciones.create);
 
     // Retrieve all puntuaciones
-    app.get('/puntuaciones', puntuaciones.findAll);
+    app.get('/api/puntuaciones', puntuaciones.findAll);
 
-    // Retrieve a single puntuaciones with puntuacionId
-    //app.get('/puntuaciones/:puntuacionId', puntuaciones.findOne);
+    // Retrieve las puntuaciones en las que coincida la idFalla e IP
+    app.get('/api/puntuaciones/existe/:idFalla/:ip', puntuaciones.existe);
 
     // Update a puntuaciones with puntuacionId
-    //app.put('/puntuaciones/:puntuacionId', puntuaciones.update);
+    app.put('/api/puntuaciones/:puntuacionId', puntuaciones.update);
 
     // Delete a puntuaciones with puntuacionId
-    //app.delete('/puntuaciones/:puntuacionId', puntuaciones.delete);
+    app.delete('/api/puntuaciones/:puntuacionId', puntuaciones.delete);
 }

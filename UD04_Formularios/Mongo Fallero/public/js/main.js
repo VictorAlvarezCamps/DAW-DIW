@@ -33,6 +33,9 @@ let aspa;
 let coord1;
 let coord2;
 
+/*Puntuaciones*/
+let ip;
+
 /*Función que construye cada tarjeta de falla*/
 function Fallas(falla){
     //Contenedor de la falla
@@ -65,13 +68,13 @@ function Fallas(falla){
 
     //form para enviar la puntuacion con las estrellas
     formRating = document.createElement("form");
-    formRating.setAttribute('method',"post");
-    //formRating.setAttribute('action',"/puntuaciones");
+    formRating.setAttribute('method',"GET");
+    formRating.setAttribute('action',"/puntuaciones");
 
 
     for(let i=0;i<5;i++){
         //Iconos 
-        icon = document.createElement("div");
+        icon = document.createElement("input");
         icon.type = "radio";
         icon.name = "rate";
         icon.id = i+1;
@@ -365,16 +368,39 @@ function abrirCerrarMenu(){
 
 }
 
+function puntuacion() {
+
+    let url = '/api/puntuaciones';
+    fetch (url, {
+        method: 'POST'
+      })
+      .then(res => res.json())
+      .then(res => {
+        if (res.success) {
+          console.log(res);
+        }else{
+        //mensaje de error
+        }
+      })
+      .catch(function() {
+        alert("No se puede conectar");
+      });
+
+}
+
 /*Función principal*/
-function init(){    
+function init(){
+
     parseJSON();
+
+    puntuacion();
+
     document.getElementById("header").classList.add("cerrarMenu");
     document.getElementById("Principal").addEventListener("click", cargarFiltros);
     document.getElementById("Infantil").addEventListener("click", cargarFiltros);
-    document.getElementById("Seccion").addEventListener("click",recogerSeleccionado);   
+    document.getElementById("Seccion").addEventListener("click",recogerSeleccionado);  
     document.getElementById("btnBuscar").addEventListener("click",cargarFallas);
     document.getElementById("buttonMenu").addEventListener("click",abrirCerrarMenu);
-    //document.getElementById("Seccion").addEventListener("change",cargarFallas);  
 }
 
 /*Llamamos a init al cargar la página*/
