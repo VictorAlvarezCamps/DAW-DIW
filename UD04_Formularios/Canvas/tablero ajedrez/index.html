@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ejemplos Básicos CANVAS - 01</title>
+    <link rel="stylesheet" href="canvas.css">
+</head>
+<body>
+    <header>
+        <h1> Ejemplos de Canvas Básico - 01</h1>
+    </header>
+
+    <main>
+        <canvas width="400" height="400"></canvas>
+    </main>
+
+    <script>
+        //Seleccionamos el lienzo
+        const canvas = document.querySelector("canvas");
+
+        //Seleccionamos el tipo de pincel
+        let ctx = canvas.getContext("2d");
+
+        //Variable para el total de casillas
+        let casillas = 8;
+
+        //Posiciones cuadros
+        let posX=0;
+        let posY=0;
+
+        //Tamaño de los cuadros
+        let tamX=50;
+        let tamY=50;
+
+        //Numero de casilla
+        let casilla = 0;
+
+        //Color de la casilla
+        let color = false;
+
+        //Dos bucles para hacer una matriz cuadrada
+        for(let x=1;x<=casillas;x++){
+            for(let y=1;y<=casillas;y++){
+                //Booleano para ir intercambiando el color de cada casilla
+                switch(color){
+                    case false:
+                        ctx.fillStyle = "#BC8560";
+                        color = !color;
+                    break;
+                    case true:
+                        ctx.fillStyle = "black";
+                        color = !color;
+                    break;
+                    default:break;
+                }
+                //Cambiamos de casilla
+                casilla++;
+                //Pintamos la casilla
+                ctx.fillRect(posX,posY,tamX,tamY);
+                //Cambiamos de posicion la X para desplazarnos de lugar
+                posX+=tamX;
+                
+                //Si llegamos al borde del tablero...
+                if(casilla == 8){
+                    //Cambiamos Y, reiniciamos X para volver a la izquierda
+                    // y estar en la siguiente fila y reiniciamos el numero de casilla a 0
+                    posY+=tamY;
+                    posX=0;
+                    casilla = 0;
+                    //Al cambiar de fila intercambiaremos los colores para hacer el efecto del tablero
+                    (color==true)?color=false:color=true;
+                }
+            }
+        }
+    </script>
+</body>
+</html>
