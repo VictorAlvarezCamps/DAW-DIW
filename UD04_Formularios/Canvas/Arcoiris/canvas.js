@@ -11,6 +11,7 @@ pincel.lineCap = 'round';
 pincel.lineWidth = 100;
 
 //Dibujando
+let dibujando = false;
 
 let direccion = false;
 let posX;
@@ -74,3 +75,4 @@ function init(){
     lienzo.addEventListener("mouseout",dejarDePintar);
 }
 
+window.onload = init;

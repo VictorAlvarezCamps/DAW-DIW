@@ -53,18 +53,31 @@ function puntos(pincel,cuadro,vt,datos){
     pincel.closePath();
 
     //Texto grid
+    pincel.strokeStyle = "#black";
+    pincel.stroke();
     pincel.font = "bold 12px sans-serif";
     pincel.fillText("X", 490, 500);
     pincel.fillText("Y", 8, 20);
 
     //Datos
+    let x = 50;
+
+
     pincel.beginPath();
     pincel.moveTo(0,500);
+    pincel.strokeStyle = "green";
     
     datos.forEach(dato => {
+               
+        pincel.lineTo(x,cuadro.height-dato.valor);
 
-        
-        
+        pincel.font = '30px serif';
+        pincel.fillText(dato.valor,x-20,cuadro.height-dato.valor-30); 
+
+        pincel.moveTo(x,cuadro.height-dato.valor);
+        pincel.stroke();
+
+        x+=100;
     });
 
 }
@@ -80,8 +93,7 @@ function barras(pincel,cuadro,vt,datos){
         //Dibuja la barra
         pincel.fillStyle = dato.color;
         let calcularAltura = Math.round(cuadro.width*dato.valor/(vt+20));
-        pincel.fillRect(x,cuadro.height-calcularAltura,width,dato.valor);
-        
+        pincel.fillRect(x,cuadro.height-calcularAltura,width,dato.valor);        
 
         //Añade el texto
         pincel.font = '30px serif';
@@ -107,8 +119,7 @@ function tarta(pincel,cuadro,vt,datos){
         pincel.lineTo(X,Y);
         let af = (2 * Math.PI * dato.valor) / vt;
         pincel.arc(X, Y, 100, ap, ap+af);
-        pincel.fill();
-        
+        pincel.fill();        
 
         //Añadimos las etiquetas
         pincel.beginPath();
@@ -125,7 +136,6 @@ function tarta(pincel,cuadro,vt,datos){
 
         ap += af;
     });
-
     
 }
 
@@ -142,8 +152,7 @@ function buildGrafico(){
     clave1 = document.querySelectorAll("input")[0].value;
     clave2 = document.querySelectorAll("input")[2].value;
     clave3 = document.querySelectorAll("input")[4].value;
-    clave4 = document.querySelectorAll("input")[6].value;
-    
+    clave4 = document.querySelectorAll("input")[6].value;    
 
     //Valores
     valor1 = parseInt(document.querySelectorAll("input")[1].value);
@@ -160,12 +169,10 @@ function buildGrafico(){
     ];
 
     //valor total
-    const valorTotal = datos.reduce((suma,{valor})=>suma+valor,0);
-    
+    const valorTotal = datos.reduce((suma,{valor})=>suma+valor,0);    
 
     //Limpiamos el lienzo
-    ctx.clearRect(0, 0, 500, 500);
-    
+    ctx.clearRect(0, 0, 500, 500);    
 
     //Según el tipo de gráfico seleccionaremos un metodo o otro
     if(opt == "Grafico de tartas"){        
@@ -184,7 +191,6 @@ function tipoGrafico(){
 function loadListeners(){
     document.querySelector("input[name='grafiqueame']").addEventListener("click",buildGrafico);
     document.querySelector("select").addEventListener("click",tipoGrafico);
-    //console.log(document.querySelector("datos").querySelectorAll("input").addEventListener());
 }
 
 
