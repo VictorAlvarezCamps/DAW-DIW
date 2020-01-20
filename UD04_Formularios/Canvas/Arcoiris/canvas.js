@@ -32,10 +32,6 @@ function controlTamanyoPincel(){
     }
 }
 
-function aumentarTamanyoPincel(){
-    
-}
-
 function dibujar(e){
 
     if(!dibujando)return;
