@@ -5,82 +5,83 @@ import './index.css';
 import Datos from './Datos.js';
 
 /*VARIABLES*/
+
 let url = "https://pokeapi.co/api/v2/pokedex/";
 
 let nombrePokemon;
-let urlPokemon;
 let imgPokemon;
 let descripcionPokemon;
-let tipo1;
-let tipo2;
+//let tipo1;
+//let tipo2;
 let idPokemon;
-let listaTodosLosPokemon = new Array();
+let listaTodosLosPokemon = [];
+
+const obtenerDatos = (link) => {
+    const Datos = fetch(link)
+      .then(result => result.json())
+      .then(data => {
+          return data;
+      })
+  
+      return Datos;
+}
 
 function init() {
-    
-    //API pokedex
-    fetch(url).then(function(response) {
-        return response.json();
-    }).then(function(pokedex) {
-        //Recogemos los datos de la pokedex nacional
-        fetch(pokedex.results[0].url).then(function(response) {
-            return response.json();
-        }).then(function(pokedex) {
-            //console.log(pokedex);
 
-            let cantidadPokemon = pokedex.pokemon_entries;
+    let Resultados = obtenerDatos(url);
 
-            for (let i = 0; i < cantidadPokemon.length; i++) {
-                urlPokemon = cantidadPokemon[i].pokemon_species.url;
+    Resultados.then(function (pokedex) {
 
-                fetch(urlPokemon).then(function (response) {
-                    return response.json();
-                }).then(function (datosPokemon) {
+        let url2 = pokedex.results[0].url;
 
+        let pokemones = obtenerDatos(url2);
 
-                    let datosDelPokemon = new Object();
+        pokemones.then(function (pokemon) {
 
-                    descripcionPokemon = datosPokemon.flavor_text_entries[3].flavor_text; 
-                    idPokemon = datosPokemon.id;              
-                    
+            pokemon.pokemon_entries.forEach(pokemon => {
+
+                let url3 = pokemon.pokemon_species.url;
+
+                let datosPokemon = obtenerDatos(url3);
+
+                datosPokemon.then(function (datos) {
+
+                    let datosDelPokemon = {};
+
+                    descripcionPokemon = datos.flavor_text_entries[3].flavor_text; 
+                    idPokemon = datos.id;
+
                     datosDelPokemon.descripcion = descripcionPokemon;
                     datosDelPokemon.id = idPokemon;
 
-                    let urlPokemon2 = datosPokemon.varieties[0].pokemon.url;
+                    let url4 = datos.varieties[0].pokemon.url;
 
-                    fetch(urlPokemon2).then(function (response) {
-                        return response.json();
-                    }).then(function (datosPokemon) {
+                    let masDatos = obtenerDatos(url4);
 
-                        //descripcionPokemon
-                        nombrePokemon = datosPokemon.name;
-                        imgPokemon = datosPokemon.sprites.front_default;
-                        if(datosPokemon.types[1] !== undefined || datosPokemon.types[0] !== undefined){
+                    masDatos.then(function (datos) {
+
+                        nombrePokemon = datos.name;
+                        imgPokemon = datos.sprites.front_default;
+
+                        //if(datosPokemon.types[1] !== undefined || datosPokemon.types[0] !== undefined){
                             //console.log(datosPokemon.types[1].type.name);
                             //tipo1 = datosPokemon.types[1].type.name;
                             //tipo2 = datosPokemon.types[0].type.name;
-                        }
+                        //}
 
                         datosDelPokemon.nombre = nombrePokemon;
                         datosDelPokemon.img = imgPokemon;
 
-                        /*let datosDelPokemon = {
-                            id: idPokemon,
-                            nombre: nombrePokemon,
-                            imagen: imgPokemon,
-                            descripcion: descripcionPokemon
-                        }*/
-
                         listaTodosLosPokemon.push(datosDelPokemon);
-                        
-                    });
-                });                 
+                    })
 
-            }            
-            
-        });       
+                })
 
-    });   
+            });
+
+        })
+
+    })
 
     ReactDOM.render(<Pokedex listaPokemon={listaTodosLosPokemon}/>, document.getElementById('root'));    
 
@@ -90,23 +91,15 @@ function init() {
 
 class Pokedex extends React.Component {
 
-    /*constructor() {
-        super();
-     
-        this.state = {
-          idPokemon: 1
-        };
-      }*/
-
-      constructor(props) {
+    constructor(props) {
         super(props);
      
         this.state = {
           lista: this.props.listaPokemon
         };
-      }
+    }
 
-    disminuirIDPokemon = () => {
+    /*disminuirIDPokemon = () => {
         if(listaTodosLosPokemon.id - 1 === 0){ 
             this.setState({id: listaTodosLosPokemon.id = 1 });
         }else{
@@ -121,14 +114,11 @@ class Pokedex extends React.Component {
         }else{
             this.setState({id: listaTodosLosPokemon.id + 1});
         }
-    }
+    }*/
 
     obtenerTodaLalista = (list) => {
         
-        
         return list.lista;
-        
-        
     }
     
 
@@ -137,6 +127,8 @@ class Pokedex extends React.Component {
         const { lista } = this.state;
 
         console.log(this.obtenerTodaLalista({lista}));
+
+        //console.log(this.obtenerTodaLalista({lista}).map(pokemon => console.log(pokemon)));
 
         return[          
             <div className="Datos">                
