@@ -6,14 +6,11 @@ import Datos from './Datos.js';
 
 /*VARIABLES*/
 
-let url = "https://pokeapi.co/api/v2/pokedex/";
+let url = "https://pokeapi.co/api/v2/pokemon?limit=1000";
 
 let nombrePokemon;
 let imgPokemon;
-let descripcionPokemon;
-//let tipo1;
-//let tipo2;
-let idPokemon;
+let id;
 let listaTodosLosPokemon = [];
 
 const obtenerDatos = (link) => {
@@ -32,58 +29,35 @@ function init() {
 
     Resultados.then(function (pokedex) {
 
-        let url2 = pokedex.results[0].url;
+        pokedex.results.forEach(pokemon => {
 
-        let pokemones = obtenerDatos(url2);
+            let infoPokemon = obtenerDatos(pokemon.url);
 
-        pokemones.then(function (pokemon) {
+            infoPokemon.then(function (datosPokemon) { 
 
-            pokemon.pokemon_entries.forEach(pokemon => {
+                //Recogemos datos
+                id = datosPokemon.id;
+                nombrePokemon = datosPokemon.name;
+                imgPokemon = datosPokemon.sprites.front_default;
 
-                let url3 = pokemon.pokemon_species.url;
+                //guardamos datos
+                let datosDelPokemon = {};
+                datosDelPokemon.id = id;
+                datosDelPokemon.nombre = nombrePokemon;
+                datosDelPokemon.imagen = imgPokemon;
 
-                let datosPokemon = obtenerDatos(url3);
+                listaTodosLosPokemon.push(datosDelPokemon);
 
-                datosPokemon.then(function (datos) {
+                //este then saca siempre mismo resultado 
+            })//.then(()=>ReactDOM.render(<Pokedex lista={listaTodosLosPokemon}/>, document.getElementById('root')))
 
-                    let datosDelPokemon = {};
+        });//ForEach
 
-                    descripcionPokemon = datos.flavor_text_entries[3].flavor_text; 
-                    idPokemon = datos.id;
+        //undefined
+    }).then(()=>ReactDOM.render(<Pokedex listaPokemon={listaTodosLosPokemon}/>, document.getElementById('root')))
 
-                    datosDelPokemon.descripcion = descripcionPokemon;
-                    datosDelPokemon.id = idPokemon;
+    
 
-                    let url4 = datos.varieties[0].pokemon.url;
-
-                    let masDatos = obtenerDatos(url4);
-
-                    masDatos.then(function (datos) {
-
-                        nombrePokemon = datos.name;
-                        imgPokemon = datos.sprites.front_default;
-
-                        //if(datosPokemon.types[1] !== undefined || datosPokemon.types[0] !== undefined){
-                            //console.log(datosPokemon.types[1].type.name);
-                            //tipo1 = datosPokemon.types[1].type.name;
-                            //tipo2 = datosPokemon.types[0].type.name;
-                        //}
-
-                        datosDelPokemon.nombre = nombrePokemon;
-                        datosDelPokemon.img = imgPokemon;
-
-                        listaTodosLosPokemon.push(datosDelPokemon);
-                    })
-
-                })
-
-            });
-
-        })
-
-    })
-
-    ReactDOM.render(<Pokedex listaPokemon={listaTodosLosPokemon}/>, document.getElementById('root'));    
 
 }
 
@@ -93,9 +67,9 @@ class Pokedex extends React.Component {
 
     constructor(props) {
         super(props);
-     
+        
         this.state = {
-          lista: this.props.listaPokemon
+            lista: this.props.listaPokemon
         };
     }
 
@@ -106,8 +80,6 @@ class Pokedex extends React.Component {
             this.setState({id: listaTodosLosPokemon.id - 1 });
         }
     }
-
-
     aumentarIDPokemon = () => {
         if(listaTodosLosPokemon.id + 1 === 721){
             this.setState({id: listaTodosLosPokemon.id = 721 });
@@ -117,23 +89,31 @@ class Pokedex extends React.Component {
     }*/
 
     obtenerTodaLalista = (list) => {
-        
-        return list.lista;
+              
+        return list.lista[0];
     }
     
 
     render() {
 
-        const { lista } = this.state;
+        let {lista} = this.state;
 
         console.log(this.obtenerTodaLalista({lista}));
 
-        //console.log(this.obtenerTodaLalista({lista}).map(pokemon => console.log(pokemon)));
+        //console.log({lista}.lista);
+
+        //const lista = this.state.lista;
+
+        //console.log(this.listaPokemon);
+
+        //console.log(ar[0]);
+
+        //this.obtenerTodaLalista({lista});
 
         return[          
             <div className="Datos">                
                 <button onClick={this.disminuirIDPokemon} className="btnAtras">-</button>
-                    <Datos img={this.props.img} id={this.props.id} nom={this.props.nom} tip1={this.props.tip1} tip2={this.props.tip2} descrip={this.props.descripcion}/>
+                    <Datos img={this.props.imagen}  nom={this.props.nombre} />
                 <button onClick={this.aumentarIDPokemon} className="btnAdelante">+</button>
             </div>
         ];
@@ -154,8 +134,5 @@ class Pokedex extends React.Component {
     }
 
 }
-
-
-
 
 window.onload = init;
