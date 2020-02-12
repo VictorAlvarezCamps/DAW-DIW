@@ -2,18 +2,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Datos from './Datos.js';
+//import Datos from './Datos.js';
 
 /*VARIABLES*/
 
-let url = "https://pokeapi.co/api/v2/pokemon?limit=1000";
-
-let nombrePokemon;
-let imgPokemon;
-let id;
-let listaTodosLosPokemon = [];
-
-const obtenerDatos = (link) => {
+/*const obtenerDatos = (link) => {
     const Datos = fetch(link)
       .then(result => result.json())
       .then(data => {
@@ -21,11 +14,13 @@ const obtenerDatos = (link) => {
       })
   
       return Datos;
-}
+}*/
 
 function init() {
 
-    let Resultados = obtenerDatos(url);
+    ReactDOM.render(<Pokedex />, document.getElementById('root'))
+
+    /*let Resultados = obtenerDatos(url);
 
     Resultados.then(function (pokedex) {
 
@@ -54,9 +49,9 @@ function init() {
         });//ForEach
 
         //undefined
-    }).then(()=>ReactDOM.render(<Pokedex listaPokemon={listaTodosLosPokemon}/>, document.getElementById('root')))
+    }).then(()=>ReactDOM.render(<Pokedex listaPokemon={listaTodosLosPokemon}/>, document.getElementById('root')))*/
 
-    
+
 
 
 }
@@ -67,9 +62,9 @@ class Pokedex extends React.Component {
 
     constructor(props) {
         super(props);
-        
+
         this.state = {
-            lista: this.props.listaPokemon
+            lista: [{}],
         };
     }
 
@@ -86,47 +81,45 @@ class Pokedex extends React.Component {
         }else{
             this.setState({id: listaTodosLosPokemon.id + 1});
         }
-    }*/    
+    }*/
 
-    obtenerTodaLalista = (list) => {
-              
-        return list.lista;
-    }
-    
-    getData(){
-        let {lista} = this.state;        
-        setTimeout(() => {
-            this.setState({
-                listaDeTodosLosPokemon: this.obtenerTodaLalista({lista})
-            })
-        },3000)
-    }
+    componentDidMount = async () => {
 
-    componentDidMount(){
-        this.getData();
+        let url = "https://pokeapi.co/api/v2/pokemon?limit=1000";
+
+        const result1 = await fetch(url);
+
+        const pokemons = await result1.json();
+
+        this.setState({
+            lista: pokemons.results
+        })
+
     }
 
     render() {
 
-        //console.log(this.obtenerTodaLalista({lista}));
+        console.log(this.state.lista[0].name);
 
-        //console.log({lista}.lista);
+        
 
-        console.log(this.state.listaDeTodosLosPokemon);
 
-        //console.log(this.listaPokemon);
+        return (
+            <div className="Datos">
+                {this.state.lista.map(pokemon => {
+                    return (<h3>{pokemon.url}</h3>)
+                })}
+                hola
+            </div>
+        );
 
-        //console.log(ar[0]);
-
-        //this.obtenerTodaLalista({lista});
-
-            return[
-                <div className="Datos">                
-                    <button onClick={this.disminuirIDPokemon} className="btnAtras">-</button>
-                        <Datos img={this.props.imagen}  nom={this.props.nombre} />
-                    <button onClick={this.aumentarIDPokemon} className="btnAdelante">+</button>
-                </div>
-            ];
+        /*return[
+            <div className="Datos">                
+                <button onClick={this.disminuirIDPokemon} className="btnAtras">-</button>
+                    <Datos img={this.props.imagen}  nom={this.props.nombre} />
+                <button onClick={this.aumentarIDPokemon} className="btnAdelante">+</button>
+            </div>
+        ];*/
 
         /*return[          
             <div className="Datos">                
