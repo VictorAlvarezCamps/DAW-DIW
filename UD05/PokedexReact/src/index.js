@@ -86,23 +86,33 @@ class Pokedex extends React.Component {
         }else{
             this.setState({id: listaTodosLosPokemon.id + 1});
         }
-    }*/
+    }*/    
 
     obtenerTodaLalista = (list) => {
               
-        return list.lista[0];
+        return list.lista;
     }
     
+    getData(){
+        let {lista} = this.state;        
+        setTimeout(() => {
+            this.setState({
+                listaDeTodosLosPokemon: this.obtenerTodaLalista({lista})
+            })
+        },3000)
+    }
+
+    componentDidMount(){
+        this.getData();
+    }
 
     render() {
 
-        let {lista} = this.state;
-
-        console.log(this.obtenerTodaLalista({lista}));
+        //console.log(this.obtenerTodaLalista({lista}));
 
         //console.log({lista}.lista);
 
-        //const lista = this.state.lista;
+        console.log(this.state.listaDeTodosLosPokemon);
 
         //console.log(this.listaPokemon);
 
@@ -110,13 +120,13 @@ class Pokedex extends React.Component {
 
         //this.obtenerTodaLalista({lista});
 
-        return[          
-            <div className="Datos">                
-                <button onClick={this.disminuirIDPokemon} className="btnAtras">-</button>
-                    <Datos img={this.props.imagen}  nom={this.props.nombre} />
-                <button onClick={this.aumentarIDPokemon} className="btnAdelante">+</button>
-            </div>
-        ];
+            return[
+                <div className="Datos">                
+                    <button onClick={this.disminuirIDPokemon} className="btnAtras">-</button>
+                        <Datos img={this.props.imagen}  nom={this.props.nombre} />
+                    <button onClick={this.aumentarIDPokemon} className="btnAdelante">+</button>
+                </div>
+            ];
 
         /*return[          
             <div className="Datos">                
