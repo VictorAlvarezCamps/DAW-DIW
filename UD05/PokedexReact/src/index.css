@@ -1,79 +1,48 @@
-body,html{
-    height: 100%;
-}
+@import url("https://fonts.googleapis.com/css?family=Bungee|Bungee+Hairline");
 
-body{
-    margin: 0;
-    background-color: black;
-    background-image: url("img/Fondo.png");
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-}
 
-.Datos{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100vh;
 
-}
-
-.btnAtras{
-    position: relative;
-    height: 200px;
-    width: 200px;
-    margin-top: auto;
-    margin-bottom: auto;
-}
-
-.datosDelPokemon{
-    position: relative;
-    top:0;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 100px;
-}
-
-.btnAdelante{
-    position: relative;
-    height: 200px;
-    width: 200px;
-    margin-top: auto;
-    margin-bottom: auto;
-}
-.imagenPokemon{
-    border: 4px solid black;
-    position: relative;
-    float: left;
-    height: 250px;
+.ListaPokemon{
+    font-family: 'Bungee Hairline', cursive;
+    border: 5px solid black;
+    border-radius: 18px 18px 18px 18px;
+    height: 80vh;
     width: 250px;
-    margin-right: 20px;
-    background-color: white;
-    border-radius: 50%;
+    margin-top: 150px;
+    margin-left: 50px;
+    overflow: auto;
+    background-color: rgb(72, 96, 216); 
+    color: #202618;
+    font: bold;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: auto;
+    grid-gap: 20px
+}
+::-webkit-scrollbar{
+	border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    width: 10px;
+}
+::-webkit-scrollbar-track{
+    box-shadow: inset 0 0 10px #00000070;
 }
 
-.imagenPokemon img{
-    height: 100%;
-    width: 100%;
+::-webkit-scrollbar-thumb{
+    /*background: linear-gradient(red,rgb(107, 8, 8),black);*/
+    background: cyan;
+    border-radius: 10px;
 }
 
-.types{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.Pokemon{
+    height: 100px;
+    width: 100px;
+}
+.nombrePokemon{
+    font-size: 10px;
 }
 
-.descripcion{
-    border: 3px solid black;
-    margin-top: 50px;
-    position: relative;
-    float: left;
-    height: auto;
-    width: 600px;
-    background-image: url("img/fondoPokemon.jpg");
-    background-size: 100% 100%;
+.imagenPokemon{
+    background-size: 100%;
     background-repeat: no-repeat;
-    border-radius: 35px;
-    padding: 5px;
 }
-
