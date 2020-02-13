@@ -21,7 +21,7 @@ class Pokedex extends React.Component {
 
         this.state = {
             lista: [{}],
-            datos: [{}],
+            datos: [],
         };
     }
 
@@ -68,15 +68,13 @@ class Pokedex extends React.Component {
     }
 
     render() {
-        
-        console.log(this.state.datos);
 
         return (
             <div className="ListaPokemon">
                 {this.state.datos.map(pokemon => {
                     return (
                         <div className="Pokemon">
-                            <img className="imagenPokemon" src={pokemon.sprites}></img>
+                            <img className="imagenPokemon" src={pokemon.sprites.front_default}></img>
                             <h1 className="nombrePokemon">{pokemon.name}</h1>
                         </div>
                     )
