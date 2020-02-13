@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Datos from './Datos.js';
+import InfoPokemon from './infoPokemon';
 
 /*VARIABLES*/
 
@@ -20,25 +21,9 @@ class Pokedex extends React.Component {
         super(props);
 
         this.state = {
-            lista: [{}],
-            datos: [],
+            datos: []
         };
     }
-
-    /*disminuirIDPokemon = () => {
-        if(listaTodosLosPokemon.id - 1 === 0){ 
-            this.setState({id: listaTodosLosPokemon.id = 1 });
-        }else{
-            this.setState({id: listaTodosLosPokemon.id - 1 });
-        }
-    }
-    aumentarIDPokemon = () => {
-        if(listaTodosLosPokemon.id + 1 === 721){
-            this.setState({id: listaTodosLosPokemon.id = 721 });
-        }else{
-            this.setState({id: listaTodosLosPokemon.id + 1});
-        }
-    }*/
 
     componentDidMount = async () => {
 
@@ -67,26 +52,23 @@ class Pokedex extends React.Component {
 
     }
 
-    handleClick(e){
-        console.log("Click!");
-    }
-
     render() {
 
         return (
             <div className="contenido">
-                <img className="titulo"></img>               
-
-                <input type="text" className="Buscador"></input>
-                <input type="button" className="btnEnviar" value="Buscar"></input>
+                <div className="header">
+                    <img className="titulo"></img>
+                    <input type="text" placeholder="Busca un pokémon aquí!"></input>
+                </div>   
 
                 <div className="ListaPokemon">
-                    {this.state.datos.map(pokemon => {
-                        return (
-                            <Datos handleClick={()=>{this.handleClick()}} id={pokemon.id} img={pokemon.sprites.front_default}  nom={pokemon.name} />
-                        )
-                    })}
+                        {this.state.datos.map(pokemon => {
+                            return (
+                                <Datos id={pokemon.id} img={pokemon.sprites.front_default}  nom={pokemon.name} />
+                            )
+                        })}               
                 </div>
+                <InfoPokemon />
             </div>
         );
 

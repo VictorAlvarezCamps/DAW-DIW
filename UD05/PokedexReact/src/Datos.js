@@ -10,20 +10,20 @@ class Datos extends Component{
             imagen : this.props.img,
             nombre: this.props.nom,
             id: this.props.id, 
+            //seleccionado : [] 
         }
-        this.handleClick = this.handleClick.bind(this);
-    }
+    }   
 
+    /*handleClick(e) {
+        this.setState({seleccionado: e.target});
+    }*/
     
-    
-    
-    render(){
-
-        
+    render(){       
 
         return(
-            <div className="Pokemon" onClick={this.handleClick}>
+            <div className="Pokemon">
                 <img className="imagenPokemon" alt={this.props.id} src={this.state.imagen}></img>
+                <h1 >{this.state.id}</h1>
                 <h1 className="nombrePokemon">{this.state.nombre}</h1>
             </div>
         );
