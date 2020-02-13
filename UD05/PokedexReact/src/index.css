@@ -1,23 +1,33 @@
 @import url("https://fonts.googleapis.com/css?family=Bungee|Bungee+Hairline");
 
+.contenido{
+    width: 100%;
+}
 
+.Buscador{
+    margin-left: 20%;
+    width: 800px;
+    
+}
+.btnEnviar{
+    margin-left: 20px;
+}
 
 .ListaPokemon{
     font-family: 'Bungee Hairline', cursive;
-    border: 5px solid black;
     border-radius: 18px 18px 18px 18px;
-    height: 80vh;
-    width: 250px;
-    margin-top: 150px;
+    height: 100%;
+    width: calc(100% - 100px);
+    margin-top: 10px;
     margin-left: 50px;
     overflow: auto;
-    background-color: rgb(72, 96, 216); 
     color: #202618;
     font: bold;
     display: grid;
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(3,1fr);
     grid-template-rows: auto;
     grid-gap: 10px;
+    padding: 20px;
 }
 ::-webkit-scrollbar{
 	border-radius: 10px;
@@ -30,23 +40,34 @@
 
 ::-webkit-scrollbar-thumb{
     /*background: linear-gradient(red,rgb(107, 8, 8),black);*/
-    background: cyan;
+    background: rgb(255, 0, 0);
     border-radius: 10px;
 }
 
 .Pokemon{
-    height: 100px;
-    width: 100px;
+    height: 350px;
+    width: 350px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border: 5px solid black;
+    background-color: white;
+    border-radius: 18px 18px 18px 18px;
 }
 .nombrePokemon{
-    font-size: 10px;
+    font-size: 30px;
 }
 
 .imagenPokemon{
+    height: 300px;
+    width: 300px;
     background-size: 100%;
     background-repeat: no-repeat;
+}
+.titulo{
+    /*background-image: url("img/pokedex.png");
+    background-size: 100% 100%;
+    height: 150px;
+    width: 100%;*/
 }

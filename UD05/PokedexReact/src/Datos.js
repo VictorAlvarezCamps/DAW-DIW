@@ -3,38 +3,23 @@ import './index.css';
 
 class Datos extends Component{
 
-    /*constructor(){
+    constructor(props){
         super(props);
 
         this.state = {
             imagen : this.props.img,
-            id : this.props.id,
-            nombre : this.props.nom,
-            descripcion : this.props.descrip,
-            tipo1 : this.props.tip1,
-            tipo2 : this.props.tip2
+            nombre: this.props.nom,
+            id: this.props.id
         }
-    }*/
+    }
 
     
     
     render(){
         return(
-            <div className="datosDelPokemon">
-                <div className="imagenPokemon"><img src={this.props.img} alt={this.props.id}></img></div>
-                        
-                <h1>Nº: {this.props.id}</h1>   
-                <h1>{this.props.nom}</h1>
-
-                <div className="types">
-                    <h1 className="type1">{this.props.tip1}</h1>
-                    <h1 className="type2">{this.props.tip2}</h1>
-                </div>                        
-
-                <div className="descripcion"> 
-                    <h2>{this.props.descrip}</h2>
-                </div>
-
+            <div className="Pokemon">
+                <img className="imagenPokemon" alt={this.props.id} src={this.state.imagen}></img>
+                <h1 className="nombrePokemon">{this.state.nombre}</h1>
             </div>
         );
     }

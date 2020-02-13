@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-//import Datos from './Datos.js';
+import Datos from './Datos.js';
 
 /*VARIABLES*/
 
@@ -70,25 +70,21 @@ class Pokedex extends React.Component {
     render() {
 
         return (
-            <div className="ListaPokemon">
-                {this.state.datos.map(pokemon => {
-                    return (
-                        <div className="Pokemon">
-                            <img className="imagenPokemon" src={pokemon.sprites.front_default}></img>
-                            <h1 className="nombrePokemon">{pokemon.name}</h1>
-                        </div>
-                    )
-                })}
+            <div className="contenido">
+                <img className="titulo"></img>               
+
+                <input type="text" className="Buscador"></input>
+                <input type="button" className="btnEnviar" value="Buscar"></input>
+
+                <div className="ListaPokemon">
+                    {this.state.datos.map(pokemon => {
+                        return (
+                            <Datos id={pokemon.id} img={pokemon.sprites.front_default}  nom={pokemon.name} />
+                        )
+                    })}
+                </div>
             </div>
         );
-
-        /*return[
-            <div className="Datos">                
-                <button onClick={this.disminuirIDPokemon} className="btnAtras">-</button>
-                    <Datos img={this.props.imagen}  nom={this.props.nombre} />
-                <button onClick={this.aumentarIDPokemon} className="btnAdelante">+</button>
-            </div>
-        ];*/
 
     }
 
