@@ -67,6 +67,10 @@ class Pokedex extends React.Component {
 
     }
 
+    handleClick(e){
+        console.log("Click!");
+    }
+
     render() {
 
         return (
@@ -79,7 +83,7 @@ class Pokedex extends React.Component {
                 <div className="ListaPokemon">
                     {this.state.datos.map(pokemon => {
                         return (
-                            <Datos id={pokemon.id} img={pokemon.sprites.front_default}  nom={pokemon.name} />
+                            <Datos handleClick={()=>{this.handleClick()}} id={pokemon.id} img={pokemon.sprites.front_default}  nom={pokemon.name} />
                         )
                     })}
                 </div>
