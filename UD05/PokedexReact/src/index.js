@@ -59,24 +59,23 @@ class Pokedex extends React.Component {
                 <div className="header">
                     <img className="titulo"></img>
                     <div className="porTipos">
-                        <div>Normal</div>
-                        <div>Fuego</div>
-                        <div>Agua</div>
-                        <div>Planta</div>
-                        <div>Eléctrico</div>
-                        <div>Hielo</div>
-                        <div>Lucha</div>
-                        <div>Veneno</div>
-                        <div>Tierra</div>
-                        <div>Volador</div>
-                        <div>Psíquico</div>
-                        <div>Bicho</div>
-                        <div>Roca</div>
-                        <div>Fantasma</div>
-                        <div>Dragón</div>
-                        <div>Siniestro</div>
-                        <div>Acero</div>
-                        <div>Hada</div>
+                        <div className="Fuego"></div>
+                        <div className="Agua"></div>
+                        <div className="Planta"></div>
+                        <div className="Electrico"></div>
+                        <div className="Hielo"></div>
+                        <div className="Lucha"></div>
+                        <div className="Veneno"></div>
+                        <div className="Tierra"></div>
+                        <div className="Volador"></div>
+                        <div className="Psiquico"></div>
+                        <div className="Bicho"></div>
+                        <div className="Roca"></div>
+                        <div className="Fantasma"></div>
+                        <div className="Dragon"></div>
+                        <div className="Siniestro"></div>
+                        <div className="Acero"></div>
+                        <div className="Hada"></div>
                     </div>
                     
                     <input type="text" placeholder="Busca un pokémon aquí!"></input>
@@ -89,7 +88,8 @@ class Pokedex extends React.Component {
                             )
                         })}               
                 </div>
-                <InfoPokemon />
+                
+                <InfoPokemon/>
             </div>
         );
 

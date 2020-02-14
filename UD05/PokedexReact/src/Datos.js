@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import './index.css';
+import InfoPokemon from './infoPokemon';
 
 class Datos extends Component{
 
@@ -10,12 +11,13 @@ class Datos extends Component{
             imagen : this.props.img,
             nombre: this.props.nom,
             id: this.props.id, 
-            //seleccionado : [] 
         }
+        this.handleClick = this.handleClick.bind(this);
     }   
 
-    handleClick(e) {
-        console.log(this);
+    handleClick(e){
+        console.log(e.target);
+        //<InfoPokemon dato={e.target}/>
     }
     
     render(){       
