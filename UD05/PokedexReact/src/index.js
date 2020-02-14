@@ -2,16 +2,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Datos from './Datos.js';
+//import Datos from './Datos.js';
 import InfoPokemon from './infoPokemon';
 
 /*VARIABLES*/
+let valorTexto;
 
 function init() {
 
     ReactDOM.render(<Pokedex />, document.getElementById('root'))
 
+    document.getElementById("filter").addEventListener("keypress",recogerValor);
+
+
 }
+
+function recogerValor(e){
+    //console.log(e.key);
+    valorTexto = e.key;
+}
+
+const filtrar = (texto) => {
+    return this.state.datos.filter(data => {
+        return data.toLowerCase().indexOf(texto.toLowerCase()) > -1;
+    });
+}   
 
 /*-----------------------------------------------REACT-----------------------------------*/
 
@@ -21,8 +36,10 @@ class Pokedex extends React.Component {
         super(props);
 
         this.state = {
-            datos: []
-        };
+            datos: [],
+            elegido: {}
+        }
+        this.handleClick = this.handleClick.bind(this);
     }
 
     componentDidMount = async () => {
@@ -48,11 +65,25 @@ class Pokedex extends React.Component {
             this.setState({
                 datos: pokemons
             })
-        })       
+        })     
+        
+        
 
     }
 
+    handleClick = (e,data) =>{
+
+        this.state.datos.map(pokemon => {
+            if(data === pokemon.id){
+                this.setState({elegido:pokemon});
+            }
+        })
+        
+    }
+
     render() {
+
+       
 
         return (
             <div className="contenido">
@@ -78,22 +109,26 @@ class Pokedex extends React.Component {
                         <div className="Hada"></div>
                     </div>
                     
-                    <input type="text" placeholder="Busca un pokémon aquí!"></input>
+                    <input type="text" id="filter" placeholder="Busca un pokémon aquí!"></input>
                 </div>   
 
                 <div className="ListaPokemon">
                         {this.state.datos.map(pokemon => {
                             return (
-                                <Datos id={pokemon.id} img={pokemon.sprites.front_default}  nom={pokemon.name} />
+                                <div className="Pokemon" name={pokemon.id} onClick={((e) => this.handleClick(e, pokemon.id))}>
+                                    <img className="imagenPokemon" alt={pokemon.id} src={pokemon.sprites.front_default}></img>
+                                    <h1 >{pokemon.id}</h1>
+                                    <h1 className="nombrePokemon">{pokemon.name}</h1>
+                                </div>
                             )
                         })}               
                 </div>
-                
-                <InfoPokemon/>
+                <InfoPokemon pok={this.state.elegido}/>
             </div>
         );
 
-    }
+    }  
+
 
 }
 
