@@ -14,14 +14,14 @@ class Datos extends Component{
         }
     }   
 
-    /*handleClick(e) {
-        this.setState({seleccionado: e.target});
-    }*/
+    handleClick(e) {
+        console.log(this);
+    }
     
     render(){       
 
         return(
-            <div className="Pokemon">
+            <div className="Pokemon" onClick={this.handleClick}>
                 <img className="imagenPokemon" alt={this.props.id} src={this.state.imagen}></img>
                 <h1 >{this.state.id}</h1>
                 <h1 className="nombrePokemon">{this.state.nombre}</h1>
