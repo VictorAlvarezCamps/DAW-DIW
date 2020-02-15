@@ -1,6 +1,5 @@
 import React,{Component} from 'react';
 import './index.css';
-import InfoPokemon from './infoPokemon';
 
 class Datos extends Component{
 
@@ -8,9 +7,9 @@ class Datos extends Component{
         super(props);
 
         this.state = {
-            imagen : this.props.img,
-            nombre: this.props.nom,
-            id: this.props.id, 
+            id: this.props.id,
+            imagen: this.props.imagen,
+            nombre: this.props.nombre
         }
         
     }   
@@ -20,7 +19,11 @@ class Datos extends Component{
     render(){       
 
         return(
-            
+            <div>
+                <img className="imagenPokemon" alt={this.state.id} src={this.state.imagen}></img>
+                <h1 >{this.state.id}</h1>
+                <h1 className="nombrePokemon">{this.state.nombre}</h1>
+            </div>
         );
     }
 

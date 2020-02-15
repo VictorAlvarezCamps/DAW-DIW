@@ -7,11 +7,7 @@ class InfoPokemon extends Component{
         super(props);
 
         this.state = {
-            /*imagen : this.props.img,
-            nombre: this.props.nom,
-            id: this.props.id,
-            descripcion: this.props.descrip*/
-            //info: this.props.pok
+            datos: {}
         }
     }
    
@@ -20,7 +16,9 @@ class InfoPokemon extends Component{
 
         //console.log(this.props.pok.sprites);
         //console.log(this.props.pok.types);
-        console.log(this.props.pok.moves);
+        //console.log(this.props.pok.moves);
+
+        
 
         return(
             <div className="infoPokemon" >
@@ -28,6 +26,8 @@ class InfoPokemon extends Component{
                 <p className="numPokemon">#{this.props.pok.id}</p>
                 <p className="nombrePokemon">{this.props.pok.name}</p>
                 <div className="tipos">
+                    <p></p>
+                    <p></p>
                 </div>
                 <div className="descripcionPokemon">{this.state.descripcion}</div>
                 <div className="extraInfo">

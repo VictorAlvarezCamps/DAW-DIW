@@ -2,31 +2,36 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-//import Datos from './Datos.js';
+import Datos from './Datos.js';
 import InfoPokemon from './infoPokemon';
+import Header from './Header';
 
 /*VARIABLES*/
-let valorTexto;
+let seleccionTipo;
 
 function init() {
 
     ReactDOM.render(<Pokedex />, document.getElementById('root'))
 
-    document.getElementById("filter").addEventListener("keypress",recogerValor);
+    let tipos = document.querySelector(".porTipos");
+
+    /*for (let i = 0; i < tipos.children.length; i++) {
+        //console.log(tipos.children[i]);
+        tipos.children[i].addEventListener("click",recogerTipo);
+    }*/
 
 
 }
 
-function recogerValor(e){
-    //console.log(e.key);
-    valorTexto = e.key;
+function recogerTipo(e){
+    seleccionTipo = e.target.dataset.tipo;
 }
 
-const filtrar = (texto) => {
-    return this.state.datos.filter(data => {
-        return data.toLowerCase().indexOf(texto.toLowerCase()) > -1;
-    });
-}   
+
+function busqueda(e){
+    let input = document.querySelector('input[type="text"]').value;
+    return e.name.startsWith(input);
+}
 
 /*-----------------------------------------------REACT-----------------------------------*/
 
@@ -36,13 +41,19 @@ class Pokedex extends React.Component {
         super(props);
 
         this.state = {
+            loading: true,
             datos: [],
             elegido: {}
         }
         this.handleClick = this.handleClick.bind(this);
     }
 
+    
+    
+
     componentDidMount = async () => {
+
+        
 
         let url = "https://pokeapi.co/api/v2/pokemon?limit=1000";
 
@@ -61,15 +72,102 @@ class Pokedex extends React.Component {
             
         });
 
-        Promise.all(todosPokemons).then(pokemons => {
-            this.setState({
-                datos: pokemons
-            })
-        })     
-        
         
 
+        Promise.all(todosPokemons).then(pokemons => {
+
+            //console.log(pokemons);
+
+            this.setState({
+                loading: false,
+                datos: pokemons                
+            })
+
+                
+        })
+        
+        const r = this.state.datos.filter(busqueda);
+
+        
+
+    }   
+
+    busqueda(e){
+        let input = document.querySelector('input[type="text"]').value;
+        return e.name.startsWith(input);
     }
+
+    //componentWillMount() {
+
+        /*r.forEach(p =>{
+            
+            //console.log(p);
+                
+            
+
+            switch (seleccionTipo) {
+                case "Todos":
+                    this.setState({
+                        datos: p
+                    })
+                    break;
+                case "Fuego":
+                    console.log(p.types);
+
+                    break;
+                case "Planta":
+
+                    break;
+                case "Electrico":
+                    
+                    break;
+                case "Hielo":
+
+                    break;
+                case "Lucha":
+
+                    break;
+                case "Veneno":
+
+                    break;
+                case "Tierra":
+                    
+                    break;
+                case "Volador":
+
+                    break;
+                case "Psiquico":
+
+                    break;
+                case "Bicho":
+
+                    break;
+                case "Roca":
+                    
+                    break;
+                case "Fantasma":
+
+                    break;
+                case "Dragon":
+
+                    break;
+                case "Siniestro":
+
+                    break;
+                case "Acero":
+                
+                    break;
+                case "Hada":
+
+                    break;
+                default:
+                    break;
+            }
+            
+
+        });      */      
+    //}
+
 
     handleClick = (e,data) =>{
 
@@ -83,49 +181,30 @@ class Pokedex extends React.Component {
 
     render() {
 
-       
+        if (this.state.loading) {
+            return (<div className="Cargando">.</div>);
+        }
 
+
+        
+        
+       
         return (
             <div className="contenido">
-                <div className="header">
-                    <img className="titulo"></img>
-                    <div className="porTipos">
-                        <div className="Fuego"></div>
-                        <div className="Agua"></div>
-                        <div className="Planta"></div>
-                        <div className="Electrico"></div>
-                        <div className="Hielo"></div>
-                        <div className="Lucha"></div>
-                        <div className="Veneno"></div>
-                        <div className="Tierra"></div>
-                        <div className="Volador"></div>
-                        <div className="Psiquico"></div>
-                        <div className="Bicho"></div>
-                        <div className="Roca"></div>
-                        <div className="Fantasma"></div>
-                        <div className="Dragon"></div>
-                        <div className="Siniestro"></div>
-                        <div className="Acero"></div>
-                        <div className="Hada"></div>
-                    </div>
-                    
-                    <input type="text" id="filter" placeholder="Busca un pokémon aquí!"></input>
-                </div>   
+                <Header /> 
 
-                <div className="ListaPokemon">
+                <div className="ListaPokemon">                        
                         {this.state.datos.map(pokemon => {
                             return (
                                 <div className="Pokemon" name={pokemon.id} onClick={((e) => this.handleClick(e, pokemon.id))}>
-                                    <img className="imagenPokemon" alt={pokemon.id} src={pokemon.sprites.front_default}></img>
-                                    <h1 >{pokemon.id}</h1>
-                                    <h1 className="nombrePokemon">{pokemon.name}</h1>
+                                    <Datos id={pokemon.id} imagen={pokemon.sprites.front_default} nombre={pokemon.name}/>
                                 </div>
                             )
                         })}               
                 </div>
                 <InfoPokemon pok={this.state.elegido}/>
             </div>
-        );
+        );  
 
     }  
 
