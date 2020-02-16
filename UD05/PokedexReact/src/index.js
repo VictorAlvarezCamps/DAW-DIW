@@ -43,7 +43,9 @@ class Pokedex extends React.Component {
         this.state = {
             loading: true,
             datos: [],
-            elegido: {}
+            datos2: [],
+            descriptions: [],
+            elegido: {}     
         }
         this.handleClick = this.handleClick.bind(this);
     }
@@ -57,9 +59,12 @@ class Pokedex extends React.Component {
 
         let url = "https://pokeapi.co/api/v2/pokemon?limit=1000";
 
+        let url2 = "https://pokeapi.co/api/v2/pokedex/1";
+
         const result1 = await fetch(url);
 
         const pokemons = await result1.json();
+
 
         const todosPokemons = pokemons.results.map( async datos => {
 
@@ -74,7 +79,7 @@ class Pokedex extends React.Component {
 
         
 
-        Promise.all(todosPokemons).then(pokemons => {
+        Promise.all(todosPokemons,).then(pokemons => {
 
             //console.log(pokemons);
 
@@ -85,6 +90,50 @@ class Pokedex extends React.Component {
 
                 
         })
+
+
+        const result2 = await fetch(url2);
+
+        const pokemons2 = await result2.json();
+
+        const todosPokemons2 = pokemons2.pokemon_entries.map( async datos2 => {
+
+            const url3 = await fetch(datos2.pokemon_species.url);
+
+            const datosPokemon2 = await url3.json();
+
+            return datosPokemon2;
+
+        })
+        
+
+        Promise.all(todosPokemons2).then(pokemons => {
+
+            let result = [];
+
+            let descripciones = []
+            
+            pokemons.forEach( async pokemon => {
+
+                const url4 = await fetch(pokemon.varieties[0].pokemon.url);
+
+                const datosPokemon3 = await url4.json();
+
+                result.push(datosPokemon3);
+                descripciones.push(pokemon);
+
+            })
+            
+
+            this.setState({
+                loading: false,
+                datos2: result,
+                descriptions: descripciones    
+            })
+
+            
+        })
+
         
         const r = this.state.datos.filter(busqueda);
 
@@ -181,13 +230,13 @@ class Pokedex extends React.Component {
 
     render() {
 
+        let contador = 0;
+
         if (this.state.loading) {
             return (<div className="Cargando">.</div>);
         }
 
-
-        
-        
+        //console.log(this.state.descriptions);
        
         return (
             <div className="contenido">
@@ -202,7 +251,30 @@ class Pokedex extends React.Component {
                             )
                         })}               
                 </div>
-                <InfoPokemon pok={this.state.elegido}/>
+                <div className="infoPokemon">
+                    {this.state.datos2.map(pokemon => {
+                        if(this.state.elegido.name === pokemon.name) {
+                            this.state.descriptions.map(pokemon2 => {
+                                //console.log(pokemon2);
+                                if(pokemon.name === pokemon2.name){
+                                    //console.log(pokemon.name+" "+this.state.descriptions.name);
+                                    pokemon2.flavor_text_entries.map(idiomaES => { //NO MUESTRA EL RETURN DEL POKEMON SELECCIONADO
+                                        //console.log(idiomaES.language.name);
+                                        if(idiomaES.language.name === "es"){
+                                            //console.log(idiomaES);
+                                            if (contador === 0 ) {
+                                                contador++;
+                                                //console.log(idiomaES.flavor_text);
+                                                return <InfoPokemon pok={this.state.elegido} pok2={pokemon} descripcion={idiomaES.flavor_text}/>
+                                            }
+                                        }
+                                    })                                                                    
+                                }
+                            });
+                            return <InfoPokemon pok={this.state.elegido} pok2={pokemon}/>                  
+                        }
+                    })}                    
+                </div>
             </div>
         );  
 

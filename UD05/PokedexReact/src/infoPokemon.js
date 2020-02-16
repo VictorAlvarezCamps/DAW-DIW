@@ -7,7 +7,9 @@ class InfoPokemon extends Component{
         super(props);
 
         this.state = {
-            datos: {}
+            datos: {},
+            datos2: this.props.pok2,
+            descrip: this.props.descripcion
         }
     }
    
@@ -16,13 +18,12 @@ class InfoPokemon extends Component{
 
         //console.log(this.props.pok.sprites);
         //console.log(this.props.pok.types);
-        //console.log(this.props.pok.moves);
-
-        
+        //console.log(this.props.pok.moves)
+        console.log(this.props.descripcion);
 
         return(
-            <div className="infoPokemon" >
-                <img className="imgPokemon" alt={this.props.pok.id} src={this.props.pok.sprites}></img>
+            <div>
+                <img className="imgPokemon" alt={this.props.pok.id} src={this.state.datos2.sprites.front_default}></img>
                 <p className="numPokemon">#{this.props.pok.id}</p>
                 <p className="nombrePokemon">{this.props.pok.name}</p>
                 <div className="tipos">
@@ -32,6 +33,7 @@ class InfoPokemon extends Component{
                 <div className="descripcionPokemon">{this.state.descripcion}</div>
                 <div className="extraInfo">
                     <p>Altura: {this.props.pok.height}</p>
+                    <br></br>
                     <p>Peso: {this.props.pok.weight}</p>
                     <div className="Movimientos">
                         <p></p>
