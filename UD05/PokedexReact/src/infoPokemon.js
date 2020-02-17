@@ -14,10 +14,6 @@ class InfoPokemon extends Component{
    
 
     render(){
-
-        //console.log(this.props.pok.sprites);
-        //console.log(this.props.pok.types);
-        //console.log(this.props.pok.moves)
         console.log(this.props.descripcion);
 
         return(
@@ -29,7 +25,7 @@ class InfoPokemon extends Component{
                     <p></p>
                     <p></p>
                 </div>
-                <div className="descripcionPokemon">{this.props.descripcion}</div>
+                <p className="descripcionPokemon">{this.props.descripcion}</p>
                 <div className="extraInfo">
                     <p>Altura: {this.props.pok.height}</p>
                     <br></br>

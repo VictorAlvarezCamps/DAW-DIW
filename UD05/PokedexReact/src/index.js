@@ -10,8 +10,11 @@ import Header from './Header';
 let seleccionTipo;
 
 function init() {
+    
 
     ReactDOM.render(<Pokedex />, document.getElementById('root'))
+
+    
 
     let tipos = document.querySelector(".porTipos");
 
@@ -21,6 +24,7 @@ function init() {
     }*/
 
 
+
 }
 
 function recogerTipo(e){
@@ -28,10 +32,9 @@ function recogerTipo(e){
 }
 
 
-function busqueda(e){
-    let input = document.querySelector('input[type="text"]').value;
+/*function busqueda(e){
     return e.name.startsWith(input);
-}
+}*/
 
 /*-----------------------------------------------REACT-----------------------------------*/
 
@@ -50,12 +53,10 @@ class Pokedex extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
-    
+
     
 
-    componentDidMount = async () => {
-
-        
+    componentDidMount = async () => {      
 
         let url = "https://pokeapi.co/api/v2/pokemon?limit=1000";
 
@@ -76,7 +77,6 @@ class Pokedex extends React.Component {
             
             
         });
-
         
 
         Promise.all(todosPokemons,).then(pokemons => {
@@ -132,88 +132,35 @@ class Pokedex extends React.Component {
             
         })
 
+        const filtrar = function (e) {
+            //console.log(e.target.value);
+
+            let lista = document.getElementsByClassName("ListaPokemon");
+
+            //console.log(lista[0].children);
+
+            for (let item of lista[0].children) {
+                //console.log(item.dataset.nombre);
+
+                if(e.target.value === ""){
+                    console.log(item.dataset.nombre);
+                }else{
+                    
+                }
+
+            }
+
+        }
+
+        let input = document.getElementsByClassName("contenido");
+
+        //console.log(input[0].children[0].children[2]);
         
-        const r = this.state.datos.filter(busqueda);
+        input[0].children[0].children[2].addEventListener("input",filtrar);
 
-        
-
-    }   
-
-    busqueda(e){
-        let input = document.querySelector('input[type="text"]').value;
-        return e.name.startsWith(input);
     }
 
-    //componentWillMount() {
-
-        /*r.forEach(p =>{
-            
-            //console.log(p);
-                
-            
-
-            switch (seleccionTipo) {
-                case "Todos":
-                    this.setState({
-                        datos: p
-                    })
-                    break;
-                case "Fuego":
-                    console.log(p.types);
-
-                    break;
-                case "Planta":
-
-                    break;
-                case "Electrico":
-                    
-                    break;
-                case "Hielo":
-
-                    break;
-                case "Lucha":
-
-                    break;
-                case "Veneno":
-
-                    break;
-                case "Tierra":
-                    
-                    break;
-                case "Volador":
-
-                    break;
-                case "Psiquico":
-
-                    break;
-                case "Bicho":
-
-                    break;
-                case "Roca":
-                    
-                    break;
-                case "Fantasma":
-
-                    break;
-                case "Dragon":
-
-                    break;
-                case "Siniestro":
-
-                    break;
-                case "Acero":
-                
-                    break;
-                case "Hada":
-
-                    break;
-                default:
-                    break;
-            }
-            
-
-        });      */      
-    //}
+    
 
 
     handleClick = (e,data) =>{
@@ -249,7 +196,6 @@ class Pokedex extends React.Component {
     }
 
     render() {
-
         
 
         if (this.state.loading) {
@@ -263,7 +209,7 @@ class Pokedex extends React.Component {
                 <div className="ListaPokemon">                        
                         {this.state.datos.map(pokemon => {
                             return (
-                                <div className="Pokemon" name={pokemon.id} onClick={((e) => this.handleClick(e, pokemon.id))}>
+                                <div className="Pokemon" data-nombre={pokemon.name} name={pokemon.name} onClick={((e) => this.handleClick(e, pokemon.id))}>
                                     <Datos id={pokemon.id} imagen={pokemon.sprites.front_default} nombre={pokemon.name}/>
                                 </div>
                             )
@@ -280,6 +226,8 @@ class Pokedex extends React.Component {
                 </div>
             </div>
         );  
+
+        
 
     }  
 
