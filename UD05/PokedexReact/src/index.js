@@ -228,9 +228,36 @@ class Pokedex extends React.Component {
         
     }
 
+    devolverDescripciones =(nombre) =>{
+        let contador = 0;
+
+        let idioma;
+
+        this.state.descriptions.map(pokemon2 => {
+            //console.log(pokemon2);
+            if(nombre === pokemon2.name){
+                //console.log(pokemon.name+" "+this.state.descriptions.name);
+                pokemon2.flavor_text_entries.map(idiomaES => { //NO MUESTRA EL RETURN DEL POKEMON SELECCIONADO
+                    //console.log(idiomaES.language.name);
+                    if(idiomaES.language.name === "es"){
+                        //console.log(idiomaES);
+                        if (contador === 0 ) {
+                            contador++;                 
+                            //return idiomaES.flavor_text;
+                            idioma = idiomaES.flavor_text;
+                        }
+                    }
+                })                                               
+            }
+        });
+
+        return idioma;
+        
+    }
+
     render() {
 
-        let contador = 0;
+        
 
         if (this.state.loading) {
             return (<div className="Cargando">.</div>);
@@ -254,25 +281,16 @@ class Pokedex extends React.Component {
                 <div className="infoPokemon">
                     {this.state.datos2.map(pokemon => {
                         if(this.state.elegido.name === pokemon.name) {
-                            this.state.descriptions.map(pokemon2 => {
-                                //console.log(pokemon2);
-                                if(pokemon.name === pokemon2.name){
-                                    //console.log(pokemon.name+" "+this.state.descriptions.name);
-                                    pokemon2.flavor_text_entries.map(idiomaES => { //NO MUESTRA EL RETURN DEL POKEMON SELECCIONADO
-                                        //console.log(idiomaES.language.name);
-                                        if(idiomaES.language.name === "es"){
-                                            //console.log(idiomaES);
-                                            if (contador === 0 ) {
-                                                contador++;
-                                                //console.log(idiomaES.flavor_text);
-                                                return <InfoPokemon pok={this.state.elegido} pok2={pokemon} descripcion={idiomaES.flavor_text}/>
-                                            }
-                                        }
-                                    })                                                                    
-                                }
-                            });
-                            return <InfoPokemon pok={this.state.elegido} pok2={pokemon}/>                  
+                            
+                            console.log(this.devolverDescripciones(pokemon.name));
+
+                            //return <InfoPokemon pok={this.state.elegido} pok2={pokemon}/>
+
+
+                            return <InfoPokemon pok={this.state.elegido} pok2={pokemon} descripcion={this.devolverDescripciones(pokemon.name)}/>
                         }
+                        //return <InfoPokemon pok={this.state.elegido} pok2={pokemon}/>
+                        
                     })}                    
                 </div>
             </div>
