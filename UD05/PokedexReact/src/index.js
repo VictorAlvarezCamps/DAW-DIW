@@ -81,8 +81,6 @@ class Pokedex extends React.Component {
 
         Promise.all(todosPokemons,).then(pokemons => {
 
-            //console.log(pokemons);
-
             this.setState({
                 loading: false,
                 datos: pokemons                
@@ -234,16 +232,11 @@ class Pokedex extends React.Component {
         let idioma;
 
         this.state.descriptions.map(pokemon2 => {
-            //console.log(pokemon2);
             if(nombre === pokemon2.name){
-                //console.log(pokemon.name+" "+this.state.descriptions.name);
-                pokemon2.flavor_text_entries.map(idiomaES => { //NO MUESTRA EL RETURN DEL POKEMON SELECCIONADO
-                    //console.log(idiomaES.language.name);
+                pokemon2.flavor_text_entries.map(idiomaES => { 
                     if(idiomaES.language.name === "es"){
-                        //console.log(idiomaES);
                         if (contador === 0 ) {
                             contador++;                 
-                            //return idiomaES.flavor_text;
                             idioma = idiomaES.flavor_text;
                         }
                     }
@@ -262,8 +255,6 @@ class Pokedex extends React.Component {
         if (this.state.loading) {
             return (<div className="Cargando">.</div>);
         }
-
-        //console.log(this.state.descriptions);
        
         return (
             <div className="contenido">
@@ -281,15 +272,9 @@ class Pokedex extends React.Component {
                 <div className="infoPokemon">
                     {this.state.datos2.map(pokemon => {
                         if(this.state.elegido.name === pokemon.name) {
-                            
-                            console.log(this.devolverDescripciones(pokemon.name));
-
-                            //return <InfoPokemon pok={this.state.elegido} pok2={pokemon}/>
-
 
                             return <InfoPokemon pok={this.state.elegido} pok2={pokemon} descripcion={this.devolverDescripciones(pokemon.name)}/>
                         }
-                        //return <InfoPokemon pok={this.state.elegido} pok2={pokemon}/>
                         
                     })}                    
                 </div>

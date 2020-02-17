@@ -8,8 +8,7 @@ class InfoPokemon extends Component{
 
         this.state = {
             datos: {},
-            datos2: this.props.pok2,
-            descrip: this.props.descripcion
+            datos2: this.props.pok2
         }
     }
    
@@ -30,7 +29,7 @@ class InfoPokemon extends Component{
                     <p></p>
                     <p></p>
                 </div>
-                <div className="descripcionPokemon">{this.state.descripcion}</div>
+                <div className="descripcionPokemon">{this.props.descripcion}</div>
                 <div className="extraInfo">
                     <p>Altura: {this.props.pok.height}</p>
                     <br></br>
