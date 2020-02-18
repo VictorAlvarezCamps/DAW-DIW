@@ -8,38 +8,33 @@ class InfoPokemon extends Component{
 
         this.state = {
             datos: {},
-            datos2: this.props.pok2
+            datos2: this.props.pok2,
+            tipo: this.props.tipo
         }
     }
    
 
     render(){
-        console.log(this.props.descripcion);
 
-        return(
-            <div>
-                <img className="imgPokemon" alt={this.props.pok.id} src={this.state.datos2.sprites.front_default}></img>
-                <p className="numPokemon">#{this.props.pok.id}</p>
-                <p className="nombrePokemon">{this.props.pok.name}</p>
-                <div className="tipos">
-                    <p></p>
-                    <p></p>
-                </div>
-                <p className="descripcionPokemon">{this.props.descripcion}</p>
-                <div className="extraInfo">
-                    <p>Altura: {this.props.pok.height}</p>
-                    <br></br>
-                    <p>Peso: {this.props.pok.weight}</p>
-                    <div className="Movimientos">
-                        <p></p>
-                        <p></p>
-                        <p></p>
+            return(
+                <div>
+                    <img className="imgPokemon" alt={this.props.pok.id} src={this.state.datos2.sprites.front_default}></img>
+                    <p className="numPokemon">#{this.props.pok.id}</p>
+                    <p className="nombrePokemon">{this.props.pok.name}</p>
+                    <div className="tipos">
                         <p></p>
                         <p></p>
                     </div>
+                    <p className="descripcionPokemon">{this.props.descripcion}</p>
+                    <div className="extraInfo">
+                        <p>Altura: {this.props.pok.height}</p>
+                        <br></br>
+                        <p>Peso: {this.props.pok.weight}</p>
+                    </div>
                 </div>
-            </div>
-        );
+            
+            );
+
     }
 
 }

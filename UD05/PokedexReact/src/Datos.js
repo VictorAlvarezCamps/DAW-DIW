@@ -13,10 +13,9 @@ class Datos extends Component{
         }
         
     }   
-
     
     
-    render(){       
+    render(){ 
 
         return(
             <div>

@@ -6,35 +6,11 @@ import Datos from './Datos.js';
 import InfoPokemon from './infoPokemon';
 import Header from './Header';
 
-/*VARIABLES*/
-let seleccionTipo;
+function init() {   
 
-function init() {
-    
-
-    ReactDOM.render(<Pokedex />, document.getElementById('root'))
-
-    
-
-    let tipos = document.querySelector(".porTipos");
-
-    /*for (let i = 0; i < tipos.children.length; i++) {
-        //console.log(tipos.children[i]);
-        tipos.children[i].addEventListener("click",recogerTipo);
-    }*/
-
-
+    ReactDOM.render(<Pokedex />, document.getElementById('root'))  
 
 }
-
-function recogerTipo(e){
-    seleccionTipo = e.target.dataset.tipo;
-}
-
-
-/*function busqueda(e){
-    return e.name.startsWith(input);
-}*/
 
 /*-----------------------------------------------REACT-----------------------------------*/
 
@@ -52,9 +28,25 @@ class Pokedex extends React.Component {
         }
         this.handleClick = this.handleClick.bind(this);
     }
-
-
     
+    filtrarLista = async (e) =>{
+
+        const { datos } = this.state;
+
+        var listaActualizada = datos;
+        
+        listaActualizada = listaActualizada.filter(function(pokemon) {
+
+            return pokemon.name.search(e.target.value) !== -1;
+
+        });
+
+        console.log(listaActualizada);
+
+        this.setState({datos: listaActualizada});
+
+
+    }
 
     componentDidMount = async () => {      
 
@@ -132,67 +124,7 @@ class Pokedex extends React.Component {
             
         })
 
-        const filtrar = function (e) {
-            //console.log(e.target.value);
-
-            let lista = document.getElementsByClassName("ListaPokemon");
-
-            //console.log(lista[0].children);
-
-            for (let item of lista[0].children) {
-                //console.log(item.dataset.nombre);
-
-                if(e.target.value === ""){
-                    
-                    //console.log(item.dataset.nombre);
-                    
-                    /*this.setState({
-                        datos: pokemons                
-                    })*/
-
-                }else if(e.target.value !== ""){
-
-                    if(item.dataset.nombre.startsWith(e.target.value)){
-                        //console.log(item.dataset.nombre);
-
-                        //console.log(pokemons.results);
-
-                        pokemons.results.forEach(pokemon => {
-                            //console.log(pokemon.name);
-
-                            if(pokemon.name === item.dataset.nombre){
-                                //console.log(pokemon.name);
-                                
-                                /*this.setState({
-                                    datos: pokemon 
-                                })*/
-                                
-                            }
-
-                        });
-
-                    }
-
-                }
-
-            }
-
-        }
-
-        
-
-        let input = document.getElementsByClassName("contenido");
-
-        //console.log(input[0].children[0].children[2]);
-        
-        input[0].children[0].children[2].addEventListener("input",filtrar);
-
     }
-
-    
-
-    
-
 
     handleClick = (e,data) =>{
 
@@ -228,6 +160,7 @@ class Pokedex extends React.Component {
 
     render() {
         
+        
 
         if (this.state.loading) {
             return (<div className="Cargando">.</div>);
@@ -236,7 +169,9 @@ class Pokedex extends React.Component {
         return (
             <div className="contenido">
                 <Header /> 
-
+                <div className="input">
+                    <input type="text" id="filter" placeholder="Busca un pokémon aquí!" onChange={this.filtrarLista}></input>
+                </div>
                 <div className="ListaPokemon">                        
                         {this.state.datos.map(pokemon => {
                             return (
@@ -248,9 +183,10 @@ class Pokedex extends React.Component {
                 </div>
                 <div className="infoPokemon">
                     {this.state.datos2.map(pokemon => {
+                        
                         if(this.state.elegido.name === pokemon.name) {
 
-                            return <InfoPokemon pok={this.state.elegido} pok2={pokemon} descripcion={this.devolverDescripciones(pokemon.name)}/>
+                            return <InfoPokemon pok={this.state.elegido} pok2={pokemon} tipo={pokemon.types} descripcion={this.devolverDescripciones(pokemon.name)}/>
                         }
                         
                     })}                    

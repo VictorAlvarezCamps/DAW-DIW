@@ -247,6 +247,10 @@ body{
     float: left;
 }
 
+.input{
+    position: absolute;
+}
+
 input[type="text"]{
     margin-top: 30px;
     margin-left: 350px;
@@ -366,7 +370,14 @@ input[type="text"]{
 }
 
 .tipos{
+    width: 100px;
     display: inline-block;
+    grid-area: b;
+    font-size: 40px;
+    font-family: 'Bungee Hairline', cursive;
+    font-weight: bold;
+    position: absolute;
+    margin-top: 10px;
 }
 
 .tipoPokemon{

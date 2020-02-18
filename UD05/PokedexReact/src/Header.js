@@ -36,7 +36,6 @@ class Header extends React.Component {
                         <div className="Todos" data-tipo="Todos">Todos</div>
                     </div>
                     
-                    <input type="text" id="filter" placeholder="Busca un pokémon aquí!"></input>
                 </div>  
         );
     }
