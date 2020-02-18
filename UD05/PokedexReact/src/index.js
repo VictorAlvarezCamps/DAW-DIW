@@ -79,7 +79,7 @@ class Pokedex extends React.Component {
         });
         
 
-        Promise.all(todosPokemons,).then(pokemons => {
+        Promise.all(todosPokemons).then(pokemons => {
 
             this.setState({
                 loading: false,
@@ -143,14 +143,43 @@ class Pokedex extends React.Component {
                 //console.log(item.dataset.nombre);
 
                 if(e.target.value === ""){
-                    console.log(item.dataset.nombre);
-                }else{
                     
+                    //console.log(item.dataset.nombre);
+                    
+                    /*this.setState({
+                        datos: pokemons                
+                    })*/
+
+                }else if(e.target.value !== ""){
+
+                    if(item.dataset.nombre.startsWith(e.target.value)){
+                        //console.log(item.dataset.nombre);
+
+                        //console.log(pokemons.results);
+
+                        pokemons.results.forEach(pokemon => {
+                            //console.log(pokemon.name);
+
+                            if(pokemon.name === item.dataset.nombre){
+                                //console.log(pokemon.name);
+                                
+                                /*this.setState({
+                                    datos: pokemon 
+                                })*/
+                                
+                            }
+
+                        });
+
+                    }
+
                 }
 
             }
 
         }
+
+        
 
         let input = document.getElementsByClassName("contenido");
 
@@ -159,6 +188,8 @@ class Pokedex extends React.Component {
         input[0].children[0].children[2].addEventListener("input",filtrar);
 
     }
+
+    
 
     
 
