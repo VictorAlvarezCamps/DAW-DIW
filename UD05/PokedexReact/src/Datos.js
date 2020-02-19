@@ -12,8 +12,20 @@ class Datos extends Component{
             nombre: this.props.nombre
         }
         
-    }   
+    }
     
+    componentDidUpdate(pP,pS){
+        //pP -> prevProps , pS -> prevState
+
+        if(this.state.id !== pS.id){
+            this.setState({
+                id: pS.id,
+                imagen: pS.sprites.front_default,
+                nombre: pS.name
+            });
+        }
+
+    }
     
     render(){ 
 
