@@ -291,7 +291,7 @@ input[type="text"]{
     overflow-y: scroll;
 }
 
-.Pokemon div{
+.Pokemon{
     display: flex;
     justify-content: center;
     align-items: center;

@@ -6,6 +6,9 @@ import Datos from './Datos.js';
 import InfoPokemon from './infoPokemon';
 import Header from './Header';
 
+
+var todos = "";
+
 function init() {   
 
     ReactDOM.render(<Pokedex />, document.getElementById('root'))  
@@ -22,34 +25,42 @@ class Pokedex extends React.Component {
         this.state = {
             loading: true,
             datos: [],
+            todos: [],
             datos2: [],
+            filtro: 0,
             descriptions: [],
-            elegido: {}     
+            elegido: {}
         }
         this.handleClick = this.handleClick.bind(this);
     }
     
     filtrarLista = async (e) =>{
-
+        
         const { datos } = this.state;
 
         var listaActualizada = datos;
-        
-        listaActualizada = listaActualizada.filter(function(pokemon) {
-            
-            if(e.target.value === ""){
-                return datos;
-            }else if(e.target.value !== ""){
-                return pokemon.name.search(e.target.value) !== -1;
-            }
-
-
-        });
 
         console.log(listaActualizada);
 
-        this.setState({datos: listaActualizada});
+        if (e.target.value === "") {
 
+            this.setState({todos: listaActualizada});
+
+            this.setState({filtro: 0});
+
+        }else if(e.target.value !== ""){
+
+            listaActualizada = listaActualizada.filter(function(pokemon) { 
+                
+                return pokemon.name.search(e.target.value) !== -1;
+
+            });
+
+            this.setState({datos: listaActualizada});
+
+            this.setState({filtro: 1});
+        }
+        
     }
 
     componentDidMount = async () => {      
@@ -61,7 +72,6 @@ class Pokedex extends React.Component {
         const result1 = await fetch(url);
 
         const pokemons = await result1.json();
-
 
         const todosPokemons = pokemons.results.map( async datos => {
 
@@ -79,6 +89,7 @@ class Pokedex extends React.Component {
 
             this.setState({
                 loading: false,
+                todos: pokemons,
                 datos: pokemons                
             })
 
@@ -165,6 +176,8 @@ class Pokedex extends React.Component {
 
     render() {
         
+        //Según filtro si es 0 o 1 mostrar maps o datos en la clase ListaPokemon
+
 
         if (this.state.loading) {
             return (<div className="Cargando">.</div>);
@@ -176,7 +189,7 @@ class Pokedex extends React.Component {
                 <div className="input">
                     <input type="text" id="filter" placeholder="Busca un pokémon aquí!" onChange={this.filtrarLista}></input>
                 </div>
-                <div className="ListaPokemon">                        
+                <div className="ListaPokemon">
                         {this.state.datos.map(pokemon => {
                             //console.log(pokemon.name);
                             return (
