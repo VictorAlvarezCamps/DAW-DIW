@@ -12,7 +12,16 @@ class InfoPokemon extends Component{
             tipo: this.props.tipo
         }
     }
-   
+    componentDidUpdate(prevProps, prevState) {
+        console.log("Esta fuera")
+        
+        if (prevProps !== this.props) {
+            console.log("Ha entrado");
+            
+            this.setState({datos2:this.props.pok2})
+          }
+        
+      }
 
     render(){
 

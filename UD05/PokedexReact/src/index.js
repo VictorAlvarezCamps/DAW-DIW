@@ -36,8 +36,13 @@ class Pokedex extends React.Component {
         var listaActualizada = datos;
         
         listaActualizada = listaActualizada.filter(function(pokemon) {
+            
+            if(e.target.value === ""){
+                return datos;
+            }else if(e.target.value !== ""){
+                return pokemon.name.search(e.target.value) !== -1;
+            }
 
-            return pokemon.name.search(e.target.value) !== -1;
 
         });
 
@@ -45,12 +50,11 @@ class Pokedex extends React.Component {
 
         this.setState({datos: listaActualizada});
 
-
     }
 
     componentDidMount = async () => {      
 
-        let url = "https://pokeapi.co/api/v2/pokemon?limit=1000";
+        let url = "https://pokeapi.co/api/v2/pokemon?limit=20";
 
         let url2 = "https://pokeapi.co/api/v2/pokedex/1";
 
@@ -133,6 +137,7 @@ class Pokedex extends React.Component {
                 this.setState({elegido:pokemon});
             }
         })
+       
         
     }
 
@@ -160,7 +165,6 @@ class Pokedex extends React.Component {
 
     render() {
         
-        
 
         if (this.state.loading) {
             return (<div className="Cargando">.</div>);
@@ -168,16 +172,16 @@ class Pokedex extends React.Component {
        
         return (
             <div className="contenido">
-                <Header /> 
+                <Header key="header"/> 
                 <div className="input">
                     <input type="text" id="filter" placeholder="Busca un pokémon aquí!" onChange={this.filtrarLista}></input>
                 </div>
                 <div className="ListaPokemon">                        
                         {this.state.datos.map(pokemon => {
+                            //console.log(pokemon.name);
                             return (
-                                <div className="Pokemon" data-nombre={pokemon.name} name={pokemon.name} onClick={((e) => this.handleClick(e, pokemon.id))}>
-                                    <Datos id={pokemon.id} imagen={pokemon.sprites.front_default} nombre={pokemon.name}/>
-                                </div>
+                                <Datos key={pokemon.name} id={pokemon.id} onClick={((e) => this.handleClick(e, pokemon.id))} 
+                                imagen={pokemon.sprites.front_default} nombre={pokemon.name}/>
                             )
                         })}               
                 </div>
@@ -186,7 +190,7 @@ class Pokedex extends React.Component {
                         
                         if(this.state.elegido.name === pokemon.name) {
 
-                            return <InfoPokemon pok={this.state.elegido} pok2={pokemon} tipo={pokemon.types} descripcion={this.devolverDescripciones(pokemon.name)}/>
+                            return <InfoPokemon key="infoPokemon" pok={this.state.elegido} pok2={pokemon} tipo={pokemon.types} descripcion={this.devolverDescripciones(pokemon.name)}/>
                         }
                         
                     })}                    

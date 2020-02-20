@@ -5,35 +5,40 @@ class Datos extends Component{
 
     constructor(props){
         super(props);
+        this.ref=React.createRef();
+        
+    }
 
-        this.state = {
-            id: this.props.id,
-            imagen: this.props.imagen,
-            nombre: this.props.nombre
-        }
+    handleClick = () => {
+
+        this.props.onClick(this.props.id);
         
     }
     
-    componentDidUpdate(pP,pS){
+    /*componentDidUpdate(pP,pS){
         //pP -> prevProps , pS -> prevState
 
-        if(this.state.id !== pS.id){
+        //console.log(pS);
+        
+
+        //console.log(this.state.id);
+        if(this.state.id !== pS.id || this.state.imagen !== pS.imagen || this.state.nombre !== pS.nombre){
             this.setState({
                 id: pS.id,
-                imagen: pS.sprites.front_default,
+                imagen: pS.imagen,
                 nombre: pS.name
             });
         }
 
-    }
+    }*/
     
     render(){ 
 
         return(
-            <div>
-                <img className="imagenPokemon" alt={this.state.id} src={this.state.imagen}></img>
-                <h1 >{this.state.id}</h1>
-                <h1 className="nombrePokemon">{this.state.nombre}</h1>
+            <div className={"Pokemon"} key={this.props.id} onClick={this.handleClick}>
+                <img className="imagenPokemon" alt={this.props.id} src={this.props.imagen}></img>
+                <h1 >{this.props.id}</h1>
+                <h1 className="nombrePokemon">{this.props.nombre}</h1>
             </div>
         );
     }
