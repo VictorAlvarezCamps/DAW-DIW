@@ -29,11 +29,7 @@ class InfoPokemon extends Component{
                 <div>
                     <img className="imgPokemon" alt={this.props.pok.id} src={this.state.datos2.sprites.front_default}></img>
                     <p className="numPokemon">#{this.props.pok.id}</p>
-                    <p className="nombrePokemon">{this.props.pok.name}</p>
-                    <div className="tipos">
-                        <p></p>
-                        <p></p>
-                    </div>
+                    <p className="nombrePokemon2">{this.props.pok.name}</p>
                     <p className="descripcionPokemon">{this.props.descripcion}</p>
                     <div className="extraInfo">
                         <p>Altura: {this.props.pok.height}</p>

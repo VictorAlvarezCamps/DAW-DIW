@@ -27,7 +27,7 @@ class Pokedex extends React.Component {
             datos: [],
             todos: [],
             datos2: [],
-            filtro: 0,
+            filtro: 1,
             descriptions: [],
             elegido: {}
         }
@@ -38,15 +38,16 @@ class Pokedex extends React.Component {
         
         const { datos } = this.state;
 
-        var listaActualizada = datos;
+        const { todos } = this.state;
 
-        console.log(listaActualizada);
+        var listaActualizada = datos;
 
         if (e.target.value === "") {
 
-            this.setState({todos: listaActualizada});
+            this.setState({datos: todos});
 
             this.setState({filtro: 0});
+            
 
         }else if(e.target.value !== ""){
 
@@ -57,15 +58,16 @@ class Pokedex extends React.Component {
             });
 
             this.setState({datos: listaActualizada});
-
-            this.setState({filtro: 1});
         }
+        
+        
+        
         
     }
 
     componentDidMount = async () => {      
 
-        let url = "https://pokeapi.co/api/v2/pokemon?limit=20";
+        let url = "https://pokeapi.co/api/v2/pokemon?limit=1000";
 
         let url2 = "https://pokeapi.co/api/v2/pokedex/1";
 
@@ -176,42 +178,101 @@ class Pokedex extends React.Component {
 
     render() {
         
-        //Según filtro si es 0 o 1 mostrar maps o datos en la clase ListaPokemon
 
 
         if (this.state.loading) {
             return (<div className="Cargando">.</div>);
         }
        
-        return (
-            <div className="contenido">
-                <Header key="header"/> 
-                <div className="input">
-                    <input type="text" id="filter" placeholder="Busca un pokémon aquí!" onChange={this.filtrarLista}></input>
-                </div>
-                <div className="ListaPokemon">
-                        {this.state.datos.map(pokemon => {
-                            //console.log(pokemon.name);
-                            return (
-                                <Datos key={pokemon.name} id={pokemon.id} onClick={((e) => this.handleClick(e, pokemon.id))} 
-                                imagen={pokemon.sprites.front_default} nombre={pokemon.name}/>
-                            )
-                        })}               
-                </div>
-                <div className="infoPokemon">
-                    {this.state.datos2.map(pokemon => {
-                        
-                        if(this.state.elegido.name === pokemon.name) {
+        if(this.state.datos.length < 961){
+            console.log("Filtrando");
+            
+            return (
+                <div className="contenido">
+                    <Header key="header"/> 
+                    <div className="input">
+                        <input type="text" id="filter" placeholder="Busca un pokémon aquí!" onChange={this.filtrarLista}></input>
+                    </div>
+                    <div className="ListaPokemon">
+                            {this.state.datos.map(pokemon => {
+                                return (
+                                    <Datos key={pokemon.name} id={pokemon.id} onClick={((e) => this.handleClick(e, pokemon.id))} 
+                                    imagen={pokemon.sprites.front_default} nombre={pokemon.name}/>
+                                )
+                            })}               
+                    </div>
+                    <div className="infoPokemon">
+                        {this.state.datos2.map(pokemon => {
+                            
+                            if(this.state.elegido.name === pokemon.name) {
 
-                            return <InfoPokemon key="infoPokemon" pok={this.state.elegido} pok2={pokemon} tipo={pokemon.types} descripcion={this.devolverDescripciones(pokemon.name)}/>
-                        }
-                        
-                    })}                    
+                                return <InfoPokemon key="infoPokemon" pok={this.state.elegido} pok2={pokemon} tipo={pokemon.types} descripcion={this.devolverDescripciones(pokemon.name)}/>
+                            }
+                            
+                        })}                    
+                    </div>
                 </div>
-            </div>
-        );  
+            );  
 
-        
+        }else if(this.state.todos.length === 961){
+            console.log("Mostrando todos");
+            
+
+            return (
+                <div className="contenido">
+                    <Header key="header"/> 
+                    <div className="input">
+                        <input type="text" id="filter" placeholder="Busca un pokémon aquí!" onChange={this.filtrarLista}></input>
+                    </div>
+                    <div className="ListaPokemon">
+                            {this.state.todos.map(pokemon => {
+                                //console.log(pokemon.name);
+                                return (
+                                    <Datos key={pokemon.name} id={pokemon.id} onClick={((e) => this.handleClick(e, pokemon.id))} 
+                                    imagen={pokemon.sprites.front_default} nombre={pokemon.name}/>
+                                )
+                            })}               
+                    </div>
+                    <div className="infoPokemon">
+                        {this.state.datos2.map(pokemon => {
+                            
+                            if(this.state.elegido.name === pokemon.name) {
+
+                                return <InfoPokemon key="infoPokemon" pok={this.state.elegido} pok2={pokemon} tipo={pokemon.types} descripcion={this.devolverDescripciones(pokemon.name)}/>
+                            }
+                            
+                        })}                    
+                    </div>
+                </div>
+            ); 
+        }else{
+            return (
+                <div className="contenido">
+                    <Header key="header"/> 
+                    <div className="input">
+                        <input type="text" id="filter" placeholder="Busca un pokémon aquí!" onChange={this.filtrarLista}></input>
+                    </div>
+                    <div className="ListaPokemon">
+                            {this.state.datos.map(pokemon => {
+                                return (
+                                    <Datos key={pokemon.name} id={pokemon.id} onClick={((e) => this.handleClick(e, pokemon.id))} 
+                                    imagen={pokemon.sprites.front_default} nombre={pokemon.name}/>
+                                )
+                            })}               
+                    </div>
+                    <div className="infoPokemon">
+                        {this.state.datos2.map(pokemon => {
+                            
+                            if(this.state.elegido.name === pokemon.name) {
+
+                                return <InfoPokemon key="infoPokemon" pok={this.state.elegido} pok2={pokemon} tipo={pokemon.types} descripcion={this.devolverDescripciones(pokemon.name)}/>
+                            }
+                            
+                        })}                    
+                    </div>
+                </div>
+            );  
+        }
 
     }  
 
